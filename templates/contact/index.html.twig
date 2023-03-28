@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact index{% endblock %}
+
+{% block body %}
+{% for contact in contacts %}
+    <section class="main flux">
+        <h1 class="main__title">{{contact.pageTitle}}</h1>
+        <p class="main__text-presentation">{{contact.pageText}}</p>
+    </section>
+
+    <section class="description flux">
+        <p class="description__text-presentation">{{contact.phoneNumber}}</p>
+        <p class="description__text-presentation">{{contact.adress}}</p>
+        <p class="description__text-presentation">{{contact.email}}</p>
+    </section>
+
+    <section class="famous-dishes flux">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_home_page_edit', {'id': page.id}) }}" class='main-modification__modifier'>Modifier les informations</a>
+        {% endif %}
+    </section>
+{% endfor %}
+{% endblock %}

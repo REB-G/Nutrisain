@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recipes index{% endblock %}
+
+{% block body %}
+	<section class="main-dishes flux">
+		<h1 class="main-dishes__title">Nos recettes</h1>
+		<p class="main-dishes__description">Voici quelques recettes.</p>
+		<p class="main-dishes__description">Tous nos recettes sont équilibrées.</p>
+	</section>
+
+	<section class="starters-dishes flux">
+		<h2 class="starters-dishes__title">Les recettes</h2>
+		{% for recipe in recipes %}
+			<ul class="starters-dishes__list">
+				<li class="starters-list">
+					{# <img class="starters-list__image" src="{{ vich_uploader_asset(dish, 'imageFile') }}" alt={{dish.name}}> #}
+					<div class="starters-list__description">
+						<p class="starters-list__description--title">{{recipe.title}}</p>
+						<p class="starters-list__description--details">{{recipe.description}}</p>
+					</div>
+                    <div>
+                        <p class="starters-list__price">{{recipe.preparationTime}}</p>
+                        <p>{{recipe.preparationStandingTime}}</p>
+                        <p>{{recipe.cookingTime}}</p>
+                    </div>
+                    <p>{{recipe.ingredients}}</p>
+                    <p>{{recipe.stagesOfRecipe}}</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<div class='starters-list__modification'>
+							<a href="{{ path('app_recipes_edit', {'id': dish.id}) }}" class='starters-list__modification--modifier'>Modifier</a>
+							<a href="{{ path('app_recipes_delete', {'id': dish.id}) }}" class='starters-list__modification--delete'>Supprimer</a>
+						</div>
+					{% endif %}
+				</li>
+			</ul>
+		{% endfor %}
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class='starters-dishes__modification'>
+				<a href="{{ path('app_recipes_new') }}" class='starters-dishes__modification--add'>Ajouter une recette</a>
+			</div>
+		{% endif %}
+	</section>
+{% endblock %}
