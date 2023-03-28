@@ -1,0 +1,61 @@
+@use "../../../sass/utils/_main" as utils
+
+.footer
+    color: utils.$pink
+    border-top: solid
+    border-color: utils.$light-green
+    display: flex
+    align-items: center
+    justify-content: space-evenly
+    margin-top: 10vw
+    background-color: utils.$dark-blue
+
+    &__logo
+        width: 20vw
+    
+    &__container
+        +utils.responsive("litle-tablet")
+            display: flex
+            align-items: baseline
+            justify-content: space-between
+            margin-top: 5vw
+
+    &__contact
+        margin-right: 5vw
+        margin-top: 2vw
+
+
+        &--title
+            text-decoration: underline
+            @extend %title-4
+            text-underline-offset: 0.2vw
+
+        
+        &--links
+            @extend %paragraphe-xs
+
+        &--links:hover
+            color: utils.$green
+    
+    &__legals
+        margin-right: 5vw
+        margin-top: 2vw
+
+        &--title
+            text-decoration: underline
+            @extend %title-4
+            text-underline-offset: 0.2vw
+
+        
+        &--links
+            @extend %paragraphe-xs
+
+        &--links:hover
+            color: utils.$green
+
+    &__copyright
+        margin-top: 5vw
+        margin-bottom: 2vw
+        @extend %paragraphe-xs
+        +utils.responsive("tablet")
+            margin-top: 2vw

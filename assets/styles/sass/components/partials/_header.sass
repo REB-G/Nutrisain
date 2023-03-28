@@ -1,0 +1,82 @@
+@use "../../../sass/utils/_main" as utils
+
+.header 
+    background-color: utils.$dark-blue
+
+    &__container     
+        display: flex
+        flex-flow: column
+        justify-content: space-around
+        align-items: center
+        +utils.responsive("tablet")
+            height: auto
+            display: flex
+            flex-flow: row wrap
+            justify-content: space-around
+
+        &--logo 
+            width: 20vw
+
+
+        &--nav 
+            display: none
+            +utils.responsive("tablet")
+                display: flex
+                flex-flow: row wrap
+                justify-content: flex-end
+                flex: 1
+                height: 100%
+                margin: auto
+                transition: height, margin .3s eases
+
+        &--btn
+            width: 2.3rem
+            margin-right: 8vw
+            margin-left: auto
+            background: none
+            border: none
+            cursor: pointer
+            +utils.responsive("tablet")
+                display: none
+
+            & i 
+                display: block
+                color: utils.$light-green
+                font-size: 1.5rem
+
+    &__link 
+        margin: 0.8rem
+        color: utils.$pink
+        text-align: center
+        @extend %paragraphe-s
+        transition: color .5s ease
+        +utils.responsive("tablet")
+            margin: 0.07rem
+
+.nav-active
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-content: center
+            right: 0
+            transition: all 400ms
+
+.btn
+    border-radius: 1.5rem
+    font-weight: 500
+    transition: 0.5s ease-in
+    margin: 0.7vw
+
+    &__primary
+        background-color: utils.$green
+        color: utils.$pink
+
+        &:hover
+            background-color: utils.$green
+            color: utils.$pink
+
+.flex
+    display: flex
+    flex-flow: row wrap
+    justify-content: space-around
+    align-items: center
