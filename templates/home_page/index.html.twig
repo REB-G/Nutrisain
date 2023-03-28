@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nutrisain - Accueil{% endblock %}
+
+{% block body %}
+{% for page in home_pages %}
+    <section class="main flux">
+        <h1 class="main__title">{{page.title}}</h1>
+        <p class="main__text-presentation">{{page.welcomeText}}</p>
+    </section>
+
+    <section class="description flux">
+        <h2 class="description__title">{{page.aboutTitle}}</h2>
+        <p class="description__text-presentation">{{page.aboutText}}</p>
+    </section>
+
+    <section class="famous-dishes flux">
+        <h2 class="famous-dishes__title">{{page.servicesTitle}}</h2>
+        <p class="famous-dishes__text-presentation">{{page.servicesText}}</p>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_home_page_edit', {'id': page.id}) }}" class='main-modification__modifier'>Modifier les informations de présentation</a>
+        {% endif %}
+    </section>
+{% endfor %}
+{% endblock %}

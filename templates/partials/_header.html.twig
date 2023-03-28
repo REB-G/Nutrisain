@@ -1,0 +1,26 @@
+<header class="header">
+	<div class="header__container">
+		<div class="flex">
+			<img class="header__container--logo" src="{{asset('build/images/logo_nutrisain.png')}}" alt="Logo de Nutrisain.">
+			<button class="header__container--btn">
+				<i class="fas fa-bars"></i>
+			</button>
+		</div>
+		<div>
+			<nav class="header__container--nav">
+				<a href="#" class="btn btn__primary header__link">Accueil</a>
+				<a href="#" class="btn btn__primary header__link">Recettes</a>
+				<a href="#" class="btn btn__primary header__link">Contact</a>
+				{% if is_granted('ROLE_ADMIN') %}
+					<a href="#" class="btn btn__primary header__link">Gestion</a>
+				{% endif %}
+				{% if app.user %}
+                    <a href="#">Mon compte</a>
+					<a href="#" class="btn btn__primary header__link">Se déconnecter</a>
+				{% else %}
+					<a href="#" class="btn btn__primary header__link">Se connecter</a>
+				{% endif %}
+			</nav>
+		</div>
+	</div>
+</header>
