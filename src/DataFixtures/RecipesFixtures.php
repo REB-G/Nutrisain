@@ -31,7 +31,7 @@ class RecipesFixtures extends Fixture implements DependentFixtureInterface
                 ->setIngredients($faker->word(5))
                 ->setStagesOfRecipe($faker->sentence(5))
                 ->setIsPublic($faker->boolean())
-                ->setImageFileName('default.jpg')
+                ->setImageName('default.jpg')
                 ->addDiet($this->getReference(DietsFixtures::DIET_REFERENCE))
                 ->addAllergy($this->getReference(AllergiesFixtures::ALLERGY_REFERENCE))
                 ->setDifficulty($this->getReference(DifficultiesFixtures::DIFFICULTY_REFERENCE))

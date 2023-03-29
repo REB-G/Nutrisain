@@ -18,7 +18,7 @@ class RecipesUnitTest extends TestCase
             ->setIngredients('ingredients')
             ->setStagesOfRecipe('stages of recipe')
             ->setIsPublic(true)
-            ->setImageFileName('image file name')
+            ->setImageName('image name')
             ->setCreatedAt(new \DateTimeImmutable())
             ->setUpdatedAt(new \DateTimeImmutable());
         
@@ -30,7 +30,7 @@ class RecipesUnitTest extends TestCase
         $this->assertTrue($recipe->getIngredients() === 'ingredients');
         $this->assertTrue($recipe->getStagesOfRecipe() === 'stages of recipe');
         $this->assertTrue($recipe->getIsPublic() === true);
-        $this->assertTrue($recipe->getImageFileName() === 'image file name');
+        $this->assertTrue($recipe->getImageName() === 'image name');
         $this->assertTrue($recipe->getCreatedAt() instanceof \DateTimeImmutable);
         $this->assertTrue($recipe->getUpdatedAt() instanceof \DateTimeImmutable);
     }
@@ -46,7 +46,7 @@ class RecipesUnitTest extends TestCase
             ->setIngredients('ingredients')
             ->setStagesOfRecipe('stages of recipe')
             ->setIsPublic(true)
-            ->setImageFileName('image file name')
+            ->setImageName('image file name')
             ->setCreatedAt(new \DateTimeImmutable())
             ->setUpdatedAt(new \DateTimeImmutable());
 
@@ -57,7 +57,7 @@ class RecipesUnitTest extends TestCase
         $this->assertFalse($recipe->getIngredients() === 'false');
         $this->assertFalse($recipe->getStagesOfRecipe() === 'false');
         $this->assertFalse($recipe->getIsPublic() === false);
-        $this->assertFalse($recipe->getImageFileName() === 'false');
+        $this->assertFalse($recipe->getImageName() === 'false');
         $this->assertFalse($recipe->getCreatedAt() instanceof \DateTime);
         $this->assertFalse($recipe->getUpdatedAt() instanceof \DateTime);
     }
@@ -73,6 +73,6 @@ class RecipesUnitTest extends TestCase
         $this->assertEmpty($recipe->getIngredients());
         $this->assertEmpty($recipe->getStagesOfRecipe());
         $this->assertEmpty($recipe->getIsPublic());
-        $this->assertEmpty($recipe->getImageFileName());
+        $this->assertEmpty($recipe->getImageName());
     }
 }
