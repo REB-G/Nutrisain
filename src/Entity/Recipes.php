@@ -7,9 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RecipesRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipesRepository::class)]
+#[Vich\Uploadable]
 class Recipes
 {
     #[ORM\Id]
@@ -51,8 +54,11 @@ class Recipes
     #[Assert\NotBlank(message: 'Veuillez indiquer si la recette est public ou non.')]
     private ?bool $isPublic = null;
 
+    #[Vich\UploadableField(mapping: 'dishes_images', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
+
     #[ORM\Column(length: 255)]
-    private ?string $imageFileName = null;
+    private ?string $imageName = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -187,14 +193,26 @@ class Recipes
         return $this;
     }
 
-    public function getImageFileName()
+    public function getImageFile()
     {
-        return $this->imageFileName;
+        return $this->imageFile;
     }
 
-    public function setImageFileName($imageFileName): self
+    public function setImageFile($imageFile): self
     {
-        $this->imageFileName = $imageFileName;
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    public function getImageName()
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName($imageName): self
+    {
+        $this->imageName = $imageName;
 
         return $this;
     }
