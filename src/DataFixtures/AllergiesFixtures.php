@@ -24,8 +24,9 @@ class AllergiesFixtures extends Fixture
             'Graines de sésame',
             'Soja',
             'Fruits à coque',
+            'Fructose',
         ];
-        for ($i=1; $i <=11; $i++) {
+        for ($i=1; $i <=12; $i++) {
             $allergy = new Allergies();
 
             $allergy->setName($names[$i-1]);
