@@ -4,8 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Recipes;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -42,7 +44,7 @@ class RecipesCrudController extends AbstractCrudController
             IntegerField::new('cookingTime', 'Temps de cuisson'),
             TextAreaField::new('ingredients', 'Ingrédients'),
             TextAreaField::new('stagesOfRecipe', 'Etapes de la recette'),
-            BooleanField::new('isPublic', 'Recette publique ?'),
+            BooleanField::new('isPublic', 'Recette publique'),
             TextField::new('imageFile')
                 ->setFormType(VichImageType::class),
             DateTimeField::new('createdAt', 'Créé le')
@@ -50,8 +52,8 @@ class RecipesCrudController extends AbstractCrudController
             DateTimeField::new('updatedAt', 'Modifié le'),
             AssociationField::new('difficulty', 'Niveau de difficulté'),
             AssociationField::new('category', 'Catégorie'),
+            AssociationField::new('allergy', 'Allergie'),
             AssociationFIeld::new('diet', 'Régime'),
-            AssociationField::new('opinions', 'Avis'),
         ];
     }
 }

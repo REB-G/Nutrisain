@@ -4,20 +4,69 @@ namespace App\Controller;
 
 use App\Entity\Recipes;
 use App\Form\RecipesType;
+use App\Repository\DietsRepository;
 use App\Repository\RecipesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoriesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/recipes')]
 class RecipesController extends AbstractController
 {
-    #[Route('/', name: 'app_recipes_index', methods: ['GET'])]
-    public function index(RecipesRepository $recipesRepository): Response
+    #[Route('/', name: 'app_recipes_index', methods: ['GET', 'POST'])]
+    public function index(
+        RecipesRepository $recipesRepository,
+        CategoriesRepository $categoriesRepository,
+        DietsRepository $dietsRepository,
+        Request $request
+    ): Response
     {
+        // Méthode pour effectuer une pagination (sans bundle)
+        //Récuprère le numéro de page
+        $page = (int)$request->query->get('page', 1);
+        
+        // Définition du nombre de recettes par page
+        $limit = 3;
+
+        // Méthode pour récupérer les filtres les sélectionnés par l'utilisateur
+        $filtersCategories = $request->get('categories');
+        $filtersDiets = $request->get('diets');
+        // Récupération des recettes paginées et filtrées si des filtres sont sélectionnés
+        $recipes = $recipesRepository->getPaginatedRecipes($page, $limit, $filtersCategories, $filtersDiets);
+
+        // Récupération du nombre total de recettes
+        $total = $recipesRepository->countRecipes($filtersCategories, $filtersDiets);
+        // dd($filters, $recipes, $total);
+
+        // Méthode pour proposer un filtrage sur les recettes par catégories et par régime.
+        $categories = $categoriesRepository->findAll();
+        $diets = $dietsRepository->findAll();
+
+        //On vérifie si la requête est en AJAX
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => $this->renderView('recipes/_recipes.html.twig', [
+                    'recipes' => $recipes,
+                    'total' => $total,
+                    'limit' => $limit,
+                    'page' => $page,
+                    'categories' => $categories,
+                    'diets' => $diets,
+                ]),
+            ]);
+        }
+
+
         return $this->render('recipes/index.html.twig', [
-            'recipes' => $recipesRepository->findAll(),
+            'recipes' => $recipes,
+            'total' => $total,
+            'limit' => $limit,
+            'page' => $page,
+            'categories' => $categories,
+            'diets' => $diets,
         ]);
     }
 

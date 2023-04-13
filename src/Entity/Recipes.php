@@ -23,7 +23,6 @@ class Recipes
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le titre de la recette.')]
     #[Assert\Length(max: 255, maxMessage: "Le nom ne doit pas dépasser 255 caractères")]
-    #[Assert\Regex(pattern: "/^[a-zA-ZÀ-ÿ -]+$/", message: "Le nom ne doit contenir que des lettres")]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -51,10 +50,9 @@ class Recipes
     private ?string $stagesOfRecipe = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank(message: 'Veuillez indiquer si la recette est public ou non.')]
     private ?bool $isPublic = null;
 
-    #[Vich\UploadableField(mapping: 'dishes_images', fileNameProperty: 'imageName')]
+    #[Vich\UploadableField(mapping: 'recipes_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 255)]
