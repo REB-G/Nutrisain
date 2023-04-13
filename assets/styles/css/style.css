@@ -1,7 +1,3 @@
-body {
-  background-color: blue;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -136,8 +132,6 @@ ul {
 
 .footer {
   color: #DDB771;
-  border-top: solid;
-  border-color: #6BBF59;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -185,6 +179,10 @@ ul {
   .footer__copyright {
     margin-top: 2vw;
   }
+}
+
+.recipes-display {
+  display: none;
 }
 
 .btn {
