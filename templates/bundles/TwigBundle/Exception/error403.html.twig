@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nutrisain - Accès refusé{% endblock %}
+
+{% block body %}
+    <section class='error403'>
+        <h1 class='error403__title'>Accès refusé.</h1>
+        <p class='error403__info'>Vous n'avez pas les droits pour accéder à cette page.</p>
+        <a href="{{'app_home_page_index'}}" class='error403__link'>Retourner à la page d'accueil</a>
+    </section>
+{% endblock %}
