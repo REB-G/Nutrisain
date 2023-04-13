@@ -3,42 +3,53 @@
 {% block title %}Recipes index{% endblock %}
 
 {% block body %}
-	<section class="main-dishes flux">
-		<h1 class="main-dishes__title">Nos recettes</h1>
-		<p class="main-dishes__description">Voici quelques recettes.</p>
-		<p class="main-dishes__description">Tous nos recettes sont équilibrées.</p>
-	</section>
 
-	<section class="starters-dishes flux">
-		<h2 class="starters-dishes__title">Les recettes</h2>
-		{% for recipe in recipes %}
-			<ul class="starters-dishes__list">
-				<li class="starters-list">
-					{# <img class="starters-list__image" src="{{ vich_uploader_asset(dish, 'imageFile') }}" alt={{dish.name}}> #}
-					<div class="starters-list__description">
-						<p class="starters-list__description--title">{{recipe.title}}</p>
-						<p class="starters-list__description--details">{{recipe.description}}</p>
-					</div>
-                    <div>
-                        <p class="starters-list__price">{{recipe.preparationTime}}</p>
-                        <p>{{recipe.preparationStandingTime}}</p>
-                        <p>{{recipe.cookingTime}}</p>
-                    </div>
-                    <p>{{recipe.ingredients}}</p>
-                    <p>{{recipe.stagesOfRecipe}}</p>
-					{% if is_granted('ROLE_ADMIN') %}
-						<div class='starters-list__modification'>
-							<a href="{{ path('app_recipes_edit', {'id': dish.id}) }}" class='starters-list__modification--modifier'>Modifier</a>
-							<a href="{{ path('app_recipes_delete', {'id': dish.id}) }}" class='starters-list__modification--delete'>Supprimer</a>
-						</div>
-					{% endif %}
-				</li>
-			</ul>
-		{% endfor %}
-		{% if is_granted('ROLE_ADMIN') %}
-			<div class='starters-dishes__modification'>
-				<a href="{{ path('app_recipes_new') }}" class='starters-dishes__modification--add'>Ajouter une recette</a>
-			</div>
-		{% endif %}
+{# Variable personnalisée qui permet de récupère tous les paramètres de notre url #}
+{% set queryParams = app.request.query.all %}
+{{dump(queryParams)}}
+
+
+	<section class='filters'>
+		<p>Filtrer les recettes</p>
+		<form id='filters_form'>
+			{% for category in categories %}
+			{# Permet de vérifier s'il y a une catégorie dans les paramètres de l'url, et si oui alors la case correspndante est cochée #}
+				{% if queryParams is not empty and queryParams.categories is defined %}
+					{% set checked = (category.id in queryParams.categories) ? 'checked' : '' %}
+				{% else %}
+					{% set checked = "" %}
+				{% endif %}
+				<input type='checkbox' name='categories[]' value='{{category.id}}' id='category{{category.id}}' {{checked}} class='filters__checkbox'>
+				<label for='category{{category.id}}' class='filters__label'>{{category.name}}</label>
+			{% endfor %}
+			{% for diet in diets %}
+				{% if queryParams is not empty and queryParams.diets is defined %}
+					{% set checked = (diet.id in queryParams.diets) ? 'checked' : '' %}
+				{% else %}
+					{% set checked = "" %}
+				{% endif %}
+				<input type='checkbox' name='diets[]' value='{{diet.id}}' id='diet{{diet.id}}' {{checked}} class='filters__checkbox'>
+				<label for='diet{{diet.id}}' class='filters__label'>{{diet.name}}</label>
+			{% endfor %}
+            <input type="hidden" name='page' value='{{page}}'>
+		</form>
+		{# <form id="filtre-recettes-form">
+			<label for="categories-select">Catégories :</label>
+			<select id="categories-select" name="categories[]">
+				{% for categorie in categories %}
+					<option value="{{ categorie.id }}">{{ categorie.name }}</option>
+				{% endfor %}
+			</select>
+
+			<label for="diets-select">Régimes :</label>
+			<select id="diets-select" name="diets[]">
+				{% for diet in diets %}
+					<option value="{{ diet.id }}">{{ diet.name }}</option>
+				{% endfor %}
+			</select>
+		</form> #}
+	</section>
+	<section id='filtered_recipes'>
+		{% include 'recipes/_recipes.html.twig'%}
 	</section>
 {% endblock %}

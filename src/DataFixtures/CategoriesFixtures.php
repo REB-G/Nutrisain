@@ -16,9 +16,11 @@ class CategoriesFixtures extends Fixture
             'Entrée',
             'Plat',
             'Dessert',
+            'Soupe',
+            'Petit déjeuner',
         ];
 
-        for ($i=1; $i <= 3 ; $i++) {
+        for ($i=1; $i <= 5 ; $i++) {
             $category = new Categories();
 
             $category->setName($names[$i-1]);

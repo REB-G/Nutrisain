@@ -1,0 +1,76 @@
+<section class="main-dishes flux">
+		<h1 class="main-dishes__title">Nos recettes</h1>
+		<p class="main-dishes__description">Voici quelques recettes.</p>
+		<p class="main-dishes__description">Tous nos recettes sont équilibrées.</p>
+	</section>
+
+	<section class="starters-dishes flux">
+		<h2 class="starters-dishes__title">Les recettes</h2>
+		<div>
+			{% for recipe in recipes %}
+				<ul class="starters-dishes__list">
+					<li class="starters-list">
+						<img class="starters-list__image" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt={{recipe.title}} width=100px height=100px>
+						<div class="starters-list__description">
+							<p class="starters-list__description--title">{{recipe.title}}</p>
+							<p class="starters-list__description--details">{{recipe.description}}</p>
+						</div>
+						<div>
+							<p class="starters-list__price">{{recipe.preparationTime}}</p>
+							<p>{{recipe.preparationStandingTime}}</p>
+							<p>{{recipe.cookingTime}}</p>
+						</div>
+						<p>{{recipe.ingredients}}</p>
+						<p>{{recipe.stagesOfRecipe}}</p>
+						{% if is_granted('ROLE_ADMIN') %}
+							<div class='starters-list__modification'>
+								<a href="{{ path('app_recipes_edit', {'id': recipe.id}) }}" class='starters-list__modification--modifier'>Modifier</a>
+								<a href="{{ path('app_recipes_delete', {'id': recipe.id}) }}" class='starters-list__modification--delete'>Supprimer</a>
+							</div>
+						{% endif %}
+					</li>
+				</ul>
+			{% endfor %}
+			{% if is_granted('ROLE_ADMIN') %}
+				<div class='starters-dishes__modification'>
+					<a href="{{ path('app_recipes_new') }}" class='starters-dishes__modification--add'>Ajouter une recette</a>
+				</div>
+			{% endif %}
+		</div>
+	</section>
+
+{# VEFIF AVEC CHARLINE SI MIEUX DE METTRE EN HAUT DE LA PAGE OU ICI  #}
+{# Variables personnalisées #}
+
+{# Récupère tous les paramètres de notre url #}
+{% set queryParams = app.request.query.all %}
+
+{# Récupère les paramètres de notre url sauf le paramètre page #}
+{% set queryFilters = queryParams|filter((v, k) => k is not same as ('page') and k is not same as ('ajax'))|url_encode %}
+{{dump(queryParams, queryFilters)}}
+
+	<section class='pagination'>
+		{# Permet de récupérer le nombre de pages total.
+		Le filtre twig round avec ceil permet de récupérer l'entier supérieur,
+		0 correspondant au nombre de chiffre après la virgule #}
+		{% set pages = ((total / limit)|round(0, 'ceil')) %}
+		<ul>
+			<li>
+				<a href="{{path('app_recipes_index', {'page': 1}) }}&{{queryFilters}}">Première page</a>
+			</li>
+			<li class='{{ (page == 1) ? 'disabled' : ''}}'>
+				<a href="{{ (page > 1) ? path('app_recipes_index', {'page': page - 1}) : '' }}&{{queryFilters}}">Page précédente</a>
+			</li>
+			{% for item in 1..pages %}
+				<li class='{{ (page == item) ? 'active' : ''}}'>
+					<a href="{{ path('app_recipes_index', {'page': item}) }}&{{queryFilters}}">{{ item }}</a>
+				</li>
+			{% endfor %}
+			<li class='{{ (page == pages) ? 'disabled' : ''}}'>
+				<a href="{{ (page < pages) ? path('app_recipes_index', {'page': page + 1}) : '' }}&{{queryFilters}}">Page suivante</a>
+			</li>
+			<li>
+				<a href="{{path('app_recipes_index', {'page': pages}) }}&{{queryFilters}}">Dernière page</a>
+			</li>
+		</ul>
+	</section>
