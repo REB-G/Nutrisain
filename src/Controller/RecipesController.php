@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 #[Route('/recipes')]
 class RecipesController extends AbstractController
@@ -47,6 +48,11 @@ class RecipesController extends AbstractController
 
         //On vérifie si la requête est en AJAX
         if ($request->get('ajax')) {
+            if (!$recipes) {
+                return new JsonResponse([
+                    'content' => $this->renderView('recipes/_no_recipes_found.html.twig'),
+                ]);
+            }
             return new JsonResponse([
                 'content' => $this->renderView('recipes/_recipes.html.twig', [
                     'recipes' => $recipes,
