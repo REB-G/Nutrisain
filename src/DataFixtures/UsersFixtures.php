@@ -37,7 +37,7 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
             $user->setName($faker->lastName())
                 ->setFirstname($faker->firstName())
                 ->setEmail($faker->email())
-                ->setPassword($this->passwordHasher->hashPassword($user, 'Restaurant.MotDePasse.1'))
+                ->setPassword($this->passwordHasher->hashPassword($user, 'Nutrisain.MotDePasse.1'))
                 ->addDiet($this->getReference(DietsFixtures::DIET_REFERENCE))
                 ->addAllergy($this->getReference(AllergiesFixtures::ALLERGY_REFERENCE));
             $this->setReference(SELF::USER_REFERENCE, $user);

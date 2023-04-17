@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nutrisain - Votre profil{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('message') %}
+        <p>{{message}}</p>
+    {% endfor %}
+    <h1>Bienvenue {{app.user.name}} !</h1>
+    <h2>Voici vos informations :</h2>
+    <p>Prénom : {{app.user.firstname}}</p>
+    <p>email : {{app.user.email}}</p>
+
+    <a href="{{path('app_users_edit')}}">Modifier mes informations</a>
+    <a href="#">Modifier mon mot de passe</a>
+
+    {# <p>Mes recettes préférées : </p>
+    {{ include('recipe/_recipes.html.twig', {'recipes': app.user.favoriteRecipes})}}
+    ou {% for recipe in app.user.recipes %}
+        <div>
+            <p>{{recipe.title}}</p>
+        </div>
+    {% endfor %} #}
+{% endblock %}
