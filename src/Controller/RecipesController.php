@@ -7,6 +7,7 @@ use App\Form\RecipesType;
 use App\Repository\DietsRepository;
 use App\Repository\RecipesRepository;
 use App\Repository\CategoriesRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,12 +24,11 @@ class RecipesController extends AbstractController
         CategoriesRepository $categoriesRepository,
         DietsRepository $dietsRepository,
         Request $request
-    ): Response
-    {
+    ): Response {
         // Méthode pour effectuer une pagination (sans bundle)
         //Récuprère le numéro de page
         $page = (int)$request->query->get('page', 1);
-        
+
         // Définition du nombre de recettes par page
         $limit = 3;
 
@@ -124,7 +124,7 @@ class RecipesController extends AbstractController
     #[Route('/{id}', name: 'app_recipes_delete', methods: ['POST'])]
     public function delete(Request $request, Recipes $recipe, RecipesRepository $recipesRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$recipe->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $recipe->getId(), $request->request->get('_token'))) {
             $recipesRepository->remove($recipe, true);
         }
 

@@ -60,6 +60,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Diets::class, inversedBy: 'user')]
     private Collection $diet;
 
+    #[ORM\ManyToMany(targetEntity: Recipes::class, mappedBy: 'favoris')]
+    private Collection $favoriteRecipes;
+
     public function __construct()
     {
         $this->opinion = new ArrayCollection();
@@ -67,6 +70,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->diet = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+        $this->favoriteRecipes = new ArrayCollection();
     }
 
     #[ORM\PreUpdate]
@@ -258,5 +262,32 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->name . ' ' . $this->firstname;
+    }
+
+    /**
+     * @return Collection<int, Recipes>
+     */
+    public function getFavoriteRecipes(): Collection
+    {
+        return $this->favoriteRecipes;
+    }
+
+    public function addFavoriteRecipe(Recipes $favoriteRecipe): self
+    {
+        if (!$this->favoriteRecipes->contains($favoriteRecipe)) {
+            $this->favoriteRecipes->add($favoriteRecipe);
+            $favoriteRecipe->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteRecipe(Recipes $favoriteRecipe): self
+    {
+        if ($this->favoriteRecipes->removeElement($favoriteRecipe)) {
+            $favoriteRecipe->removeFavori($this);
+        }
+
+        return $this;
     }
 }
