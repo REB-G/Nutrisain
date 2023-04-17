@@ -22,6 +22,33 @@
 						</div>
 						<p>{{recipe.ingredients}}</p>
 						<p>{{recipe.stagesOfRecipe}}</p>
+						<div>
+							{% if is_granted('ROLE_USER') %}
+							{{ dump(app.user)}}
+							{{ dump(app.user.id) }}
+							{{ dump(recipe.id)}}
+								{% for favoris in recipe.favoris %}
+							{{ dump(favoris.id)}}
+									{% if favoris.id == app.user.id %}
+											<button class='js_favorite_recipe' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="remove">
+												<i class="fa-sharp fa-solid fa-heart recipe__favorite"></i>
+											</button>
+									{% else %}
+										<button class='js_favorite_recipe' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="add">
+											<i class="fa-sharp fa-regular fa-heart recipe__not-favorite"></i>
+										</button>
+									{% endif %}
+								{% else %}
+										<button class='js_favorite_recipe' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="add">
+											<i class="fa-sharp fa-regular fa-heart recipe__not-favorite"></i>
+										</button>
+								{% endfor %}
+							{% else %}
+							<button class='js_favorite_recipe' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="add">
+								<i class="fa-sharp fa-regular fa-heart recipe__not-favorite"></i>
+							</button>
+							{% endif %}
+						</div>
 						{% if is_granted('ROLE_ADMIN') %}
 							<div class='starters-list__modification'>
 								<a href="{{ path('app_recipes_edit', {'id': recipe.id}) }}" class='starters-list__modification--modifier'>Modifier</a>

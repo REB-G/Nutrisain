@@ -81,6 +81,9 @@ class Recipes
     #[ORM\ManyToMany(targetEntity: Diets::class, inversedBy: 'recipe')]
     private Collection $diet;
 
+    #[ORM\ManyToMany(targetEntity: Users::class, inversedBy: 'favoriteRecipes')]
+    private Collection $favoris;
+
     public function __construct()
     {
         $this->opinion = new ArrayCollection();
@@ -88,6 +91,7 @@ class Recipes
         $this->diet = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -335,5 +339,29 @@ class Recipes
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    /**
+     * @return Collection<int, Users>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Users $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris->add($favori);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Users $favori): self
+    {
+        $this->favoris->removeElement($favori);
+
+        return $this;
     }
 }
