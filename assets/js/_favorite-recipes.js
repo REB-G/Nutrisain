@@ -1,13 +1,10 @@
 const favorites = document.querySelectorAll(".js_favorite_recipe");
 
 favorites.forEach((favorite) => {
-    console.log("favorite vaut : " + favorite)
     favorite.addEventListener("click", (event) => {
         const userId = favorite.dataset.userId;
-        console.log("userId vaut : " + userId)
 
         const recipeId = favorite.dataset.recipeId;
-        console.log("recipeId vaut : " + recipeId)
 
         let action = '';
 
@@ -33,8 +30,6 @@ favorites.forEach((favorite) => {
         .then (response => response.json())
         .then((data) => {
             if (data.content === 'ok') {
-                console.log("data.content vaut : " + data.content);
-
                 if (icon.classList.contains("fa-regular")) {
                     icon.classList.toggle("fa-regular");
                     icon.classList.toggle("fa-solid");

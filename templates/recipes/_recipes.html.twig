@@ -24,11 +24,7 @@
 						<p>{{recipe.stagesOfRecipe}}</p>
 						<div>
 							{% if is_granted('ROLE_USER') %}
-							{{ dump(app.user)}}
-							{{ dump(app.user.id) }}
-							{{ dump(recipe.id)}}
 								{% for favoris in recipe.favoris %}
-							{{ dump(favoris.id)}}
 									{% if favoris.id == app.user.id %}
 											<button class='js_favorite_recipe' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="remove">
 												<i class="fa-sharp fa-solid fa-heart recipe__favorite"></i>
@@ -43,10 +39,22 @@
 											<i class="fa-sharp fa-regular fa-heart recipe__not-favorite"></i>
 										</button>
 								{% endfor %}
+								{% for opinion in recipe.opinion %}
+									<p>{{ opinion.userName }}</p>
+									<p>{{ opinion.userFirstname }}</p>
+									<p>{{ opinion.rating }}</p>
+									<p>{{ opinion.comment }}</p>
+								{% endfor %}
+								<button class='js_comment_recipe_button'>Commenter</button>
+								<form class="js_comment_form hide" data-recipe-id="{{ recipe.id }}" data-user-id="{{ app.user.id }}" data-user-name="{{ app.user.name }}" data-user-firstname="{{ app.user.firstname }}">
+									<input type="text" name="rating">
+									<input type="text" name="comment">
+									<input type="submit" value="Envoyer" class="js_submit_comment_recipe">
+								</form>
 							{% else %}
-							<button class='js_favorite_recipe' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="add">
-								<i class="fa-sharp fa-regular fa-heart recipe__not-favorite"></i>
-							</button>
+								<button class='js_favorite_recipe' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="add">
+									<i class="fa-sharp fa-regular fa-heart recipe__not-favorite"></i>
+								</button>
 							{% endif %}
 						</div>
 						{% if is_granted('ROLE_ADMIN') %}
@@ -74,7 +82,6 @@
 
 {# Récupère les paramètres de notre url sauf le paramètre page #}
 {% set queryFilters = queryParams|filter((v, k) => k is not same as ('page') and k is not same as ('ajax'))|url_encode %}
-{{dump(queryParams, queryFilters)}}
 
 	<section class='pagination'>
 		{# Permet de récupérer le nombre de pages total.
