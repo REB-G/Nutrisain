@@ -21,4 +21,13 @@
             <p>{{recipe.title}}</p>
         </div>
     {% endfor %} #}
+
+    <button class="js_user_show_favoriteRecipes_button">Mes recettes préférées</button>
+    {% for recipe in app.user.favoriteRecipes %}
+        <div class="js_user_favoriteRecipes hide">
+            {# <a href="{{ path('app_recipes_show')}}">{{recipe.title}}</a> #}
+            <a>{{recipe.title}}</a>
+        </div>
+    {% endfor %}
+
 {% endblock %}
