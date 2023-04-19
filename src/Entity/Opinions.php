@@ -31,6 +31,20 @@ class Opinions
     #[ORM\JoinColumn(nullable: false)]
     private ?Recipes $recipe = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $userName = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $userFirstname = null;
+
+    #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,5 +101,41 @@ class Opinions
     public function __toString(): string
     {
         return $this->getRating();
+    }
+
+    public function getUserName(): ?string
+    {
+        return $this->userName;
+    }
+
+    public function setUserName(string $userName): self
+    {
+        $this->userName = $userName;
+
+        return $this;
+    }
+
+    public function getUserFirstname(): ?string
+    {
+        return $this->userFirstname;
+    }
+
+    public function setUserFirstname(string $userFirstname): self
+    {
+        $this->userFirstname = $userFirstname;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }
