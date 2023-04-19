@@ -15,10 +15,6 @@ class Opinions
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    #[Assert\NotBlank(message: 'Veuillez renseigner une note.')]
-    private ?int $rating = null;
-
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un commentaire.')]
     private ?string $comment = null;
@@ -48,18 +44,6 @@ class Opinions
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getRating(): ?int
-    {
-        return $this->rating;
-    }
-
-    public function setRating(int $rating): self
-    {
-        $this->rating = $rating;
-
-        return $this;
     }
 
     public function getComment(): ?string
@@ -98,10 +82,9 @@ class Opinions
         return $this;
     }
 
-    public function __toString(): string
-    {
-        return $this->getRating();
-    }
+    // public function __toString(): string
+    // {
+    // }
 
     public function getUserName(): ?string
     {
