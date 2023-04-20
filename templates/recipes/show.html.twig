@@ -1,66 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recipes{% endblock %}
+{% block title %}Nutrisain - Recette {{ recipe.title }}{% endblock %}
 
 {% block body %}
-    <h1>Recipes</h1>
+    <main class='show-recipe flex-center card-flux'>
+        <img class='show-recipe__image' src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="{{ recipe.title }}">
+        <h1 class='show-recipe__title'>{{ recipe.title }}</h1>
+        <p class='show-recipe__description'>{{ recipe.description }}</p>
+        <ul class='show-recipe__times flex-center'>
+            <li class='show-recipe__times--preparationTime'>Temps de préparation : {{ recipe.preparationTime }}</li>
+            <li class='show-recipe__times--preparationStandingTime'>Temps de repos : {{ recipe.preparationStandingTime }}</li>
+            <li class='show-recipe__times--cookingTime'>Temps de cuisson : {{ recipe.cookingTime }}</li>
+        </ul>
+        <div class='show-recipe__stagesOfRecipe'>
+            <p class='show-recipe__stagesOfRecipe--presentation'>Etapes de la recette : </p>
+            <div class='show-recipe__stagesOfRecipe--details'>{{ recipe.stagesOfRecipe| list| raw }}</div>
+        </div>
+    </main>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ recipe.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ recipe.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ recipe.description }}</td>
-            </tr>
-            <tr>
-                <th>PreparationTime</th>
-                <td>{{ recipe.preparationTime }}</td>
-            </tr>
-            <tr>
-                <th>PreparationStandingTime</th>
-                <td>{{ recipe.preparationStandingTime }}</td>
-            </tr>
-            <tr>
-                <th>CookingTime</th>
-                <td>{{ recipe.cookingTime }}</td>
-            </tr>
-            <tr>
-                <th>Ingredients</th>
-                <td>{{ recipe.ingredients }}</td>
-            </tr>
-            <tr>
-                <th>StagesOfRecipe</th>
-                <td>{{ recipe.stagesOfRecipe }}</td>
-            </tr>
-            <tr>
-                <th>IsPublic</th>
-                <td>{{ recipe.isPublic ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>ImageFileName</th>
-                <td>{{ recipe.imageFileName }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ recipe.createdAt ? recipe.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ recipe.updatedAt ? recipe.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    {# <p>Créée le : {{ recipe.createdAt ? recipe.createdAt|date('Y-m-d') : '' }}</p> #}
+    <div class='show-recipe-link flex-center'>
+        <a class='show-recipe-link__back-user-profil btn' href="{{ path('app_users') }}">Retourner à mon profil</a>
+        <a class='show-recipe-link__back-recipes btn' href="{{ path('app_recipes_index') }}">Retourner à la liste des recettes</a>
+    </div>
 
-    <a href="{{ path('app_recipes_index') }}">back to list</a>
-
-    <a href="{{ path('app_recipes_edit', {'id': recipe.id}) }}">edit</a>
-
-    {{ include('recipes/_delete_form.html.twig') }}
 {% endblock %}
