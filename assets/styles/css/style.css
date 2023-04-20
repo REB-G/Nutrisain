@@ -13,9 +13,19 @@ ul {
   list-style: none;
 }
 
+.show-recipe__title {
+  font-family: "old standard tt", serif;
+  font-size: 2.3rem;
+}
+
 .footer__contact--title, .footer__legals--title {
   font-family: "old standard tt", serif;
   font-size: 1.3rem;
+}
+
+.show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__stagesOfRecipe, .show-recipe-link__back-user-profil, .show-recipe-link__back-recipes {
+  font-family: "cardo", serif;
+  font-size: 1.7rem;
 }
 
 .header__link {
@@ -181,8 +191,39 @@ ul {
   }
 }
 
-.recipes-display {
-  display: none;
+.show-recipe {
+  flex-direction: column;
+  width: 70%;
+}
+.show-recipe__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.show-recipe__title {
+  margin-bottom: 1rem;
+}
+.show-recipe__description {
+  margin-bottom: 1rem;
+}
+.show-recipe__times--preparationTime {
+  margin-right: 1rem;
+}
+.show-recipe__times--preparationStandingTime {
+  margin-right: 1rem;
+}
+.show-recipe__times--cookingTime {
+  margin-left: 1rem;
+}
+.show-recipe__stagesOfRecipe {
+  margin-top: 1.5rem;
+}
+
+.show-recipe-link__back-user-profil {
+  margin-right: 1rem;
+}
+.show-recipe-link__back-recipes {
+  margin-left: 1rem;
 }
 
 .btn {
@@ -205,4 +246,12 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
