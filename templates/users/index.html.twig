@@ -14,19 +14,10 @@
     <a href="{{path('app_users_edit')}}">Modifier mes informations</a>
     <a href="#">Modifier mon mot de passe</a>
 
-    {# <p>Mes recettes préférées : </p>
-    {{ include('recipe/_recipes.html.twig', {'recipes': app.user.favoriteRecipes})}}
-    ou {% for recipe in app.user.recipes %}
-        <div>
-            <p>{{recipe.title}}</p>
-        </div>
-    {% endfor %} #}
-
-    <button class="js_user_show_favoriteRecipes_button">Mes recettes préférées</button>
+    <button id="js_user_show_favoriteRecipes_button">Mes recettes préférées</button>
     {% for recipe in app.user.favoriteRecipes %}
         <div class="js_user_favoriteRecipes hide">
-            {# <a href="{{ path('app_recipes_show')}}">{{recipe.title}}</a> #}
-            <a>{{recipe.title}}</a>
+            <a href="{{ path('app_recipes_show', {'id': recipe.id})}}">{{recipe.title}}</a>
         </div>
     {% endfor %}
 
