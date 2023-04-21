@@ -8,8 +8,9 @@
 {% set queryParams = app.request.query.all %}
 
 	<section class='filters'>
-		<p>Filtrer les recettes</p>
+		<p id="js_filters_button">Filtrer les recettes</p>
 		<form id='filters_form'>
+			<p>Filtrer par catégorie</p>
 			{% for category in categories %}
 			{# Permet de vérifier s'il y a une catégorie dans les paramètres de l'url, et si oui alors la case correspndante est cochée #}
 				{% if queryParams is not empty and queryParams.categories is defined %}
@@ -20,6 +21,8 @@
 				<input type='checkbox' name='categories[]' value='{{category.id}}' id='category{{category.id}}' {{checked}} class='filters__checkbox'>
 				<label for='category{{category.id}}' class='filters__label'>{{category.name}}</label>
 			{% endfor %}
+			
+			<p>Filtrer par régime</p>
 			{% for diet in diets %}
 				{% if queryParams is not empty and queryParams.diets is defined %}
 					{% set checked = (diet.id in queryParams.diets) ? 'checked' : '' %}

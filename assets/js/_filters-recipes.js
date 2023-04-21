@@ -1,5 +1,11 @@
 window.onload = () => {
     const filtersForm = document.querySelectorAll('#filters_form');
+    const filtersButton = document.querySelector('#js_filters_button');
+
+    filtersButton.addEventListener('click', () => {
+        filtersForm[0].classList.toggle('hide');
+        filtersForm[0].classList.toggle('show');
+    });
 
     document.querySelectorAll('#filters_form input').forEach(input => {
         input.addEventListener('change', () => {
