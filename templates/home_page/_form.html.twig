@@ -1,4 +1,8 @@
-{{ form_start(form) }}
+<section class="home-page-form__flux">
+{{ form_start(form, {'attr': {'class': 'home-page-form__form'}}) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class='flex-center home-page-form__modification'>
+        <button class="btn home-page-form__modification--button">{{ button_label|default('Sauvegarder') }}</button>
+    </div>
 {{ form_end(form) }}
+</section>
