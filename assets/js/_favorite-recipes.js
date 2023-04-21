@@ -16,7 +16,7 @@ favorites.forEach((favorite) => {
             action = "remove";
         }
 
-        fetch("https://127.0.0.1:8000/API", {
+        fetch("https://127.0.0.1:8000/favorisApi", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

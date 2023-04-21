@@ -27,7 +27,6 @@ class CommentsAPIController extends AbstractController
         $entityManager = $doctrine->getManager();
 
         $requestData = $request->request->all();
-        $rating = $requestData['rating'];
         $comment = $requestData['comment'];
         $userId = $requestData['userId'];
         $userName = $requestData['userName'];
@@ -35,7 +34,6 @@ class CommentsAPIController extends AbstractController
         $recipeId = $requestData['recipeId'];
 
         $opinion = new Opinions();
-        $opinion->setRating($rating);
         $opinion->setComment($comment);
         $opinion->setUserName($userName);
         $opinion->setUserFirstname($userFirstname);

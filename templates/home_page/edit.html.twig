@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit HomePage{% endblock %}
+{% block title %}Nutrisain - Modification page d'accueil{% endblock %}
 
 {% block body %}
-    <h1>Edit HomePage</h1>
+    <main class="home-page-form form-flux">
+        <h1 class='home-page-form__title'>Modification de la page d'accueil</h1>
 
-    {{ include('home_page/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('home_page/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_home_page_index') }}">back to list</a>
-
-    {{ include('home_page/_delete_form.html.twig') }}
+        <div class='flex-center home-page-form__modification'>
+            <a href="{{ path('app_home_page_index') }}" class='btn home-page-form__modification--button'>Retourner à la page d'accueil</a>
+        </div>
+    </main>
 {% endblock %}

@@ -1,0 +1,36 @@
+@use "../../../sass/utils/_main" as utils
+
+.home-page-links
+    margin-top: 8rem
+    margin-bottom: 8rem
+    flex-direction: column
+    @extend %text-2
+
+    &__recipes
+        color: utils.$green
+        text-decoration: underline
+        text-underline-offset: 0.2rem
+        text-decoration-color: utils.$light-blue
+        &:hover
+            color: utils.$light-blue
+            text-decoration-color: utils.$green
+
+    &__contact
+        margin-top: 2rem
+        color: utils.$green
+        text-decoration: underline
+        text-underline-offset: 0.2rem
+        text-decoration-color: utils.$light-blue
+        &:hover
+            color: utils.$light-blue
+            text-decoration-color: utils.$green
+
+    &__modifier
+        margin-top: 5rem
+        color: utils.$green
+        text-decoration: underline
+        text-underline-offset: 0.2rem
+        text-decoration-color: utils.$light-blue
+        &:hover
+            color: utils.$light-blue
+            text-decoration-color: utils.$green

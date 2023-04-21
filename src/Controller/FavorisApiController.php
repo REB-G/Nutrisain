@@ -14,10 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class APIController extends AbstractController
+class FavorisApiController extends AbstractController
 {
 
-    #[Route('/API', name: 'app_api', methods: ['GET', 'POST'])]
+    #[Route('/favorisApi', name: 'app_favoris_api', methods: ['GET', 'POST'])]
     public function addOrRemoveFavoris(
         Request $request,
         ManagerRegistry $doctrine,
