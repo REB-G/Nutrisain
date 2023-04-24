@@ -91,12 +91,56 @@ class RecipesRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function getPaginatedAllRecipes(int $page, int $limit, $filtersCategories = null, $filtersDiets = null): array
+    {
+        $offset = (($page * $limit) - $limit);
+
+        $query = $this->createQueryBuilder('r');
+
+        if ($filtersCategories !== null) {
+            $query->andWhere('r.category IN (:filtersCategories)')
+                ->setParameter('filtersCategories', $filtersCategories);
+        }
+
+        if ($filtersDiets !== null) {
+            $query->innerJoin('r.diet', 'd')
+                ->andWhere('d IN (:filtersDiets)')
+                ->setParameter('filtersDiets', $filtersDiets);
+        }
+
+        $query->orderBy('r.category', 'DESC')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->getQuery();
+
+        return $query->getQuery()->getResult();
+    }
+
     // Méthode pour compter le nombre de total de recettes publiques
     public function countRecipes($filtersCategories = null, $filtersDiets = null): int
     {
         $query = $this->createQueryBuilder('r')
             ->select('COUNT(r.id)')
             ->where('r.isPublic = true');
+
+            if ($filtersCategories !== null) {
+                $query->andWhere('r.category IN (:filtersCategories)')
+                    ->setParameter('filtersCategories', $filtersCategories);
+            }
+
+            if ($filtersDiets !== null) {
+                $query->innerJoin('r.diet', 'd')
+                    ->andWhere('d IN (:filtersDiets)')
+                    ->setParameter('filtersDiets', $filtersDiets);
+            }
+
+        return $query->getQuery()->getSingleScalarResult();
+    }
+
+    public function countAllRecipes($filtersCategories = null, $filtersDiets = null): int
+    {
+        $query = $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)');
 
             if ($filtersCategories !== null) {
                 $query->andWhere('r.category IN (:filtersCategories)')
