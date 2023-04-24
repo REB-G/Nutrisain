@@ -1,0 +1,45 @@
+@use "../../../sass/utils/_main" as utils
+
+.login-form
+    flex-direction: column
+    padding: 1rem
+    margin-top: 5rem
+    margin-bottom: 5rem
+    box-shadow: 1px 1px 47px -3px utils.$dark-blue
+    border-radius: 1rem 1rem 1rem 1rem
+    outline: solid 0.3rem
+    outline-color: utils.$light-blue
+
+    &__title
+        @extend %title-1
+        text-align: center
+        margin-top: 5vw
+        color: utils.$light-blue
+
+    &__flux
+        display: flex
+        align-items: center
+        justify-content: space-around
+        flex-direction: column
+        margin-top: 5vw
+
+    &__form
+        display: flex
+        height: 100%
+        flex-direction: column
+        align-items: center
+        justify-content: space-around
+
+    &__field
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
+        justify-content: space-between
+        margin-bottom:5vw
+
+        &--label
+            @extend %text-3
+
+        &--input
+            @extend %text-3
+            width: 100%
