@@ -4,7 +4,7 @@ window.onload = () => {
 
     filtersButton.addEventListener('click', () => {
         filtersForm[0].classList.toggle('hide');
-        filtersForm[0].classList.toggle('show');
+        filtersForm[0].classList.toggle('show-flex');
     });
 
     document.querySelectorAll('#filters_form input').forEach(input => {
