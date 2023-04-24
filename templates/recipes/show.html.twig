@@ -19,9 +19,16 @@
     </main>
 
     {# <p>Créée le : {{ recipe.createdAt ? recipe.createdAt|date('Y-m-d') : '' }}</p> #}
-    <div class='show-recipe-link flex-center'>
-        <a class='show-recipe-link__back-user-profil btn' href="{{ path('app_users') }}">Retourner à mon profil</a>
-        <a class='show-recipe-link__back-recipes btn' href="{{ path('app_recipes_index') }}">Retourner à la liste des recettes</a>
+    <div class='recipe-link flex-center'>
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ include('recipes/_delete_form.html.twig') }}
+    {% endif %}
+    {% if app.user %}
+		{% if not is_granted('ROLE_ADMIN') %}
+        <a class='show-recipe-link__back-user-profil btn btn__linear-gradient' href="{{ path('app_users') }}">Retourner à mon profil</a>
+        {% endif %}
+    {% endif %}
+        <a class='show-recipe-link__back-recipes btn btn__linear-gradient' href="{{ path('app_recipes_index') }}">Retourner à la liste des recettes</a>
     </div>
 
 {% endblock %}

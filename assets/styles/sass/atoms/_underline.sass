@@ -1,0 +1,11 @@
+@use "../utils/_main" as utils
+
+.underline
+    @extend %text-3
+    color: utils.$green
+    text-decoration: underline
+    text-decoration-color: utils.$light-blue
+    text-underline-offset: 0.3rem
+    &:hover
+        color: utils.$light-blue
+        text-decoration-color: utils.$green

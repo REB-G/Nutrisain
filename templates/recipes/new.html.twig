@@ -3,9 +3,13 @@
 {% block title %}New Recipes{% endblock %}
 
 {% block body %}
-    <h1>Create new Recipes</h1>
+    <main class='recipe-form form-flux'>
+        <h1 class='recipe-form__title'>Création d'une recette</h1>
 
-    {{ include('recipes/_form.html.twig') }}
+        {{ include('recipes/_form.html.twig') }}
 
-    <a href="{{ path('app_recipes_index') }}">back to list</a>
+        <div class='flex-center'>
+            <a href="{{ path('app_recipes_index') }}" class='btn btn__linear-gradient'>Retourner à la liste des recettes</a>
+        </div>
+    </main>
 {% endblock %}

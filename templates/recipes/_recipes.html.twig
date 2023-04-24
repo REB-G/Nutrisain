@@ -1,76 +1,94 @@
-	<section class="main-dishes flux">
-		<h1 class="main-dishes__title">Nos recettes</h1>
-		<p class="main-dishes__description">Voici quelques recettes.</p>
-		<p class="main-dishes__description">Tous nos recettes sont équilibrées.</p>
-	</section>
-
-	<section class="starters-dishes flux">
-		<h2 class="starters-dishes__title">Les recettes</h2>
-		<div>
-			{% for recipe in recipes %}
-				<ul class="starters-dishes__list">
-					<li class="starters-list">
-						<img class="starters-list__image" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt={{recipe.title}} width=100px height=100px>
-						<div class="starters-list__description">
-							<p class="starters-list__description--title">{{recipe.title}}</p>
-							<p class="starters-list__description--details">{{recipe.description}}</p>
+	<section class="recipes flux">
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class='new-recipe'>
+				<a href="{{ path('app_recipes_new') }}" class='underline'>Ajouter une recette</a>
+			</div>
+		{% endif %}
+		<ul class="recipes__list flex-center">
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				{% for recipe in allRecipes %}
+					<li class="card-recipe recipe-flux flex-center">
+						<div class='card-recipe__composition flex-center'>
+							<img class="recipe__image" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt={{recipe.title}} width=100px height=100px>
+							<div class="recipe__description flex-center">
+								<p class="recipe__description--title">{{recipe.title}}</p>
+								<p class="recipe__description--details">{{recipe.description}}</p>
+							</div>
 						</div>
-						<div>
-							<p class="starters-list__price">{{recipe.preparationTime}}</p>
-							<p>{{recipe.preparationStandingTime}}</p>
-							<p>{{recipe.cookingTime}}</p>
-						</div>
-						<p>{{recipe.ingredients}}</p>
-						<p>{{recipe.stagesOfRecipe}}</p>
-						<div>
-							{% if is_granted('ROLE_USER') %}
-								{% for favoris in recipe.favoris %}
-									{% if favoris.id == app.user.id %}
-										<button class='js_favorite_recipe' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="remove">
+						<div class='card-recipe__more'>
+							<div class='favoris'>
+								{% if is_granted('ROLE_USER') %}
+									{% set isFavorite = false %}
+									{% for favoris in recipe.favoris %}
+										{% if favoris.id == app.user.id %}
+											{% set isFavorite = true %}
+										{% endif %}
+									{% endfor %}
+									{% if isFavorite %}
+										<div class='js_favorite_recipe favoris__container' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="remove">
 											<i class="fa-sharp fa-solid fa-heart"></i>
-										</button>
+										</div>
 									{% else %}
-										<button class='js_favorite_recipe' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="add">
+										<div class='js_favorite_recipe favoris__container' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="add">
 											<i class="fa-sharp fa-regular fa-heart"></i>
-										</button>
+										</div>
 									{% endif %}
-								{% else %}
-									<button class='js_favorite_recipe' data-user-id="{{ app.user.id }}" data-recipe-id="{{ recipe.id }}" data-action="add">
-										<i class="fa-sharp fa-regular fa-heart"></i>
-									</button>
-								{% endfor %}
-							{% endif %}
-							{% for opinion in recipe.opinion %}
-								<p>{{ opinion.userName }}</p>
-								<p>{{ opinion.userFirstname }}</p>
-								<p>{{ opinion.comment }}</p>
-							{% endfor %}
-							{% if is_granted('ROLE_USER') %}
-								<button class='js_comment_recipe_button'>Commenter</button>
-								<form class="js_comment_form hide" data-recipe-id="{{ recipe.id }}" data-user-id="{{ app.user.id }}" data-user-name="{{ app.user.name }}" data-user-firstname="{{ app.user.firstname }}">
-									<input type="text" name="comment">
-									<input type="submit" value="Envoyer" class="js_submit_comment_recipe">
-								</form>
-							{% endif %}
+								{% endif %}
+							</div>
+							<div class='opinion flex-center'>
+								<p class='js_show_comments_recipe opinion__show-comment underline'>Voir les commentaires</p>
+								<div class='opinion__container js_comments_recipe flex-center hide'>
+									{% for opinion in recipe.opinion %}
+										<div class='opinion__details'>
+											<p class='opinion__details--username'>{{ opinion.userFirstname }} {{ opinion.userName }} : </p>
+											<p class='opinion__details--comment'>{{ opinion.comment }}</p>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+							<p class='js_comment_recipe_button opinion__add-new-comment underline'>Commenter</p>
 						</div>
+						<form class="js_comment_form hide opinion__form flex-center" data-recipe-id="{{ recipe.id }}" data-user-id="{{ app.user.id }}" data-user-name="{{ app.user.name }}" data-user-firstname="{{ app.user.firstname }}">
+							<input type="text" name="comment" class='opinion__form--text-input' label='Veuillez ajouter votre commentaire ici'>
+							<input type="submit" value="Envoyer" class="js_submit_comment_recipe opinion__form--submit-input">
+						</form>
+						<a href="{{ path('app_recipes_show', {'id': recipe.id})}}" class='link-to-show-recipe underline'>Voir la recette</a>
 						{% if is_granted('ROLE_ADMIN') %}
-							<div class='starters-list__modification'>
-								<a href="{{ path('app_recipes_edit', {'id': recipe.id}) }}" class='starters-list__modification--modifier'>Modifier</a>
-								<a href="{{ path('app_recipes_delete', {'id': recipe.id}) }}" class='starters-list__modification--delete'>Supprimer</a>
+							<div class='recipe__modification flex-center'>
+								<a href="{{ path('app_recipes_edit', {'id': recipe.id}) }}" class='recipe__modification--modifier underline'>Modifier</a>
+								<a href="{{ path('app_recipes_delete', {'id': recipe.id}) }}" class='recipe__modification--delete underline'>Supprimer</a>
 							</div>
 						{% endif %}
 					</li>
-				</ul>
-			{% endfor %}
-			{% if is_granted('ROLE_ADMIN') %}
-				<div class='starters-dishes__modification'>
-					<a href="{{ path('app_recipes_new') }}" class='starters-dishes__modification--add'>Ajouter une recette</a>
-				</div>
+				{% endfor %}
+			{% else %}
+					{% for recipe in recipes | filter(recipe => recipe.isPublic == true)%}
+						<li class="card-recipe recipe-flux flex-center">
+							<div class='card-recipe__composition flex-center'>
+								<img class="recipe__image" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt={{recipe.title}} width=100px height=100px>
+								<div class="recipe__description flex-center">
+									<p class="recipe__description--title">{{recipe.title}}</p>
+									<p class="recipe__description--details">{{recipe.description}}</p>
+								</div>
+							</div>
+							<div class='opinion opinion-no-user flex-center'>
+								<p class='js_show_comments_recipe opinion__show-comment underline'>Voir les commentaires</p>
+								<div class='opinion__container js_comments_recipe flex-center hide'>
+									{% for opinion in recipe.opinion %}
+										<div class='opinion__details'>
+											<p class='opinion__details--username'>{{ opinion.userFirstname }} {{ opinion.userName }} : </p>
+											<p class='opinion__details--comment'>{{ opinion.comment }}</p>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+							<a href="{{ path('app_recipes_show', {'id': recipe.id})}}" class='link-to-show-recipe underline'>Voir la recette</a>
+						</li>
+					{% endfor %}
 			{% endif %}
-		</div>
+		</ul>
 	</section>
 
-{# VEFIF AVEC CHARLINE SI MIEUX DE METTRE EN HAUT DE LA PAGE OU ICI  #}
 {# Variables personnalisées #}
 
 {# Récupère tous les paramètres de notre url #}
@@ -79,27 +97,33 @@
 {# Récupère les paramètres de notre url sauf le paramètre page #}
 {% set queryFilters = queryParams|filter((v, k) => k is not same as ('page') and k is not same as ('ajax'))|url_encode %}
 
-	<section class='pagination'>
+	<section class='paging'>
 		{# Permet de récupérer le nombre de pages total.
 		Le filtre twig round avec ceil permet de récupérer l'entier supérieur,
 		0 correspondant au nombre de chiffre après la virgule #}
-		{% set pages = ((total / limit)|round(0, 'ceil')) %}
-		<ul>
-			<li>
+		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+			{% set pages = ((totalForAllRecipes / limit)|round(0, 'ceil')) %}
+		{% else %}
+			{% set pages = ((total / limit)|round(0, 'ceil')) %}
+		{% endif %}
+		<ul class='paging__list flex-center'>
+			<li class='paging__list--first-page'>
 				<a href="{{path('app_recipes_index', {'page': 1}) }}&{{queryFilters}}">Première page</a>
 			</li>
-			<li class='{{ (page == 1) ? 'disabled' : ''}}'>
+			<li class='{{ (page == 1) ? 'disabled' : ''}} paging__list--previous-page'>
 				<a href="{{ (page > 1) ? path('app_recipes_index', {'page': page - 1}) : '' }}&{{queryFilters}}">Page précédente</a>
 			</li>
-			{% for item in 1..pages %}
-				<li class='{{ (page == item) ? 'active' : ''}}'>
-					<a href="{{ path('app_recipes_index', {'page': item}) }}&{{queryFilters}}">{{ item }}</a>
-				</li>
-			{% endfor %}
-			<li class='{{ (page == pages) ? 'disabled' : ''}}'>
+			<div class='flex-center'>
+				{% for item in 1..pages %}
+					<li class='{{ (page == item) ? 'active' : ''}} paging__list--item paging-recipes-flux'>
+						<a href="{{ path('app_recipes_index', {'page': item}) }}&{{queryFilters}}">{{ item }}</a>
+					</li>
+				{% endfor %}
+			</div>
+			<li class='{{ (page == pages) ? 'disabled' : ''}} paging__list--next-page'>
 				<a href="{{ (page < pages) ? path('app_recipes_index', {'page': page + 1}) : '' }}&{{queryFilters}}">Page suivante</a>
 			</li>
-			<li>
+			<li class='paging__list--last-page'>
 				<a href="{{path('app_recipes_index', {'page': pages}) }}&{{queryFilters}}">Dernière page</a>
 			</li>
 		</ul>

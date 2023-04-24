@@ -1,0 +1,75 @@
+@use "../../../sass/utils/_main" as utils
+
+.recipe-form
+    padding: 1rem
+    margin-top: 5rem
+    margin-bottom: 5rem
+    box-shadow: 1px 1px 47px -3px utils.$dark-blue
+    border-radius: 1rem 1rem 1rem 1rem
+    outline: solid 0.3rem
+    outline-color: utils.$light-blue
+
+    &__title
+        @extend %title-1
+        text-align: center
+        margin-top: 5vw
+        color: utils.$light-blue
+
+    &__flux
+        display: flex
+        align-items: center
+        justify-content: space-around
+        flex-direction: column
+        margin-top: 5vw
+
+    &__form
+        display: flex
+        height: 100%
+        flex-direction: column
+        align-items: stretch
+        justify-content: space-around
+
+    &__field
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
+        justify-content: space-between
+        margin-bottom:5vw
+
+        &--ispublic-checkbox
+            display: flex
+            flex-direction: row
+
+        &--label
+            @extend %text-3
+
+        &--input
+            @extend %text-3
+
+    &__modification
+        margin-top: 5vw
+
+    &__delete-form
+        text-align: center
+
+        &--button
+            &:hover
+                cursor: pointer
+
+#recipes_allergy
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+    & > label
+        margin-bottom: 2vw
+
+#recipes_diet
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+    & > label
+        margin-bottom: 2vw

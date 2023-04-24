@@ -7,35 +7,52 @@
 {# Variable personnalisée qui permet de récupère tous les paramètres de notre url #}
 {% set queryParams = app.request.query.all %}
 
-	<section class='filters'>
-		<p id="js_filters_button">Filtrer les recettes</p>
-		<form id='filters_form'>
-			<p>Filtrer par catégorie</p>
-			{% for category in categories %}
-			{# Permet de vérifier s'il y a une catégorie dans les paramètres de l'url, et si oui alors la case correspndante est cochée #}
-				{% if queryParams is not empty and queryParams.categories is defined %}
-					{% set checked = (category.id in queryParams.categories) ? 'checked' : '' %}
-				{% else %}
-					{% set checked = "" %}
-				{% endif %}
-				<input type='checkbox' name='categories[]' value='{{category.id}}' id='category{{category.id}}' {{checked}} class='filters__checkbox'>
-				<label for='category{{category.id}}' class='filters__label'>{{category.name}}</label>
-			{% endfor %}
-			
-			<p>Filtrer par régime</p>
-			{% for diet in diets %}
-				{% if queryParams is not empty and queryParams.diets is defined %}
-					{% set checked = (diet.id in queryParams.diets) ? 'checked' : '' %}
-				{% else %}
-					{% set checked = "" %}
-				{% endif %}
-				<input type='checkbox' name='diets[]' value='{{diet.id}}' id='diet{{diet.id}}' {{checked}} class='filters__checkbox'>
-				<label for='diet{{diet.id}}' class='filters__label'>{{diet.name}}</label>
-			{% endfor %}
+	<section class="recipe-page flex-center">
+		<h1 class="recipe-page__title">Nos recettes</h1>
+		<p class="recipe-page__description">Voici quelques recettes.</p>
+		<p class="recipe-page__description">Tous nos recettes sont équilibrées.</p>
+	</section>
+
+	<section class='filters flex-center'>
+		<p id="js_filters_button" class='filters__title'>Filtrer les recettes</p>
+		<form id='filters_form' class='filters__form hide filters-flux'>
+			<div class='category-filters flex-center'>
+				<p class='category-filters__title'>Filtrer par catégorie</p>
+				<div class='category-filters__select-container flex-center'>
+					{% for category in categories %}
+					{# Permet de vérifier s'il y a une catégorie dans les paramètres de l'url, et si oui alors la case correspndante est cochée #}
+						{% if queryParams is not empty and queryParams.categories is defined %}
+							{% set checked = (category.id in queryParams.categories) ? 'checked' : '' %}
+						{% else %}
+							{% set checked = "" %}
+						{% endif %}
+						<div class='category-filters__select-container flex-center'>
+							<input type='checkbox' name='categories[]' value='{{category.id}}' id='category{{category.id}}' {{checked}} class='filters__checkbox'>
+							<label for='category{{category.id}}' class='filters__label'>{{category.name}}</label>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class='diet-filters flex-center'>
+				<p class='diet-filters__title'>Filtrer par régime</p>
+				<div class='diet-filters__select-container flex-center'>
+					{% for diet in diets %}
+						{% if queryParams is not empty and queryParams.diets is defined %}
+							{% set checked = (diet.id in queryParams.diets) ? 'checked' : '' %}
+						{% else %}
+							{% set checked = "" %}
+						{% endif %}
+						<div class='category-filters__select-container flex-center'>
+							<input type='checkbox' name='diets[]' value='{{diet.id}}' id='diet{{diet.id}}' {{checked}} class='filters__checkbox'>
+							<label for='diet{{diet.id}}' class='filters__label'>{{diet.name}}</label>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
             <input type="hidden" name='page' value='{{page}}'>
 		</form>
 	</section>
-	<section id='filtered_recipes'>
+	<section id='filtered_recipes' class='filtered-recipes flex-center'>
 		{% include 'recipes/_recipes.html.twig'%}
 	</section>
 {% endblock %}

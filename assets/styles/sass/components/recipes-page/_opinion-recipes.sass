@@ -1,0 +1,75 @@
+@use "../../../sass/utils/_main" as utils
+
+.opinion
+    flex-direction: column
+
+    &__show-comment
+        @extend %text-3
+        text-align: center
+        color: utils.$green
+        text-decoration: underline
+        text-decoration-color: utils.$light-blue
+        text-underline-offset: 0.3rem
+        &:hover
+            color: utils.$light-blue
+            text-decoration-color: utils.$green
+            cursor: pointer
+
+    &__container
+        flex-direction: column
+        text-align: center
+
+    &__details
+        flex-direction: column
+        text-align: center
+        width: 20rem
+        margin: 1.5rem
+        border-block: solid
+        border-block-color: utils.$pink
+
+        &--username
+            @extend %text-3
+
+        &--comment
+            @extend %text-3
+            margin-top: 0.7rem
+
+    &__add-new-comment
+        margin: 1rem
+        @extend %text-3
+        text-align: center
+        color: utils.$green
+        text-decoration: underline
+        text-decoration-color: utils.$light-blue
+        text-underline-offset: 0.3rem
+        &:hover
+            color: utils.$light-blue
+            text-decoration-color: utils.$green
+            cursor: pointer
+        +utils.responsive(tablet)
+            margin: 0
+            margin-left: 1rem
+
+    &__form
+        flex-direction: column
+        text-align: center
+
+        &--text-input
+            @extend %text-3
+            width: 20rem
+
+        &--submit-input
+            @extend %text-3
+            margin-top: 0.7rem
+            background: linear-gradient(to bottom right, utils.$light-blue, utils.$light-green)
+            text-align: center
+            padding: 0.7vw 0.5vw
+            border-radius: 1rem
+            &:hover
+                box-shadow: 1px 1px 10px -1px utils.$dark-blue
+
+.opinion-no-user
+    margin-top: 1.5rem
+    +utils.responsive(tablet)
+        margin-top: 2rem
+        margin-bottom: 1rem

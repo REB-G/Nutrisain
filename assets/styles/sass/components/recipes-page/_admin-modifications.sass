@@ -1,0 +1,19 @@
+@use "../../../sass/utils/_main" as utils
+
+.new-recipe
+    text-align: center
+
+.recipe__modification
+    margin-top: 1rem
+    flex-direction: column
+    +utils.responsive(tablet)
+        flex-direction: row
+
+    &--modifier
+        +utils.responsive(tablet)
+            margin-right: 0.5rem
+
+    &--delete
+        +utils.responsive(tablet)
+            margin-top: 0
+            margin-left: 0.5rem
