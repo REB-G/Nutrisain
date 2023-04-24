@@ -1,0 +1,97 @@
+@use "../../../sass/utils/_main" as utils
+
+.filters
+    flex-direction: column
+    margin-top: 5rem
+
+    &__title
+        @extend %text-2
+        cursor: pointer
+        text-decoration: underline
+        text-decoration-color: utils.$pink
+        text-underline-offset: 0.2rem
+        margin: auto
+        &:hover
+            text-decoration-color: utils.$dark-blue
+
+    &__form
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-top: 3rem
+        border-radius: 1rem 1rem 1rem 1rem
+        outline: solid 0.3rem
+        outline-color: utils.$pink
+        padding: 1rem
+        box-shadow: 1px 1px 47px -3px utils.$dark-blue
+        flex-direction: column
+        +utils.responsive(litle-tablet)
+            flex-direction: row
+            align-items: flex-start
+            +utils.responsive(laptop)
+                flex-direction: column
+                align-items: center
+
+    &__checkbox
+        margin-top: 1rem
+        +utils.responsive(laptop)
+            margin-top: 0
+
+    &__label
+        margin-left: 0.2rem
+        margin-right: 1rem
+        @extend %text-3
+
+.category-filters
+    flex-direction: column
+
+    &__title
+        @extend %text-3
+        color: utils.$pink
+        background-color: utils.$light-blue
+        padding: 0.3rem
+        border-radius: 0.3rem
+        text-align: center
+
+    &__select-container
+        flex-direction: column
+        +utils.responsive(laptop)
+            flex-direction: row
+            margin-top: 1rem
+
+        &--selects
+            flex-direction: column
+            +utils.responsive(laptop)
+                align-items: center
+                +utils.responsive(laptop)
+                    flex-direction: row
+
+.diet-filters
+    flex-direction: column
+    margin-top: 3rem
+    +utils.responsive(litle-tablet)
+        margin-top: 0
+        margin-left: 1rem
+        +utils.responsive(laptop)
+            margin-left: 0
+            margin-top: 3rem
+
+    &__title
+        @extend %text-3
+        color: utils.$pink
+        background-color: utils.$light-blue
+        padding: 0.3rem
+        border-radius: 0.3rem
+        text-align: center
+
+    &__select-container
+        flex-direction: column
+        +utils.responsive(laptop)
+            flex-direction: row
+            margin-top: 1rem
+        &--selects
+            flex-direction: column
+            +utils.responsive(laptop)
+                align-items: center
+                +utils.responsive(laptop)
+                    flex-direction: row

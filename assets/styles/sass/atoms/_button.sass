@@ -14,3 +14,16 @@
         &:hover
             background-color: utils.$green
             color: utils.$pink
+
+    &__linear-gradient
+        margin-right: 1rem
+        @extend %text-3
+        background: linear-gradient(to bottom right, utils.$light-blue, utils.$light-green)
+        width: 10rem
+        text-align: center
+        padding: 0.7vw 0.5vw
+        +utils.responsive(big-phone)
+            width: 20rem
+            padding: 0.7vw 1.5vw
+        &:hover
+            box-shadow: 1px 1px 10px -1px utils.$dark-blue

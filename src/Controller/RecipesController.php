@@ -37,9 +37,11 @@ class RecipesController extends AbstractController
         $filtersDiets = $request->get('diets');
         // Récupération des recettes paginées et filtrées si des filtres sont sélectionnés
         $recipes = $recipesRepository->getPaginatedRecipes($page, $limit, $filtersCategories, $filtersDiets);
+        $allRecipes = $recipesRepository->getPaginatedAllRecipes($page, $limit, $filtersCategories, $filtersDiets);
 
         // Récupération du nombre total de recettes
         $total = $recipesRepository->countRecipes($filtersCategories, $filtersDiets);
+        $totalForAllRecipes = $recipesRepository->countAllRecipes($filtersCategories, $filtersDiets);
         // dd($filters, $recipes, $total);
 
         // Méthode pour proposer un filtrage sur les recettes par catégories et par régime.
@@ -53,27 +55,53 @@ class RecipesController extends AbstractController
                     'content' => $this->renderView('recipes/_no_recipes_found.html.twig'),
                 ]);
             }
-            return new JsonResponse([
-                'content' => $this->renderView('recipes/_recipes.html.twig', [
-                    'recipes' => $recipes,
-                    'total' => $total,
-                    'limit' => $limit,
-                    'page' => $page,
-                    'categories' => $categories,
-                    'diets' => $diets,
-                ]),
+
+            if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+                return new JsonResponse([
+                    'content' => $this->renderView('recipes/_recipes.html.twig', [
+                        'allRecipes' => $allRecipes,
+                        'totalForAllRecipes' => $totalForAllRecipes,
+                        'limit' => $limit,
+                        'page' => $page,
+                        'categories' => $categories,
+                        'diets' => $diets,
+                    ]),
+                ]);
+            } else {
+                return new JsonResponse([
+                    'content' => $this->renderView('recipes/_recipes.html.twig', [
+                        'recipes' => $recipes,
+                        'total' => $total,
+                        'limit' => $limit,
+                        'page' => $page,
+                        'categories' => $categories,
+                        'diets' => $diets,
+                    ]),
+                ]);
+            }
+        }
+
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->render('recipes/index.html.twig', [
+                'allRecipes' => $allRecipes,
+                'totalForAllRecipes' => $totalForAllRecipes,
+                'limit' => $limit,
+                'page' => $page,
+                'categories' => $categories,
+                'diets' => $diets,
+            ]);
+        } else {
+            // Rendu pour un utilisateur non connecté
+            return $this->render('recipes/index.html.twig', [
+                'recipes' => $recipes,
+                'total' => $total,
+                'limit' => $limit,
+                'page' => $page,
+                'categories' => $categories,
+                'diets' => $diets,
             ]);
         }
 
-
-        return $this->render('recipes/index.html.twig', [
-            'recipes' => $recipes,
-            'total' => $total,
-            'limit' => $limit,
-            'page' => $page,
-            'categories' => $categories,
-            'diets' => $diets,
-        ]);
     }
 
     #[Route('/new', name: 'app_recipes_new', methods: ['GET', 'POST'])]

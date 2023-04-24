@@ -1,14 +1,25 @@
 const commentForms = document.querySelectorAll('.js_comment_form');
 const addCommentButtons = document.querySelectorAll('.js_comment_recipe_button');
+const showCommentsRecipeButton = document.querySelectorAll('.js_show_comments_recipe');
 
 // Fonction pour écouter les événements sur chaque formulaire de commentaire.
 function listenEvents() {
+    showCommentsRecipeButton.forEach((button, index) => {
+        button.addEventListener('click', () => showCommentsRecipe(index));
+    });
+
     addCommentButtons.forEach((button, index) => {
         button.addEventListener('click', () => showCommentForm(index));
     });
     commentForms.forEach((form, index) => {
         form.addEventListener('submit', (event) => submitComment(event, index));
     });
+}
+
+function showCommentsRecipe(index) {
+    const commentSection = showCommentsRecipeButton[index].parentNode.querySelector('.js_comments_recipe');
+    commentSection.classList.toggle('hide');
+    commentSection.classList.toggle('show-flex');
 }
 
 // Méthode pour afficher le formulaire d'ajout de commentaire spécifique à la recette.

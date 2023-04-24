@@ -1,0 +1,14 @@
+@use "../../../sass/utils/_main" as utils
+
+.favoris
+    margin: 1.5rem
+    +utils.responsive(tablet)
+        margin: 0
+        margin-right: 1.5rem
+
+    &__container
+        &:hover
+            cursor: pointer
+
+.fa-solid
+    color: red

@@ -1,4 +1,8 @@
-{{ form_start(form) }}
+<section class="recipe-form__flux">
+{{ form_start(form, {'attr': {'class': 'recipe-form__form'}}) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class='flex-center recipe-form__modification'>
+        <button class="btn btn__linear-gradient">{{ button_label|default('Sauvegarder') }}</button>
+    </div>
 {{ form_end(form) }}
+</section>
