@@ -35,17 +35,19 @@
 									{% endif %}
 								{% endif %}
 							</div>
-							<div class='opinion flex-center'>
-								<p class='js_show_comments_recipe opinion__show-comment underline'>Voir les commentaires</p>
-								<div class='opinion__container js_comments_recipe flex-center hide'>
-									{% for opinion in recipe.opinion %}
-										<div class='opinion__details'>
-											<p class='opinion__details--username'>{{ opinion.userFirstname }} {{ opinion.userName }} : </p>
-											<p class='opinion__details--comment'>{{ opinion.comment }}</p>
-										</div>
-									{% endfor %}
+							{% if recipe.opinion is not empty %}
+								<div class='opinion flex-center'>
+									<p class='js_show_comments_recipe opinion__show-comment underline'>Voir les commentaires</p>
+									<div class='opinion__container js_comments_recipe flex-center hide'>
+										{% for opinion in recipe.opinion %}
+											<div class='opinion__details'>
+												<p class='opinion__details--username'>{{ opinion.userFirstname }} {{ opinion.userName }} : </p>
+												<p class='opinion__details--comment'>{{ opinion.comment }}</p>
+											</div>
+										{% endfor %}
+									</div>
 								</div>
-							</div>
+							{% endif %}
 							<p class='js_comment_recipe_button opinion__add-new-comment underline'>Commenter</p>
 						</div>
 						<form class="js_comment_form hide opinion__form flex-center" data-recipe-id="{{ recipe.id }}" data-user-id="{{ app.user.id }}" data-user-name="{{ app.user.name }}" data-user-firstname="{{ app.user.firstname }}">
