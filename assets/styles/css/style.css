@@ -13,12 +13,12 @@ ul {
   list-style: none;
 }
 
-.recipe-form__title, .recipe-page__title, .main__title {
+.contact-page-welcome__title, .register-form__title, .login-form__title, .recipe-form__title, .recipe-page__title, .main__title {
   font-family: "old standard tt", serif;
   font-size: 3rem;
 }
 
-.home-page-form__title, .services__title, .description__title {
+.contact-page-form__title, .home-page-form__title, .services__title, .description__title {
   font-family: "old standard tt", serif;
   font-size: 2.3rem;
 }
@@ -33,17 +33,17 @@ ul {
   font-size: 1.3rem;
 }
 
-.recipe-page__description, .main__text-presentation {
+.contact-page-welcome__text, .recipe-page__description, .main__text-presentation {
   font-family: "cardo", serif;
   font-size: 2rem;
 }
 
-.filters__title, .home-page-form__field--label, .home-page-form__field--input, .home-page-form__modification--button, .home-page-links, .services__text-presentation, .description__text-presentation {
+.contact-page-form__field--label, .contact-page-form__field--input, .contact-page-informations__text, .active, .filters__title, .home-page-form__field--label, .home-page-form__field--input, .home-page-form__modification--button, .home-page-links, .services__text-presentation, .description__text-presentation {
   font-family: "cardo", serif;
   font-size: 1.7rem;
 }
 
-.underline, .btn__linear-gradient, .recipe-form__field--label, .recipe-form__field--input, .show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__stagesOfRecipe, .opinion__show-comment, .opinion__details--username, .opinion__details--comment, .opinion__add-new-comment, .opinion__form--text-input, .opinion__form--submit-input, .recipe__description--details, .filters__label, .category-filters__title, .diet-filters__title, .header__link {
+.underline, .btn__linear-gradient, .register-form__field--label, .register-form__field--input, .login-form__field--label, .login-form__field--input, .recipe-form__field--label, .recipe-form__field--input, .show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__stagesOfRecipe, .paging__list, .opinion__show-comment, .opinion__details--username, .opinion__details--comment, .opinion__add-new-comment, .opinion__form--text-input, .opinion__form--submit-input, .recipe__description--details, .filters__label, .category-filters__title, .diet-filters__title, .header__link {
   font-family: "cardo", serif;
   font-size: 1.3rem;
 }
@@ -553,11 +553,17 @@ ul {
   }
 }
 .card-recipe__more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 @media screen and (min-width: 855px) {
   .card-recipe__more {
     flex-direction: row;
+    align-items: flex-start;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -568,10 +574,20 @@ ul {
   border-radius: 1rem;
   margin: 1.5rem;
 }
+@media screen and (min-width: 855px) {
+  .recipe__image {
+    width: 45%;
+  }
+}
 .recipe__description {
   flex-direction: column;
   text-align: center;
   width: 100%;
+}
+@media screen and (min-width: 855px) {
+  .recipe__description {
+    width: 48%;
+  }
 }
 .recipe__description--title {
   color: #08A045;
@@ -586,10 +602,17 @@ ul {
 .favoris {
   margin: 1.5rem;
 }
+@media screen and (min-width: 855px) {
+  .favoris {
+    margin: 0;
+    margin-right: 1.5rem;
+  }
+}
 .favoris__container:hover {
   cursor: pointer;
 }
-.favoris__container--svg-favorite {
+
+.fa-solid {
   color: red;
 }
 
@@ -636,6 +659,12 @@ ul {
   text-decoration-color: #08A045;
   cursor: pointer;
 }
+@media screen and (min-width: 855px) {
+  .opinion__add-new-comment {
+    margin: 0;
+    margin-left: 1rem;
+  }
+}
 .opinion__form {
   flex-direction: column;
   text-align: center;
@@ -652,6 +681,16 @@ ul {
 }
 .opinion__form--submit-input:hover {
   box-shadow: 1px 1px 10px -1px #073B3A;
+}
+
+.opinion-no-user {
+  margin-top: 1.5rem;
+}
+@media screen and (min-width: 855px) {
+  .opinion-no-user {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .new-recipe {
@@ -677,6 +716,95 @@ ul {
     margin-top: 0;
     margin-left: 0.5rem;
   }
+}
+
+.paging__list {
+  flex-direction: column;
+  margin: 3rem;
+}
+@media screen and (min-width: 855px) {
+  .paging__list {
+    flex-direction: row;
+  }
+}
+.paging__list--first-page {
+  color: #073B3A;
+}
+.paging__list--first-page:hover {
+  cursor: pointer;
+  color: #0B6E4F;
+}
+@media screen and (min-width: 855px) {
+  .paging__list--first-page {
+    margin-right: 1rem;
+  }
+}
+.paging__list--previous-page {
+  margin-top: 0.5rem;
+  color: #073B3A;
+}
+.paging__list--previous-page:hover {
+  cursor: pointer;
+  color: #0B6E4F;
+}
+@media screen and (min-width: 855px) {
+  .paging__list--previous-page {
+    margin-top: 0;
+    margin-right: 1rem;
+  }
+}
+.paging__list--item {
+  margin-top: 0.5rem;
+  margin-right: 0.3rem;
+  background-color: #08A045;
+  color: #DDB771;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+.paging__list--item:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 47px -3px #073B3A;
+  background-color: #DDB771;
+  color: #08A045;
+}
+@media screen and (min-width: 855px) {
+  .paging__list--item {
+    margin-top: 0;
+    margin-right: 0.5rem;
+  }
+}
+.paging__list--next-page {
+  margin-top: 0.5rem;
+  color: #073B3A;
+}
+.paging__list--next-page:hover {
+  cursor: pointer;
+  color: #0B6E4F;
+}
+@media screen and (min-width: 855px) {
+  .paging__list--next-page {
+    margin-top: 0;
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+  }
+}
+.paging__list--last-page {
+  margin-top: 0.5rem;
+  color: #073B3A;
+}
+.paging__list--last-page:hover {
+  cursor: pointer;
+  color: #0B6E4F;
+}
+@media screen and (min-width: 855px) {
+  .paging__list--last-page {
+    margin-top: 0;
+  }
+}
+
+.active {
+  background-color: #6BBF59;
+  color: #DDB771;
 }
 
 .link-to-show-recipe {
@@ -832,6 +960,171 @@ ul {
   margin-bottom: 2vw;
 }
 
+.login-form {
+  flex-direction: column;
+  padding: 1rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  box-shadow: 1px 1px 47px -3px #073B3A;
+  border-radius: 1rem 1rem 1rem 1rem;
+  outline: solid 0.3rem;
+  outline-color: #0B6E4F;
+}
+.login-form__title {
+  text-align: center;
+  margin-top: 5vw;
+  color: #0B6E4F;
+}
+.login-form__flux {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-top: 5vw;
+}
+.login-form__form {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.login-form__field {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 5vw;
+}
+.login-form__field--input {
+  width: 100%;
+}
+
+.register-form {
+  flex-direction: column;
+  padding: 1rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  box-shadow: 1px 1px 47px -3px #073B3A;
+  border-radius: 1rem 1rem 1rem 1rem;
+  outline: solid 0.3rem;
+  outline-color: #0B6E4F;
+}
+.register-form__title {
+  text-align: center;
+  margin-top: 5vw;
+  color: #0B6E4F;
+}
+.register-form__flux {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-top: 5vw;
+}
+.register-form__form {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-around;
+}
+.register-form__field {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 5vw;
+}
+#registration_form_allergy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#registration_form_allergy > label {
+  margin-bottom: 2vw;
+}
+
+#registration_form_diet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#registration_form_diet > label {
+  margin-bottom: 2vw;
+}
+
+.contact-page-welcome {
+  margin-top: 8rem;
+  text-align: center;
+}
+.contact-page-welcome__text {
+  margin-top: 2rem;
+}
+
+.contact-page-informations {
+  margin-top: 5rem;
+  text-align: center;
+}
+.contact-page-informations__text {
+  margin-top: 2rem;
+}
+
+.contact-page-modification {
+  margin-top: 7rem;
+  text-align: center;
+}
+
+.contact-page-form {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  padding: 3rem;
+  box-shadow: 1px 1px 47px -3px #073B3A;
+  border-radius: 1rem 1rem 1rem 1rem;
+  outline: solid 0.3rem;
+  outline-color: #0B6E4F;
+}
+.contact-page-form__title {
+  margin-bottom: 1rem;
+  margin: 1rem;
+  text-align: center;
+  color: #073B3A;
+}
+.contact-page-form__flux {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-top: 5vw;
+}
+.contact-page-form__form {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-around;
+}
+.contact-page-form__field {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 5vw;
+}
+.contact-page-form__field--label {
+  margin-top: 1rem;
+  padding: 0.3rem;
+  color: #0B6E4F;
+}
+.contact-page-form__field--input {
+  padding: 0.3rem;
+}
+.contact-page-form__modification {
+  margin-top: 3vw;
+}
+
 .btn {
   border-radius: 1.5rem;
   font-weight: 500;
@@ -848,7 +1141,6 @@ ul {
   color: #DDB771;
 }
 .btn__linear-gradient {
-  margin-right: 1rem;
   background: linear-gradient(to bottom right, #0B6E4F, #6BBF59);
   width: 10rem;
   text-align: center;
