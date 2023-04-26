@@ -13,12 +13,13 @@
 				<a href="{{ path('app_contact_index')}}" class="btn btn__primary header__link">Contact</a>
 				{% if is_granted('ROLE_ADMIN') %}
 					<a href="{{ path('app_admin')}}" class="btn btn__primary header__link">Gestion</a>
+					<a href="{{ path('app_register')}}" class="btn btn__primary header__link">Ajout patient</a>
 				{% endif %}
 				{% if app.user %}
 					{% if not is_granted('ROLE_ADMIN') %}
 						<a href="{{ path('app_users')}}" class="btn btn__primary header__link">Mon compte</a>
 					{% endif %}
-					<a href="{{ path('app_logout')}}" class="btn btn__primary header__link">Se déconnecter</a>
+					<a href="{{ path('app_logout')}}" class="btn btn__primary header__link">Déconnexion</a>
 				{% else %}
 					<a href="{{ path('app_login')}}" class="btn btn__primary header__link">Se connecter</a>
 				{% endif %}

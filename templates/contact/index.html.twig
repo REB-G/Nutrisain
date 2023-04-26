@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact index{% endblock %}
+{% block title %}Nutrisain - Contact{% endblock %}
 
 {% block body %}
 {% for contact in contacts %}
-    <section class="main flux">
-        <h1 class="main__title">{{contact.pageTitle}}</h1>
-        <p class="main__text-presentation">{{contact.pageText}}</p>
+    <section class="contact-page-welcome flux">
+        <h1 class="contact-page-welcome__title">{{contact.pageTitle}}</h1>
+        <p class="contact-page-welcome__text">{{contact.pageText}}</p>
     </section>
 
-    <section class="description flux">
-        <p class="description__text-presentation">{{contact.phoneNumber}}</p>
-        <p class="description__text-presentation">{{contact.adress}}</p>
-        <p class="description__text-presentation">{{contact.email}}</p>
+    <section class="contact-page-informations flux">
+        <p class="contact-page-informations__text">{{contact.phoneNumber}}</p>
+        <p class="contact-page-informations__text">{{contact.adress}}</p>
+        <p class="contact-page-informations__text">{{contact.email}}</p>
     </section>
 
-    <section class="famous-dishes flux">
+    <section class="contact-page-modification flux">
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('app_home_page_edit', {'id': page.id}) }}" class='main-modification__modifier'>Modifier les informations</a>
+            <a href="{{ path('app_contact_edit', {'id': contact.id}) }}" class='underline'>Modifier les informations</a>
         {% endif %}
     </section>
 {% endfor %}
