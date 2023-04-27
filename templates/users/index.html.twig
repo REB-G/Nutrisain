@@ -27,8 +27,8 @@
         </section>
 
         <section class='user-profil__modifications flex-center'>
-            <a href="{{path('app_users_edit')}}" class='user-profil__modifications--informations underline'>Modifier mes informations</a>
-            <a href="{{ path('app_password_user_edit')}}" class='user-profil__modifications--password underline'>Modifier mon mot de passe</a>
+            <a href="{{path('app_users_edit', {'id': app.user.id})}}" class='user-profil__modifications--informations underline'>Modifier mes informations</a>
+            <a href="{{ path('app_password_user_edit', {'id': app.user.id})}}" class='user-profil__modifications--password underline'>Modifier mon mot de passe</a>
         </section>
 
         <section class='user-profil__favorite-recipes flex-center'>

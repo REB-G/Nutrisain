@@ -27,10 +27,15 @@ class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/profil/mofidications', name: 'app_users_edit', methods: ['GET', 'POST'])]
-    public function editProfile(Request $request, UsersRepository $usersRepository): Response
+    #[Route('/profil/mofidications/{id}', name: 'app_users_edit', methods: ['GET', 'POST'])]
+    public function editProfile(Request $request, UsersRepository $usersRepository, string $id): Response
     {
         $user = $this->getUser();
+        $user = $this->getUser();
+        if ($user->getId() !== $id) {
+            throw $this->createAccessDeniedException();
+        }
+
         $form = $this->createForm(EditUserProfilType::class, $user);
         $form->handleRequest($request);
 
@@ -48,14 +53,19 @@ class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/profil/ChangePassword', name: 'app_password_user_edit', methods: ['GET', 'POST'])]
+    #[Route('/profil/edition/{id}', name: 'app_password_user_edit', methods: ['GET', 'POST'])]
     public function editPassword(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        string $id
     ): Response
     {
         $user = $this->getUser();
+        if ($user->getId() !== $id) {
+            throw $this->createAccessDeniedException();
+        }
+
         $form = $this->createForm(EditPasswordUserType::class, $user);
         $form->handleRequest($request);
         
