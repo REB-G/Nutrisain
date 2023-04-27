@@ -4,21 +4,81 @@
 
 {% block body %}
     {% for message in app.flashes('message') %}
-        <p>{{message}}</p>
-    {% endfor %}
-    <h1>Bienvenue {{app.user.name}} !</h1>
-    <h2>Voici vos informations :</h2>
-    <p>Prénom : {{app.user.firstname}}</p>
-    <p>email : {{app.user.email}}</p>
-
-    <a href="{{path('app_users_edit')}}">Modifier mes informations</a>
-    <a href="#">Modifier mon mot de passe</a>
-
-    <button id="js_user_show_favoriteRecipes_button">Mes recettes préférées</button>
-    {% for recipe in app.user.favoriteRecipes %}
-        <div class="js_user_favoriteRecipes hide">
-            <a href="{{ path('app_recipes_show', {'id': recipe.id})}}">{{recipe.title}}</a>
-        </div>
+        <p>{{message|e('html')}}</p>
     {% endfor %}
 
+    <main class='user-profil flex-center'>
+        <h1 class='user-profil__title'>Profil de : {{app.user.firstname|e('html')}} {{app.user.name|e('html')}}</h1>
+        <section class='user-profil__informations'>
+            <h2 class='user-profil__informations--title'>Mes informations :</h2>
+            <p class='user-profil__informations--name'>Nom : {{ app.user.name|e('html') }}</p>
+            <p class='user-profil__informations--firstname'>Prénom : {{ app.user.firstname|e('html') }}</p>
+            <p class='user-profil__informations--email'>Email : {{ app.user.email|e('html') }}</p>
+            <ul class='user-diets-list'>Régime(s) alimentaire :
+            {% for diet in app.user.diet %}
+                <li class='user-diets-list__name'>{{ diet.name|e('html') }}</li>
+            {% endfor %}
+            </ul>
+            <ul class='user-allergies-list'>Allergies : 
+            {% for allergy in app.user.allergy %}
+                <li class='user-allergies-list__name'>{{ allergy.name|e('html') }}</li>
+            {% endfor %}
+            </ul>
+        </section>
+
+        <section class='user-profil__modifications flex-center'>
+            <a href="{{path('app_users_edit')}}" class='user-profil__modifications--informations underline'>Modifier mes informations</a>
+            <a href="{{ path('app_password_user_edit')}}" class='user-profil__modifications--password underline'>Modifier mon mot de passe</a>
+        </section>
+
+        <section class='user-profil__favorite-recipes flex-center'>
+            <button id="js_user_show_favoriteRecipes_button" class='btn btn__linear-gradient'>Mes recettes préférées</button>
+            <ul class='js_user_favoriteRecipes hide user-profil__favorite-recipes--list flex-center'>
+                {% for recipe in app.user.favoriteRecipes %}
+                    <li class='user-profil-recipe user-profil-card-recipe flex-center'>
+                        <img class="user-profil-recipe__image" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="{{recipe.title|e('html')}}">
+                        <div class="user-profil-recipe__description flex-center">
+                            <p class="user-profil-recipe__description--title">{{recipe.title|e('html')}}</p>
+                            <p class="user-profil-recipe__description--details">{{recipe.description|e('html')}}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class='user-profil__recipes-for-connected-user flex-center'>
+            <button id='js_show_recipes_for_user_button' class='btn btn__linear-gradient'>Mes recettes</button>
+            <ul class='js_recipes_for_user hide user-profil__recipes-for-connected-user--list flex-center'>
+                {% for recipe in recipes %}
+                    {% set user_diet = app.user.diet %}
+                    {% set recipe_diet = recipe.diet %}
+                    {% set has_all_diet = true %}
+                    {% set user_allergy = app.user.allergy %}
+                    {% set recipe_allergy = recipe.allergy %}
+                    {% set has_not_the_allergy = true %}
+                    {% for diet in user_diet %}
+                        {% if diet not in recipe_diet %}
+                            {% set has_all_diet = false %}
+                        {% endif %}
+                    {% endfor %}
+                    {% for allergy in user_allergy %}
+                        {% if allergy in recipe_allergy %}
+                            {% set has_not_the_allergy = false %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if has_all_diet %}
+                        {% if has_not_the_allergy %}
+                            <li class='user-profil-recipe user-profil-card-recipe flex-center'>
+                                <img class="user-profil-recipe__image" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="{{recipe.title|e('html')}}">
+                                <div class="user-profil-recipe__description flex-center">
+                                    <p class="user-profil-recipe__description--title">{{recipe.title|e('html')}}</p>
+                                    <p class="user-profil-recipe__description--details">{{recipe.description|e('html')}}</p>
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
 {% endblock %}

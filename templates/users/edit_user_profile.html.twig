@@ -1,6 +1,13 @@
-{% block title %}Recipes index{% endblock %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Nutrisain - Modification informations profil{% endblock %}
 
 {% block body %}
-    <h1>Modification de vos informations</h1>
-    {{form(form)}}
+    <main class='change-user-informations-form form-flux flex-center'>
+        <h1 class='change-user-informations-form__title'>Modification de vos informations</h1>
+        <p class='change-user-informations-form__information'>Pour toutes modifications concernant vos allergies, merci de nous contacter.</p>
+        <section class='change-user-informations-form__form'>
+            {{form(form)}}
+        </section>
+    </main>
 {% endblock %}
