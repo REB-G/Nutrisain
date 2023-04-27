@@ -13,7 +13,7 @@ ul {
   list-style: none;
 }
 
-.contact-page-welcome__title, .register-form__title, .login-form__title, .recipe-form__title, .recipe-page__title, .main__title {
+.change-user-informations-form__title, .user-change-password-form__title, .user-profil__title, .contact-page-welcome__title, .register-form__title, .login-form__title, .recipe-form__title, .recipe-page__title, .main__title {
   font-family: "old standard tt", serif;
   font-size: 3rem;
 }
@@ -23,7 +23,7 @@ ul {
   font-size: 2.3rem;
 }
 
-.show-recipe__title, .recipe__description--title {
+.user-profil-recipe__description--title, .show-recipe__title, .recipe__description--title {
   font-family: "old standard tt", serif;
   font-size: 1.7rem;
 }
@@ -33,17 +33,17 @@ ul {
   font-size: 1.3rem;
 }
 
-.contact-page-welcome__text, .recipe-page__description, .main__text-presentation {
+.user-profil__informations--title, .contact-page-welcome__text, .recipe-page__description, .main__text-presentation {
   font-family: "cardo", serif;
   font-size: 2rem;
 }
 
-.contact-page-form__field--label, .contact-page-form__field--input, .contact-page-informations__text, .active, .filters__title, .home-page-form__field--label, .home-page-form__field--input, .home-page-form__modification--button, .home-page-links, .services__text-presentation, .description__text-presentation {
+.user-profil__informations--name, .user-profil__informations--firstname, .user-profil__informations--email, .user-diets-list, .user-diets-list__name, .user-allergies-list, .user-allergies-list__name, .contact-page-form__field--label, .contact-page-form__field--input, .contact-page-informations__text, .active, .filters__title, .home-page-form__field--label, .home-page-form__field--input, .home-page-form__modification--button, .home-page-links, .services__text-presentation, .description__text-presentation {
   font-family: "cardo", serif;
   font-size: 1.7rem;
 }
 
-.underline, .btn__linear-gradient, .register-form__field--label, .register-form__field--input, .login-form__field--label, .login-form__field--input, .recipe-form__field--label, .recipe-form__field--input, .show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__stagesOfRecipe, .paging__list, .opinion__show-comment, .opinion__details--username, .opinion__details--comment, .opinion__add-new-comment, .opinion__form--text-input, .opinion__form--submit-input, .recipe__description--details, .filters__label, .category-filters__title, .diet-filters__title, .header__link {
+.underline, .btn__linear-gradient, .change-user-informations-form__information, .change-user-informations-form__field--label, .change-user-informations-form__field--input, .user-change-password-form__field--label, .user-change-password-form__field--input, .user-profil-recipe__description--details, .register-form__field--label, .register-form__field--input, .login-form__field--label, .login-form__field--input, .recipe-form__field--label, .recipe-form__field--input, .show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__stagesOfRecipe, .paging__list, .opinion__show-comment, .opinion__details--username, .opinion__details--comment, .opinion__add-new-comment, .opinion__form--text-input, .opinion__form--submit-input, .recipe__description--details, .filters__label, .category-filters__title, .diet-filters__title, .header__link {
   font-family: "cardo", serif;
   font-size: 1.3rem;
 }
@@ -1125,12 +1125,200 @@ ul {
   margin-top: 3vw;
 }
 
+.user-profil {
+  flex-direction: column;
+  margin-top: 5rem;
+}
+.user-profil__informations {
+  margin-top: 1.5rem;
+}
+.user-profil__informations--title {
+  margin-top: 2rem;
+  margin-left: -50%;
+}
+.user-profil__informations--name {
+  margin-top: 1rem;
+}
+.user-profil__informations--firstname {
+  margin-top: 1rem;
+}
+.user-profil__informations--email {
+  margin-top: 1rem;
+}
+
+.user-diets-list {
+  margin-top: 2rem;
+  list-style: inside;
+}
+.user-diets-list__name {
+  margin-top: 1rem;
+  margin-left: 45%;
+}
+
+.user-allergies-list {
+  margin-top: 2rem;
+  list-style: inside;
+}
+.user-allergies-list__name {
+  margin-top: 1rem;
+  margin-left: 45%;
+}
+
+.user-profil__favorite-recipes {
+  margin-top: 3.5rem;
+  flex-direction: column;
+}
+.user-profil__favorite-recipes--list {
+  flex-direction: column;
+}
+
+.user-profil__modifications {
+  flex-direction: column;
+  margin-top: 8rem;
+}
+@media screen and (min-width: 855px) {
+  .user-profil__modifications {
+    flex-direction: row;
+  }
+}
+@media screen and (min-width: 855px) {
+  .user-profil__modifications--informations {
+    margin-right: 1rem;
+  }
+}
+.user-profil__modifications--password {
+  margin-top: 1rem;
+}
+@media screen and (min-width: 855px) {
+  .user-profil__modifications--password {
+    margin-left: 1rem;
+    margin-top: 0;
+  }
+}
+
+.user-profil-recipe {
+  flex-direction: column;
+  width: 50%;
+}
+@media screen and (min-width: 855px) {
+  .user-profil-recipe {
+    flex-direction: row;
+    width: 70%;
+  }
+}
+.user-profil-recipe__image {
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin: 1.5rem;
+}
+@media screen and (min-width: 855px) {
+  .user-profil-recipe__image {
+    width: 45%;
+  }
+}
+.user-profil-recipe__description {
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+@media screen and (min-width: 855px) {
+  .user-profil-recipe__description {
+    width: 48%;
+  }
+}
+.user-profil-recipe__description--title {
+  color: #08A045;
+  text-decoration: underline;
+  text-decoration-color: #0B6E4F;
+  text-underline-offset: 0.3rem;
+}
+.user-profil-recipe__description--details {
+  margin-top: 0.7rem;
+}
+
+.user-profil-card-recipe {
+  margin-top: 3rem;
+  padding: 1rem;
+  box-shadow: 1px 1px 20px -3px #073B3A;
+  border-radius: 1rem 1rem 1rem 1rem;
+  outline: solid 0.3rem;
+  outline-color: #0B6E4F;
+}
+
+.user-profil__recipes-for-connected-user {
+  margin-top: 2rem;
+  flex-direction: column;
+}
+.user-profil__recipes-for-connected-user--list {
+  flex-direction: column;
+}
+
+.user-change-password-form {
+  padding: 1rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  box-shadow: 1px 1px 47px -3px #073B3A;
+  border-radius: 1rem 1rem 1rem 1rem;
+  outline: solid 0.3rem;
+  outline-color: #0B6E4F;
+  flex-direction: column;
+}
+.user-change-password-form__title {
+  text-align: center;
+  margin-top: 5vw;
+  color: #0B6E4F;
+}
+.user-change-password-form__form {
+  margin-top: 5vw;
+}
+.user-change-password-form__field {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 5vw;
+}
+.change-user-informations-form {
+  padding: 1rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  box-shadow: 1px 1px 47px -3px #073B3A;
+  border-radius: 1rem 1rem 1rem 1rem;
+  outline: solid 0.3rem;
+  outline-color: #0B6E4F;
+  flex-direction: column;
+}
+.change-user-informations-form__title {
+  text-align: center;
+  margin-top: 5vw;
+  color: #0B6E4F;
+}
+.change-user-informations-form__information {
+  text-align: center;
+  margin-top: 3vw;
+  color: #08A045;
+}
+.change-user-informations-form__form {
+  margin-top: 5vw;
+}
+.change-user-informations-form__field {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 5vw;
+}
 .btn {
   border-radius: 1.5rem;
   font-weight: 500;
   transition: 0.5s ease-in;
   margin: 0.7vw;
   padding: 0.7vw 1.5vw;
+}
+.btn:hover {
+  cursor: pointer;
 }
 .btn__primary {
   background-color: #08A045;

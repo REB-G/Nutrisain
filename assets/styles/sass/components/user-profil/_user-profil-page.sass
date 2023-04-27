@@ -1,0 +1,48 @@
+@use "../../../sass/utils/_main" as utils
+
+.user-profil
+    flex-direction: column
+    margin-top: 5rem
+
+    &__title
+        @extend %title-1
+
+    &__informations
+        margin-top: 1.5rem
+
+        &--title
+            @extend %text-1
+            margin-top: 2rem
+            margin-left: -50%
+
+        &--name
+            margin-top: 1rem
+            @extend %text-2
+
+        &--firstname
+            margin-top: 1rem
+            @extend %text-2
+
+        &--email
+            margin-top: 1rem
+            @extend %text-2
+
+.user-diets-list
+    margin-top: 2rem
+    list-style: inside
+    @extend %text-2
+
+    &__name
+        @extend %text-2
+        margin-top: 1rem
+        margin-left: 45%
+
+.user-allergies-list
+    margin-top: 2rem
+    list-style: inside
+    @extend %text-2
+
+    &__name
+        @extend %text-2
+        margin-top: 1rem
+        margin-left: 45%
