@@ -1,0 +1,43 @@
+@use "../../../sass/utils/_main" as utils
+
+.user-profil-recipe
+    flex-direction: column
+    width: 50%
+    +utils.responsive(tablet)
+        flex-direction: row
+        width: 70%
+
+    &__image
+        width: 90%
+        height: 100%
+        object-fit: cover
+        border-radius: 1rem
+        margin: 1.5rem
+        +utils.responsive(tablet)
+            width: 45%
+
+    &__description
+        flex-direction: column
+        text-align: center
+        width: 100%
+        +utils.responsive(tablet)
+            width: 48%
+
+        &--title
+            @extend %title-3
+            color: utils.$green
+            text-decoration: underline
+            text-decoration-color: utils.$light-blue
+            text-underline-offset: 0.3rem
+
+        &--details
+            @extend %text-3
+            margin-top: 0.7rem
+
+.user-profil-card-recipe
+    margin-top: 3rem
+    padding: 1rem
+    box-shadow: 1px 1px 20px -3px utils.$dark-blue
+    border-radius: 1rem 1rem 1rem 1rem
+    outline: solid 0.3rem
+    outline-color: utils.$light-blue

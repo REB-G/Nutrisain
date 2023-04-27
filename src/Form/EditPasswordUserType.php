@@ -31,17 +31,41 @@ class EditPasswordUserType extends AbstractType
                             'max' => 4096,
                         ]),
                     ],
-                    'label' => 'New password',
+                    'row_attr' => [
+                        'class' => 'user-change-password-form__field'
+                    ],
+                    'label' => 'Nouveau mot de passe',
+                    'label_attr' => [
+                        'class' => 'user-change-password-form__field--label'
+                    ],
+                    'attr' => [
+                        'placeholder' => 'Mot de passe',
+                        'class' => 'user-change-password-form__field--input',
+                    ],
                 ],
                 'second_options' => [
-                    'label' => 'Repeat Password',
+                    'row_attr' => [
+                        'class' => 'user-change-password-form__field'
+                    ],
+                    'label' => 'Confirmer le mot de passe',
+                    'label_attr' => [
+                        'class' => 'user-change-password-form__field--label'
+                    ],
+                    'attr' => [
+                        'placeholder' => 'Mot de passe',
+                        'class' => 'user-change-password-form__field--input',
+                    ],
                 ],
                 'invalid_message' => 'Les mots de passes doivent correspondre.',
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
             ])
-            ->add('Valider', SubmitType::class)
+            ->add('Valider', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn__linear-gradient',
+                ],
+            ])
         ;
     }
 

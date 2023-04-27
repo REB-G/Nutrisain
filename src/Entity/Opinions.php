@@ -82,10 +82,6 @@ class Opinions
         return $this;
     }
 
-    // public function __toString(): string
-    // {
-    // }
-
     public function getUserName(): ?string
     {
         return $this->userName;
@@ -120,5 +116,10 @@ class Opinions
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->comment;
     }
 }

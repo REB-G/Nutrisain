@@ -31,7 +31,6 @@ class OpinionsCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->hideOnForm(),
-            TextField::new('rating', 'Note'),
             TextField::new('comment', 'Commentaire'),
             AssociationField::new('user', 'Patient'),
             AssociationField::new('recipe', 'Recette'),

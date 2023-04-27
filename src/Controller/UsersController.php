@@ -5,22 +5,24 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\EditUserProfilType;
 use App\Form\EditPasswordUserType;
+use App\Repository\RecipesRepository;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\SecurityBundle\Security\UserAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class UsersController extends AbstractController
 {
     #[Route('/profil', name: 'app_users')]
-    public function index(): Response
+    public function index(RecipesRepository $recipesRepository): Response
     {
+        $recipes = $recipesRepository->findAll();
+
         return $this->render('users/index.html.twig', [
+            'recipes' => $recipes,
             'controller_name' => 'UsersController',
         ]);
     }
@@ -54,7 +56,6 @@ class UsersController extends AbstractController
     ): Response
     {
         $user = $this->getUser();
-       // echo get_class($user);
         $form = $this->createForm(EditPasswordUserType::class, $user);
         $form->handleRequest($request);
         
@@ -67,7 +68,6 @@ class UsersController extends AbstractController
                 $userPasswordHasher->hashPassword(
                     $user, $request->request->get('edit_password_user')['plainPassword']['first']
                 ));
-            // $usersRepository->save($user, true);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -76,7 +76,7 @@ class UsersController extends AbstractController
             return $this->redirectToRoute('app_users', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('users/edit_user_profile.html.twig', [
+        return $this->renderForm('users/edit_password_user.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);

@@ -1,0 +1,18 @@
+@use "../../../sass/utils/_main" as utils
+
+.user-profil
+    &__modifications
+        flex-direction: column
+        margin-top: 8rem
+        +utils.responsive(tablet)
+            flex-direction: row
+
+        &--informations
+            +utils.responsive(tablet)
+                margin-right: 1rem
+
+        &--password
+            margin-top: 1rem
+            +utils.responsive(tablet)
+                margin-left: 1rem
+                margin-top: 0
