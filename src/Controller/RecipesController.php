@@ -7,13 +7,11 @@ use App\Form\RecipesType;
 use App\Repository\DietsRepository;
 use App\Repository\RecipesRepository;
 use App\Repository\CategoriesRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 #[Route('/recipes')]
 class RecipesController extends AbstractController
