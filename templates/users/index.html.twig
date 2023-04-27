@@ -4,7 +4,7 @@
 
 {% block body %}
     {% for message in app.flashes('message') %}
-        <p>{{message|e('html')}}</p>
+        <p id='js_user-profil_updated' class='user-profil-updated'>{{message|e('html')}}</p>
     {% endfor %}
 
     <main class='user-profil flex-center'>

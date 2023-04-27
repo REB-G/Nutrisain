@@ -38,7 +38,7 @@ ul {
   font-size: 2rem;
 }
 
-.user-profil__informations--name, .user-profil__informations--firstname, .user-profil__informations--email, .user-diets-list, .user-diets-list__name, .user-allergies-list, .user-allergies-list__name, .contact-page-form__field--label, .contact-page-form__field--input, .contact-page-informations__text, .active, .filters__title, .home-page-form__field--label, .home-page-form__field--input, .home-page-form__modification--button, .home-page-links, .services__text-presentation, .description__text-presentation {
+.user-profil-updated, .user-profil__informations--name, .user-profil__informations--firstname, .user-profil__informations--email, .user-diets-list, .user-diets-list__name, .user-allergies-list, .user-allergies-list__name, .contact-page-form__field--label, .contact-page-form__field--input, .contact-page-informations__text, .active, .filters__title, .home-page-form__field--label, .home-page-form__field--input, .home-page-form__modification--button, .home-page-links, .services__text-presentation, .description__text-presentation {
   font-family: "cardo", serif;
   font-size: 1.7rem;
 }
@@ -1310,6 +1310,13 @@ ul {
   justify-content: space-between;
   margin-bottom: 5vw;
 }
+.user-profil-updated {
+  background-color: #08A045;
+  margin-top: 3rem;
+  text-align: center;
+  padding: 3rem;
+}
+
 .btn {
   border-radius: 1.5rem;
   font-weight: 500;
