@@ -22,31 +22,56 @@ class Recipes
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le titre de la recette.')]
-    #[Assert\Length(max: 255, maxMessage: "Le nom ne doit pas dépasser 255 caractères")]
+    #[Assert\Length(
+        min: 2, max: 255,
+        minMessage: 'Le titre de la recette doit être de 3 caractères minimum.',
+        maxMessage: "Le titre de la recette ne doit pas dépasser 255 caractères"
+    )]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez renseigner la description de la recette.')]
+    #[Assert\Length(
+        min: 10, max: 1255,
+        minMessage: 'La description de la recette doit être de 10 caractères minimum.',
+        maxMessage: "La description de la recette ne doit pas dépasser 1255 caractères"
+    )]
     private ?string $description = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez renseigner le temps de préparation de la recette.')]
+    #[Assert\PositiveOrZero(message: 'Le temps de préparation ne peut pas être négatif.')]
+    #[Assert\Regex(pattern: '/^[0-9]+$/', message: 'Le temps de préparation ne doit contenir que des chiffres.')]
     private ?int $preparationTime = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez renseigner le temps de repos de la recette.')]
+    #[Assert\PositiveOrZero(message: 'Le temps de repos ne peut pas être négatif.')]
+    #[Assert\Regex(pattern: '/^[0-9]+$/', message: 'Le temps de repos ne doit contenir que des chiffres.')]
     private ?int $preparationStandingTime = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez renseigner le temps de cuisson de la recette.')]
+    #[Assert\PositiveOrZero(message: 'Le temps de cuisson ne peut pas être négatif.')]
+    #[Assert\Regex(pattern: '/^[0-9]+$/', message: 'Le temps de cuisson ne doit contenir que des chiffres.')]
     private ?int $cookingTime = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez renseigner les ingrédients de la recette.')]
+    #[Assert\Length(
+        min: 3, max: 1255,
+        minMessage: 'La liste des ingrédients de la recette doit être de 2 caractères minimum.',
+        maxMessage: "La liste des ingrédients de la recette ne doit pas dépasser 1255 caractères"
+    )]
     private ?string $ingredients = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez renseigner les étapes de la recette.')]
+    #[Assert\Length(
+        min: 2, max: 1255,
+        minMessage: 'Les étapes de la recette doivent contenir 3 caractères minimum.',
+        maxMessage: "Les étapes de la recette ne doivent pas dépasser 1255 caractères"
+    )]
     private ?string $stagesOfRecipe = null;
 
     #[ORM\Column]

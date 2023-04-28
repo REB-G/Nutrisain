@@ -18,6 +18,12 @@ class Allergies
 
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le nom de l\'allergie.')]
+    #[Assert\Length(
+        min: 2, max: 50,
+        minMessage: 'Le nom de l\'allergie doit être de 2 caractères minimum.',
+        maxMessage: "Le nom de l\'allergie ne doit pas dépasser 50 caractères"
+    )]
+    #[Assert\Regex(pattern: '/^[a-zA-ZÀ-ÿ -]+$/', message: 'Le nom de l\'allergie ne doit contenir que des lettres.')]
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Users::class, mappedBy: 'allergy')]
