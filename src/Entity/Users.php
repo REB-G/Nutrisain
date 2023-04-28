@@ -280,9 +280,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->name . ' ' . $this->firstname;
     }
 
-    /**
-     * @return Collection<int, Recipes>
-     */
     public function getFavoriteRecipes(): Collection
     {
         return $this->favoriteRecipes;

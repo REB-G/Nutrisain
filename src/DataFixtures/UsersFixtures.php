@@ -6,6 +6,7 @@ use Faker;
 use App\Entity\Users;
 use App\DataFixtures\DietsFixtures;
 use App\DataFixtures\AllergiesFixtures;
+use App\DataFixtures\RecipesFixtures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -39,7 +40,8 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
                 ->setEmail($faker->email())
                 ->setPassword($this->passwordHasher->hashPassword($user, 'Nutrisain.MotDePasse.1'))
                 ->addDiet($this->getReference(DietsFixtures::DIET_REFERENCE))
-                ->addAllergy($this->getReference(AllergiesFixtures::ALLERGY_REFERENCE));
+                ->addAllergy($this->getReference(AllergiesFixtures::ALLERGY_REFERENCE))
+                ->addFavoriteRecipe($this->getReference(RecipesFixtures::RECIPE_REFERENCE));
             $this->setReference(SELF::USER_REFERENCE, $user);
 
             $manager->persist($user);
@@ -52,6 +54,7 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
         return [
             DietsFixtures::class,
             AllergiesFixtures::class,
+            RecipesFixtures::class
         ];
     }
 }
