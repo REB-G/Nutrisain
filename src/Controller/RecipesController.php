@@ -23,30 +23,22 @@ class RecipesController extends AbstractController
         DietsRepository $dietsRepository,
         Request $request
     ): Response {
-        // Méthode pour effectuer une pagination (sans bundle)
-        //Récuprère le numéro de page
+
         $page = (int)$request->query->get('page', 1);
 
-        // Définition du nombre de recettes par page
         $limit = 3;
 
-        // Méthode pour récupérer les filtres les sélectionnés par l'utilisateur
         $filtersCategories = $request->get('categories');
         $filtersDiets = $request->get('diets');
-        // Récupération des recettes paginées et filtrées si des filtres sont sélectionnés
         $recipes = $recipesRepository->getPaginatedRecipes($page, $limit, $filtersCategories, $filtersDiets);
         $allRecipes = $recipesRepository->getPaginatedAllRecipes($page, $limit, $filtersCategories, $filtersDiets);
 
-        // Récupération du nombre total de recettes
         $total = $recipesRepository->countRecipes($filtersCategories, $filtersDiets);
         $totalForAllRecipes = $recipesRepository->countAllRecipes($filtersCategories, $filtersDiets);
-        // dd($filters, $recipes, $total);
 
-        // Méthode pour proposer un filtrage sur les recettes par catégories et par régime.
         $categories = $categoriesRepository->findAll();
         $diets = $dietsRepository->findAll();
 
-        //On vérifie si la requête est en AJAX
         if ($request->get('ajax')) {
             if (!$recipes) {
                 return new JsonResponse([

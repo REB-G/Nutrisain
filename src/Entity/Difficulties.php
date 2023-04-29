@@ -69,7 +69,6 @@ class Difficulties
     public function removeRecipe(Recipes $recipe): self
     {
         if ($this->recipe->removeElement($recipe)) {
-            // set the owning side to null (unless already changed)
             if ($recipe->getDifficulty() === $this) {
                 $recipe->setDifficulty(null);
             }

@@ -224,7 +224,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeOpinion(Opinions $opinion): self
     {
         if ($this->opinion->removeElement($opinion)) {
-            // set the owning side to null (unless already changed)
             if ($opinion->getUser() === $this) {
                 $opinion->setUser(null);
             }

@@ -69,7 +69,6 @@ class Categories
     public function removeRecipe(Recipes $recipe): self
     {
         if ($this->recipe->removeElement($recipe)) {
-            // set the owning side to null (unless already changed)
             if ($recipe->getCategory() === $this) {
                 $recipe->setCategory(null);
             }
