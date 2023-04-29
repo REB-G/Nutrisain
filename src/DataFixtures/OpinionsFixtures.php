@@ -29,6 +29,8 @@ class OpinionsFixtures extends Fixture implements DependentFixtureInterface
 
             $opinion->setComment($faker->randomElement($comment))
                 ->setUser($this->getReference(UsersFixtures::USER_REFERENCE))
+                ->setUserName($faker->name())
+                ->setUserFirstname($faker->firstName())
                 ->setRecipe($this->getReference(RecipesFixtures::RECIPE_REFERENCE));
             $this->setReference(SELF::OPINION_REFERENCE, $opinion);
 
