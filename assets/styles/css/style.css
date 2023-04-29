@@ -13,7 +13,7 @@ ul {
   list-style: none;
 }
 
-.change-user-informations-form__title, .user-change-password-form__title, .user-profil__title, .contact-page-welcome__title, .register-form__title, .login-form__title, .recipe-form__title, .recipe-page__title, .main__title {
+.first-connexion-form__title, .change-user-informations-form__title, .user-change-password-form__title, .user-profil__title, .contact-page-welcome__title, .register-form__title, .login-form__title, .recipe-form__title, .recipe-page__title, .main__title {
   font-family: "old standard tt", serif;
   font-size: 3rem;
 }
@@ -43,7 +43,7 @@ ul {
   font-size: 1.7rem;
 }
 
-.underline, .btn__linear-gradient, .change-user-informations-form__information, .change-user-informations-form__field--label, .change-user-informations-form__field--input, .user-change-password-form__field--label, .user-change-password-form__field--input, .user-profil-recipe__description--details, .register-form__field--label, .register-form__field--input, .login-form__field--label, .login-form__field--input, .recipe-form__field--label, .recipe-form__field--input, .show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__stagesOfRecipe, .paging__list, .opinion__show-comment, .opinion__details--username, .opinion__details--comment, .opinion__add-new-comment, .opinion__form--text-input, .opinion__form--submit-input, .recipe__description--details, .filters__label, .category-filters__title, .diet-filters__title, .header__link {
+.underline, .btn__linear-gradient, .first-connexion-form__field--label, .first-connexion-form__field--input, .first-connexion-form__field-checkbox--label, .change-user-informations-form__information, .change-user-informations-form__field--label, .change-user-informations-form__field--input, .user-change-password-form__field--label, .user-change-password-form__field--input, .user-profil-recipe__description--details, .register-form__field--label, .register-form__field--input, .login-form__field--label, .login-form__field--input, .recipe-form__field--label, .recipe-form__field--input, .show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__stagesOfRecipe, .paging__list, .opinion__show-comment, .opinion__details--username, .opinion__details--comment, .opinion__add-new-comment, .opinion__form--text-input, .opinion__form--submit-input, .recipe__description--details, .filters__label, .category-filters__title, .diet-filters__title, .header__link {
   font-family: "cardo", serif;
   font-size: 1.3rem;
 }
@@ -1315,6 +1315,44 @@ ul {
   margin-top: 3rem;
   text-align: center;
   padding: 3rem;
+}
+
+.first-connexion-form {
+  padding: 1rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  box-shadow: 1px 1px 47px -3px #073B3A;
+  border-radius: 1rem 1rem 1rem 1rem;
+  outline: solid 0.3rem;
+  outline-color: #0B6E4F;
+  flex-direction: column;
+}
+.first-connexion-form__title {
+  text-align: center;
+  margin-top: 5vw;
+  color: #0B6E4F;
+}
+.first-connexion-form__form {
+  margin-top: 5vw;
+}
+.first-connexion-form__form form div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.first-connexion-form__field {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 5vw;
+}
+.first-connexion-form__field-checkbox {
+  margin-bottom: 5vw;
+}
+.first-connexion-form__field-checkbox--input {
+  margin-top: 1rem;
 }
 
 .btn {

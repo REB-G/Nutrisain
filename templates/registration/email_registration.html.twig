@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Bonjour et bienvenue chez Nutrisain {{ user.firstname }} !</h1>
+        <p>Cliquez sur le lien suivant pour réinitialiser votre mot de passe :</p>
+        <p><a href='{{url}}'>{{url}}</a></p>
+        <p>Ce lien expire le {{expiration_date|date('d/m/Y')}}.</p>
+        <p>À bientôt,</p>
+        <p>L'équipe Nutrisain</p>
+    </body>
+</html>

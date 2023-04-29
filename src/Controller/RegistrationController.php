@@ -3,16 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Form\EditUserProfilType;
+use App\Form\FirstConnexionUserType;
+use Symfony\Component\Mime\Email;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 
 class RegistrationController extends AbstractController
 {
@@ -42,31 +45,66 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
-            $email = (new Email())
+            $idUser = $user->getId();
+            
+            $email = (new TemplatedEmail())
                 ->from('nutrisain@gmail.com')
                 ->to($user->getEmail())
                 ->subject('Inscription à Nutrisain')
-                ->html('Bonjour '.$user->getFirstname().',<br>
-                <br>Vous avez été inscrit sur le site Nutrisain.<br>
-                <br>Votre identifiant est : '.$user->getEmail().'<br>
-                <br>Votre mot de passe est : '.$form->get('plainPassword')->getData().'<br>
-                <br>Vous pouvez vous connecter sur le site en cliquant sur le lien suivant :
-                <a href="http://localhost:8000/login">http://localhost:8000/login</a><br>
-                <br>Merci de vous rendre sur votre espace et modifier votre mot de passe.<br>
-                <br>Vous pouvez dès à présent prendre connaissance des recettes qui conviennent à votre régime et à vos allergies (si vous en avez) sur votre esapce.<br>
-                <br>Vous trouverez l\'ensemble des recettes dans l\'onglet recettes.<br>
-                <br>À bientôt,<br>
-                <br>L\'équipe Nutrisain');
+                ->htmlTemplate('registration/email_registration.html.twig')
+                ->context([
+                    'user' => $user,
+                    'url' => $this->generateUrl('app_first_connexion', ['id' => $idUser]),
+                    'expiration_date' => new \DateTime('+7 days'),
+                ]);
 
             $mailer->send($email);
 
             return $this->redirectToRoute('app_home_page_index');
+            $this->addFlash('success', 'Le patient a bien été ajouté et le mail a bien été envoyé.');
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/initialisation/compte/{id}', name: 'app_first_connexion')]
+    public function firstConnexion(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        EntityManagerInterface $entityManager,
+        string $id
+        ): Response
+    {
+        $user = $this->getUser();
+        // if ($user->getId() !== $id) {
+        //     throw $this->createAccessDeniedException();
+        // }
+
+        $form = $this->createForm(FirstConnexionUserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()
+            && $request->request->get('edit_password_user')['plainPassword']['first']
+            === $request->request->get('edit_password_user')['plainPassword']['second']
+        ) {
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user, $request->request->get('edit_password_user')['plainPassword']['first']
+                ));
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('message', 'Mot de passe mis à jour');
+
+            return $this->redirectToRoute('app_users', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('registration/first_connexion.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 }
