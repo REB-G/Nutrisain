@@ -286,7 +286,6 @@ class Recipes
     public function removeOpinion(Opinions $opinion): self
     {
         if ($this->opinion->removeElement($opinion)) {
-            // set the owning side to null (unless already changed)
             if ($opinion->getRecipe() === $this) {
                 $opinion->setRecipe(null);
             }
