@@ -22,7 +22,7 @@ export function addFavoriteListeners() {
                 action = "remove";
             }
 
-            fetch("https://127.0.0.1:8000/favorisApi", {
+            fetch("https://nutrisain.studio/favorisApi", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

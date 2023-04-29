@@ -48,7 +48,7 @@ function backCall(dataToSend, index) {
     const userFirstname = commentForms[index].dataset.userFirstname;
     dataToSend.append('userFirstname', userFirstname);
 
-    fetch('https://127.0.0.1:8000/commentsApi', {
+    fetch('https://nutrisain.studio/commentsApi', {
         method: "POST",
         body: dataToSend})
     .then((response) => response.json())
