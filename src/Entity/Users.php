@@ -27,22 +27,38 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(
+        min: 8, max: 255,
+        minMessage: 'Le mot de passe doit contenir au moins 8 caractères.',
+        maxMessage: "Le mot de passe ne doit pas dépasser 255 caractères"
+    )]
+    #[Assert\Regex(
+        pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).+$/',
+        message: 'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.'
+    )]
     private ?string $password = null;
 
     #[ORM\Column(type: 'json')]
-    #[Assert\NotBlank(message: 'Veuillez renseigner lle rôle de l\'utilisateur.')]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le rôle de l\'utilisateur.')]
     private array $roles = ['ROLE_USER'];
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 50)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un nom.')]
-    #[Assert\Length(max: 255, maxMessage: "Le nom ne doit pas dépasser 255 caractères")]
-    #[Assert\Regex(pattern: "/^[a-zA-ZÀ-ÿ -]+$/", message: "Le nom ne doit contenir que des lettres")]
+    #[Assert\Length(
+        min: 2, max: 255,
+        minMessage: 'Le nom doit contenir 2 caractères minimum.',
+        maxMessage: "Le nom ne doit pas dépasser 50 caractères"
+    )]
+    #[Assert\Regex(pattern: '/^[a-zA-ZÀ-ÿ -]+$/', message: 'Le nom ne doit contenir que des lettres.')]
     private ?string $name = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 50)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un prénom.')]
-    #[Assert\Length(max: 255, maxMessage: "Le nom ne doit pas dépasser 255 caractères")]
-    #[Assert\Regex(pattern: "/^[a-zA-ZÀ-ÿ -]+$/", message: "Le nom ne doit contenir que des lettres")]
+    #[Assert\Length(min: 2, max: 255,
+        minMessage:'Le prénom doit contenir minimum 2 lettres.',
+        maxMessage: "Le prénom ne doit pas dépasser 50 caractères"
+    )]
+    #[Assert\Regex(pattern: "/^[a-zA-ZÀ-ÿ -]+$/", message: "Le prénom ne doit contenir que des lettres")]
     private ?string $firstname = null;
 
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
@@ -264,9 +280,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->name . ' ' . $this->firstname;
     }
 
-    /**
-     * @return Collection<int, Recipes>
-     */
     public function getFavoriteRecipes(): Collection
     {
         return $this->favoriteRecipes;

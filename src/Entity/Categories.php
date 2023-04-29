@@ -16,8 +16,14 @@ class Categories
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez renseigner le nom de la catéhorie.')]
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le nom de la catégorie.')]
+    #[Assert\Length(
+        min: 2, max: 50,
+        minMessage: 'Le nom de la catégorie doit être de 2 caractères minimum.',
+        maxMessage: "Le nom de la catégorie ne doit pas dépasser 50 caractères"
+    )]
+    #[Assert\Regex(pattern: '/^[a-zA-ZÀ-ÿ -]+$/', message: 'Le nom de la catégorie ne doit contenir que des lettres.')]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Recipes::class)]

@@ -18,6 +18,12 @@ class Diets
 
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le nom du régime.')]
+    #[Assert\Length(
+        min: 2, max: 50,
+        minMessage: 'Le nom du régime doit être de 2 caractères minimum.',
+        maxMessage: "Le nom du régime ne doit pas dépasser 50 caractères"
+    )]
+    #[Assert\Regex(pattern: '/^[a-zA-ZÀ-ÿ -]+$/', message: 'Le nom du régime ne doit contenir que des lettres.')]
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Users::class, mappedBy: 'diet')]

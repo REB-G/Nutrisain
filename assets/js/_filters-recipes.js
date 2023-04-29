@@ -1,11 +1,17 @@
+import {addFavoriteListeners} from './_favorite-recipes.js';
+
+console.log('je marche')
+
 window.onload = () => {
     const filtersForm = document.querySelectorAll('#filters_form');
     const filtersButton = document.querySelector('#js_filters_button');
 
-    filtersButton.addEventListener('click', () => {
-        filtersForm[0].classList.toggle('hide');
-        filtersForm[0].classList.toggle('show-flex');
-    });
+    if (filtersForm.length > 0) {
+        filtersButton.addEventListener('click', () => {
+            filtersForm[0].classList.toggle('hide');
+            filtersForm[0].classList.toggle('show-flex');
+        });
+    }
 
     document.querySelectorAll('#filters_form input').forEach(input => {
         input.addEventListener('change', () => {
@@ -24,6 +30,7 @@ window.onload = () => {
             ).then(data => {
                 const filteredRecipes = document.querySelector('#filtered_recipes');
                 filteredRecipes.innerHTML = data.content;
+                addFavoriteListeners()
 
                 // Permet de mettre à jour l'url à chaque case cochée
                 history.pushState({}, null, url.pathname + "?" + Params.toString());

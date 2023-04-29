@@ -17,6 +17,11 @@ class Opinions
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un commentaire.')]
+    #[Assert\Length(
+        min: 2, max: 500,
+        minMessage: 'Le commentaire doit être de 2 caractères minimum.',
+        maxMessage: "Le commentaire ne doit pas dépasser 500 caractères"
+    )]
     private ?string $comment = null;
 
     #[ORM\ManyToOne(inversedBy: 'opinion')]

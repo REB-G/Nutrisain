@@ -17,26 +17,56 @@ class HomePage
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le titre de la page d\'accueil.')]
+    #[Assert\Length(
+        min: 2, max: 255,
+        minMessage: 'Le titre de la page doit être de 2 caractères minimum.',
+        maxMessage: "Le titre de la page ne doit pas dépasser 255 caractères"
+    )]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le texte de bienvenue.')]
+    #[Assert\Length(
+        min: 10, max: 1255,
+        minMessage: 'Le texte de bienvenue doit être de 10 caractères minimum.',
+        maxMessage: "Le texte de bienvenue ne doit pas dépasser 1255 caractères"
+    )]
     private ?string $welcomeText = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le titre de la section "À propos".')]
+    #[Assert\Length(
+        min: 2, max: 255,
+        minMessage: 'Le titre de la section \"À propos\" doit être de 2 caractères minimum.',
+        maxMessage: "Le titre de la section \"À propos\" ne doit pas dépasser 255 caractères"
+    )]
     private ?string $aboutTitle = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le texte de la section "À propos".')]
+    #[Assert\Length(
+        min: 10, max: 1255,
+        minMessage: 'Le texte de la section \"À propos\" doit être de 10 caractères minimum.',
+        maxMessage: "Le texte de la section \"À propos\" ne doit pas dépasser 1255 caractères"
+    )]
     private ?string $aboutText = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le titre de la section "Services".')]
+    #[Assert\Length(
+        min: 2, max: 255,
+        minMessage: 'Le titre de la section \"Services\" doit être de 2 caractères minimum.',
+        maxMessage: "Le titre de la section \"Services\" ne doit pas dépasser 255 caractères"
+    )]
     private ?string $servicesTitle = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le texte de la section "Services".')]
+    #[Assert\Length(
+        min: 10, max: 1255,
+        minMessage: 'Le texte de la section \"Services\" doit être de 10 caractères minimum.',
+        maxMessage: "Le texte de la section \"Services\" ne doit pas dépasser 1255 caractères"
+    )]
     private ?string $servicesText = null;
 
     public function getId(): ?int

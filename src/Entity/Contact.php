@@ -18,22 +18,44 @@ class Contact
 
     #[ORM\Column(length: 15)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un numéro de téléphone.')]
+    #[Assert\Length(
+        min: 10, max: 15,
+        minMessage: 'Le numéro de téléphone doit être de 10 caractères minimum.',
+        maxMessage: "Le numéro de téléphone ne doit pas dépasser 15 caractères"
+    )]
+    #[Assert\Regex(pattern: '/^[0-9 +]+$/', message: 'Le numéro de téléphone ne doit contenir que des chiffres, des espaces et le caractère +.')]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez renseigner une adresse.')]
+    #[Assert\Length(
+        min: 10, max: 255,
+        minMessage: 'L\'adresse doit être de 10 caractères minimum.',
+        maxMessage: "L\'adresse ne doit pas dépasser 255 caractères"
+    )]
     private ?string $adress = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez renseigner une adresse email.')]
+    #[Assert\Email(message: 'L\'email {{ value }} n\'est pas valide.',)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un titre pour la page contact.')]
+    #[Assert\Length(
+        min: 2, max: 255,
+        minMessage: 'Le titre de la page doit être de 2 caractères minimum.',
+        maxMessage: "Le nom ne doit pas dépasser 255 caractères"
+    )]
     private ?string $pageTitle = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un texte pour la page contact.')]
+    #[Assert\Length(
+        min: 10, max: 1255,
+        minMessage: 'Le titre de la page doit être de 10 caractères minimum.',
+        maxMessage: "Le nom ne doit pas dépasser 1255 caractères"
+    )]
     private ?string $pageText = null;
 
     public function getId(): ?int

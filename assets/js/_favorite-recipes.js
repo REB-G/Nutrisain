@@ -1,46 +1,55 @@
-const favorites = document.querySelectorAll(".js_favorite_recipe");
 
-favorites.forEach((favorite) => {
-    favorite.addEventListener("click", (event) => {
-        const userId = favorite.dataset.userId;
+export function addFavoriteListeners() {
+    const favorites = document.querySelectorAll(".js_favorite_recipe");
+    console.log("favorites", favorites)
+    console.log('ligne 5 ok', favorites)
+    favorites.forEach((favorite) => {
+        console.log('ligne 7, favorite', favorite)
 
-        const recipeId = favorite.dataset.recipeId;
+        favorite.addEventListener("click", (event) => {
+            console.log('ligne 10')
+            const userId = favorite.dataset.userId;
 
-        let action = '';
+            const recipeId = favorite.dataset.recipeId;
 
-        const icon = favorite.querySelector('i');
+            let action = '';
 
-        if (icon.classList.contains("fa-regular")) {
-            action = "add";
-        } else if (icon.classList.contains("fa-solid")) {
-            action = "remove";
-        }
+            const icon = favorite.querySelector('i');
 
-        fetch("https://127.0.0.1:8000/favorisApi", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                user_id: userId,
-                recipe_id: recipeId,
-                action: action,
-            }),
-        })
-        .then (response => response.json())
-        .then((data) => {
-            if (data.content === 'ok') {
-                if (icon.classList.contains("fa-regular")) {
-                    icon.classList.toggle("fa-regular");
-                    icon.classList.toggle("fa-solid");
-                } else if (icon.classList.contains("fa-solid")) {
-                    icon.classList.toggle("fa-solid");
-                    icon.classList.toggle("fa-regular");
-                }
-            } else {
-                alert(data.message);
+            if (icon.classList.contains("fa-regular")) {
+                action = "add";
+            } else if (icon.classList.contains("fa-solid")) {
+                action = "remove";
             }
-        })
-        .catch(error => alert(error));
+
+            fetch("https://127.0.0.1:8000/favorisApi", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    recipe_id: recipeId,
+                    action: action,
+                }),
+            })
+            .then (response => response.json())
+            .then((data) => {
+                if (data.content === 'ok') {
+                    if (icon.classList.contains("fa-regular")) {
+                        icon.classList.toggle("fa-regular");
+                        icon.classList.toggle("fa-solid");
+                    } else if (icon.classList.contains("fa-solid")) {
+                        icon.classList.toggle("fa-solid");
+                        icon.classList.toggle("fa-regular");
+                    }
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => alert(error));
+        });
     });
-});
+}
+
+addFavoriteListeners();

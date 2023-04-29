@@ -16,8 +16,14 @@ class Difficulties
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 25)]
     #[Assert\NotBlank(message: 'Veuillez renseigner le niveau de difficulté.')]
+    #[Assert\Length(
+        min: 2, max: 25,
+        minMessage: 'Le nom de la difficulté doit être de 2 caractères minimum.',
+        maxMessage: "Le nom de la difficulté ne doit pas dépasser 25 caractères"
+    )]
+    #[Assert\Regex(pattern: '/^[a-zA-ZÀ-ÿ -]+$/', message: 'Le nom de la difficulté ne doit contenir que des lettres.')]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'difficulty', targetEntity: Recipes::class)]
