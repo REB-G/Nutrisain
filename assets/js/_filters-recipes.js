@@ -1,7 +1,5 @@
 import {addFavoriteListeners} from './_favorite-recipes.js';
 
-console.log('je marche')
-
 window.onload = () => {
     const filtersForm = document.querySelectorAll('#filters_form');
     const filtersButton = document.querySelector('#js_filters_button');
