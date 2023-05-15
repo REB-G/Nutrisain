@@ -1,13 +1,8 @@
-
 export function addFavoriteListeners() {
     const favorites = document.querySelectorAll(".js_favorite_recipe");
-    console.log("favorites", favorites)
-    console.log('ligne 5 ok', favorites)
     favorites.forEach((favorite) => {
-        console.log('ligne 7, favorite', favorite)
 
         favorite.addEventListener("click", (event) => {
-            console.log('ligne 10')
             const userId = favorite.dataset.userId;
 
             const recipeId = favorite.dataset.recipeId;

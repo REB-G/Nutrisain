@@ -1,4 +1,5 @@
 import {addFavoriteListeners} from './_favorite-recipes.js';
+import { listenEventsCommentRecipes } from './_comment-recipes.js';
 
 window.onload = () => {
     const filtersForm = document.querySelectorAll('#filters_form');
@@ -29,8 +30,7 @@ window.onload = () => {
                 const filteredRecipes = document.querySelector('#filtered_recipes');
                 filteredRecipes.innerHTML = data.content;
                 addFavoriteListeners()
-
-                // Permet de mettre à jour l'url à chaque case cochée
+                listenEventsCommentRecipes()
                 history.pushState({}, null, url.pathname + "?" + Params.toString());
             }).catch(error => alert(error));
         });

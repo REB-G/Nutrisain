@@ -1,41 +1,50 @@
-const commentForms = document.querySelectorAll('.js_comment_form');
-const addCommentButtons = document.querySelectorAll('.js_comment_recipe_button');
-const showCommentsRecipeButton = document.querySelectorAll('.js_show_comments_recipe');
+export function listenEventsCommentRecipes() {
+    const commentForms = document.querySelectorAll('.js_comment_form');
+    const addCommentButtons = document.querySelectorAll('.js_comment_recipe_button');
+    const showCommentsRecipeButton = document.querySelectorAll('.js_show_comments_recipe');
 
-// Fonction pour écouter les événements sur chaque formulaire de commentaire.
-function listenEvents() {
-    showCommentsRecipeButton.forEach((button, index) => {
-        button.addEventListener('click', () => showCommentsRecipe(index));
-    });
+    if (showCommentsRecipeButton.length > 0) {
+        showCommentsRecipeButton.forEach((button, index) => {
+            button.addEventListener('click', () => showCommentsRecipe(index));
+        });
+    }
 
-    addCommentButtons.forEach((button, index) => {
-        button.addEventListener('click', () => showCommentForm(index));
-    });
-    commentForms.forEach((form, index) => {
-        form.addEventListener('submit', (event) => submitComment(event, index));
-    });
+    if (addCommentButtons.length > 0) {
+        addCommentButtons.forEach((button, index) => {
+            button.addEventListener('click', () => showCommentForm(index));
+        });
+    }
+
+    if (commentForms.length > 0) {
+        commentForms.forEach((form, index) => {
+            form.addEventListener('submit', (event) => submitComment(event, index));
+        });
+    }
 }
 
 function showCommentsRecipe(index) {
+    const showCommentsRecipeButton = document.querySelectorAll('.js_show_comments_recipe');
     const commentSection = showCommentsRecipeButton[index].parentNode.querySelector('.js_comments_recipe');
     commentSection.classList.toggle('hide');
     commentSection.classList.toggle('show-flex');
 }
 
-// Méthode pour afficher le formulaire d'ajout de commentaire spécifique à la recette.
 function showCommentForm(index) {
+    const commentForms = document.querySelectorAll('.js_comment_form');
     commentForms[index].classList.toggle('hide');
     commentForms[index].classList.toggle('show');
 }
 
 function submitComment(event, index) {
+    const commentForms = document.querySelectorAll('.js_comment_form');
     event.preventDefault();
     const formData = new FormData(commentForms[index]);
     backCall(formData, index);
 }
 
-// Fonction pour envoyer les données du formulaire en AJAX.
 function backCall(dataToSend, index) {
+    const commentForms = document.querySelectorAll('.js_comment_form');
+
     const recipeId = commentForms[index].dataset.recipeId;
     dataToSend.append('recipeId', recipeId);
 
@@ -65,4 +74,4 @@ function backCall(dataToSend, index) {
     .catch(error => alert(error));
 }
 
-listenEvents();
+listenEventsCommentRecipes();
