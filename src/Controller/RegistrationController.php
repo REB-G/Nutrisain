@@ -70,7 +70,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/initialisation/compte/{id}', name: 'app_first_connexion')]
+    #[Route('/initialisation/compte/{id}', name: 'app_first_connexion', methods: ['GET', 'POST'])]
     public function firstConnexion(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
@@ -92,7 +92,7 @@ class RegistrationController extends AbstractController
         ) {
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
-                    $user, $request->request->get('first_connexion_user')['plainPassword']['first']
+                    $user, $request->request->get('edit_password_user')['plainPassword']['first']
                 ));
             $entityManager->persist($user);
             $entityManager->flush();
