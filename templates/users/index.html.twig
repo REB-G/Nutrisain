@@ -38,7 +38,7 @@
                     <li class='user-profil-recipe user-profil-card-recipe flex-center'>
                         <img class="user-profil-recipe__image" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="{{recipe.title}}">
                         <div class="user-profil-recipe__description flex-center">
-                            <p class="user-profil-recipe__description--title">{{recipe.title}}</p>
+                            <a href="{{ path('app_recipes_show', {'id': recipe.id})}}" class="user-profil-recipe__description--title">{{recipe.title}}</a>
                             <p class="user-profil-recipe__description--details">{{recipe.description}}</p>
                         </div>
                     </li>
@@ -71,7 +71,7 @@
                             <li class='user-profil-recipe user-profil-card-recipe flex-center'>
                                 <img class="user-profil-recipe__image" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="{{recipe.title}}">
                                 <div class="user-profil-recipe__description flex-center">
-                                    <p class="user-profil-recipe__description--title">{{recipe.title}}</p>
+                                    <a href="{{ path('app_recipes_show', {'id': recipe.id})}}" class="user-profil-recipe__description--title">{{recipe.title}}</a>
                                     <p class="user-profil-recipe__description--details">{{recipe.description}}</p>
                                 </div>
                             </li>
