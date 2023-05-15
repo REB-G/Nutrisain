@@ -78,10 +78,7 @@ class RegistrationController extends AbstractController
         string $id
         ): Response
     {
-        $user = $this->getUser();
-        // if ($user->getId() !== $id) {
-        //     throw $this->createAccessDeniedException();
-        // }
+        $user = $entityManager->getRepository(Users::class)->find($id);
 
         $form = $this->createForm(FirstConnexionUserType::class, $user);
         $form->handleRequest($request);
@@ -92,7 +89,7 @@ class RegistrationController extends AbstractController
         ) {
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
-                    $user, $request->request->get('edit_password_user')['plainPassword']['first']
+                    $user, $request->request->get('first_connexion_user')['plainPassword']['first']
                 ));
             $entityManager->persist($user);
             $entityManager->flush();

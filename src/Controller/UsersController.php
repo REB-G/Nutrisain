@@ -28,10 +28,15 @@ class UsersController extends AbstractController
     }
 
     #[Route('/profil/mofidications/{id}', name: 'app_users_edit', methods: ['GET', 'POST'])]
-    public function editProfile(Request $request, UsersRepository $usersRepository, string $id): Response
+    public function editProfile(
+        Request $request,
+        UsersRepository $usersRepository,
+        EntityManagerInterface $entityManager,
+        string $id
+    ): Response
     {
-        $user = $this->getUser();
-        $user = $this->getUser();
+        $user = $entityManager->getRepository(Users::class)->find($id);
+
         if ($user->getId() !== $id) {
             throw $this->createAccessDeniedException();
         }
@@ -61,7 +66,8 @@ class UsersController extends AbstractController
         string $id
     ): Response
     {
-        $user = $this->getUser();
+        $user = $entityManager->getRepository(Users::class)->find($id);
+
         if ($user->getId() !== $id) {
             throw $this->createAccessDeniedException();
         }
