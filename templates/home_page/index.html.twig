@@ -3,6 +3,10 @@
 {% block title %}Nutrisain - Accueil{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('message') %}
+        <p id='js_registration_done' class='app-flash-message'>{{message}}</p>
+    {% endfor %}
+
     {% for page in home_pages %}
         <section class="main flux">
             <h1 class="main__title">{{page.title}}</h1>

@@ -1,3 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
 .first-connexion-form__title, .change-user-informations-form__title, .user-change-password-form__title, .user-profil__title, .contact-page-welcome__title, .register-form__title, .login-form__title, .recipe-form__title, .recipe-page__title, .main__title {
   font-family: "old standard tt", serif;
   font-size: 3rem;
@@ -23,7 +38,7 @@
   font-size: 2rem;
 }
 
-.user-profil-updated, .user-profil__informations--name, .user-profil__informations--firstname, .user-profil__informations--email, .user-diets-list, .user-diets-list__name, .user-allergies-list, .user-allergies-list__name, .contact-page-form__field--label, .contact-page-form__field--input, .contact-page-informations__text, .active, .filters__title, .home-page-form__field--label, .home-page-form__field--input, .home-page-form__modification--button, .home-page-links, .services__text-presentation, .description__text-presentation {
+.app-flash-message, .user-profil__informations--name, .user-profil__informations--firstname, .user-profil__informations--email, .user-diets-list, .user-diets-list__name, .user-allergies-list, .user-allergies-list__name, .contact-page-form__field--label, .contact-page-form__field--input, .contact-page-informations__text, .active, .filters__title, .home-page-form__field--label, .home-page-form__field--input, .home-page-form__modification--button, .home-page-links, .services__text-presentation, .description__text-presentation {
   font-family: "cardo", serif;
   font-size: 1.7rem;
 }
@@ -38,46 +53,6 @@
   font-size: 0.75rem;
 }
 
-body {
-  background-color: purple;
-  background-color: red;
-  background-color: pink;
-  background-color: red;
-  background-color: green;
-  background-color: red;
-  background-color: blue;
-}
-@media screen and (min-width: 482px) {
-  body {
-    background-color: blue;
-  }
-}
-@media screen and (min-width: 855px) {
-  body {
-    background-color: teal;
-  }
-}
-@media screen and (min-width: 1100px) {
-  body {
-    background-color: red;
-  }
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
 .flux {
   width: 100%;
   margin-left: auto;
@@ -90,8 +65,6 @@ ul {
   margin-left: auto;
   margin-right: auto;
   max-width: 50%;
-  background-color: red;
-  background-color: blue;
 }
 @media screen and (min-width: 1100px) {
   .card-flux {
@@ -104,8 +77,6 @@ ul {
   margin-left: auto;
   margin-right: auto;
   max-width: 70%;
-  background-color: red;
-  background-color: blue;
 }
 @media screen and (min-width: 1100px) {
   .form-flux {
@@ -118,8 +89,6 @@ ul {
   margin-left: auto;
   margin-right: auto;
   max-width: 50%;
-  background-color: red;
-  background-color: blue;
 }
 @media screen and (min-width: 1100px) {
   .filters-flux {
@@ -132,14 +101,10 @@ ul {
   margin-left: auto;
   margin-right: auto;
   max-width: 50%;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .recipe-flux {
     max-width: 90%;
-    background-color: red;
-    background-color: blue;
   }
 }
 @media screen and (min-width: 855px) and (min-width: 1100px) {
@@ -156,8 +121,6 @@ ul {
   flex-flow: column;
   justify-content: space-around;
   align-items: center;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .header__container {
@@ -172,8 +135,6 @@ ul {
 }
 .header__container--nav {
   display: none;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .header__container--nav {
@@ -193,8 +154,6 @@ ul {
   background: none;
   border: none;
   cursor: pointer;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .header__container--btn {
@@ -211,8 +170,6 @@ ul {
   color: #DDB771;
   text-align: center;
   transition: color 0.5s ease;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .header__link {
@@ -262,10 +219,6 @@ ul {
 .footer__logo {
   width: 20vw;
 }
-.footer__container {
-  background-color: red;
-  background-color: yellow;
-}
 @media screen and (min-width: 768px) {
   .footer__container {
     display: flex;
@@ -299,8 +252,6 @@ ul {
 .footer__copyright {
   margin-top: 5vw;
   margin-bottom: 2vw;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .footer__copyright {
@@ -424,8 +375,6 @@ ul {
   width: 10rem;
   text-align: center;
   padding: 0.7vw 0.5vw;
-  background-color: red;
-  background-color: pink;
 }
 @media screen and (min-width: 482px) {
   .home-page-form__modification--button {
@@ -462,15 +411,11 @@ ul {
   padding: 1rem;
   box-shadow: 1px 1px 47px -3px #073B3A;
   flex-direction: column;
-  background-color: red;
-  background-color: yellow;
 }
 @media screen and (min-width: 768px) {
   .filters__form {
     flex-direction: row;
     align-items: flex-start;
-    background-color: red;
-    background-color: blue;
   }
 }
 @media screen and (min-width: 768px) and (min-width: 1100px) {
@@ -481,8 +426,6 @@ ul {
 }
 .filters__checkbox {
   margin-top: 1rem;
-  background-color: red;
-  background-color: blue;
 }
 @media screen and (min-width: 1100px) {
   .filters__checkbox {
@@ -506,8 +449,6 @@ ul {
 }
 .category-filters__select-container {
   flex-direction: column;
-  background-color: red;
-  background-color: blue;
 }
 @media screen and (min-width: 1100px) {
   .category-filters__select-container {
@@ -517,14 +458,10 @@ ul {
 }
 .category-filters__select-container--selects {
   flex-direction: column;
-  background-color: red;
-  background-color: blue;
 }
 @media screen and (min-width: 1100px) {
   .category-filters__select-container--selects {
     align-items: center;
-    background-color: red;
-    background-color: blue;
   }
 }
 @media screen and (min-width: 1100px) and (min-width: 1100px) {
@@ -536,15 +473,11 @@ ul {
 .diet-filters {
   flex-direction: column;
   margin-top: 3rem;
-  background-color: red;
-  background-color: yellow;
 }
 @media screen and (min-width: 768px) {
   .diet-filters {
     margin-top: 0;
     margin-left: 1rem;
-    background-color: red;
-    background-color: blue;
   }
 }
 @media screen and (min-width: 768px) and (min-width: 1100px) {
@@ -562,8 +495,6 @@ ul {
 }
 .diet-filters__select-container {
   flex-direction: column;
-  background-color: red;
-  background-color: blue;
 }
 @media screen and (min-width: 1100px) {
   .diet-filters__select-container {
@@ -573,14 +504,10 @@ ul {
 }
 .diet-filters__select-container--selects {
   flex-direction: column;
-  background-color: red;
-  background-color: blue;
 }
 @media screen and (min-width: 1100px) {
   .diet-filters__select-container--selects {
     align-items: center;
-    background-color: red;
-    background-color: blue;
   }
 }
 @media screen and (min-width: 1100px) and (min-width: 1100px) {
@@ -619,8 +546,6 @@ ul {
 }
 .card-recipe__composition {
   flex-direction: column;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .card-recipe__composition {
@@ -632,8 +557,6 @@ ul {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .card-recipe__more {
@@ -650,8 +573,6 @@ ul {
   object-fit: cover;
   border-radius: 1rem;
   margin: 1.5rem;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .recipe__image {
@@ -662,8 +583,6 @@ ul {
   flex-direction: column;
   text-align: center;
   width: 100%;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .recipe__description {
@@ -682,8 +601,6 @@ ul {
 
 .favoris {
   margin: 1.5rem;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .favoris {
@@ -736,8 +653,6 @@ ul {
   text-decoration: underline;
   text-decoration-color: #0B6E4F;
   text-underline-offset: 0.3rem;
-  background-color: red;
-  background-color: green;
 }
 .opinion__add-new-comment:hover {
   color: #0B6E4F;
@@ -770,8 +685,6 @@ ul {
 
 .opinion-no-user {
   margin-top: 1.5rem;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .opinion-no-user {
@@ -787,26 +700,16 @@ ul {
 .recipe__modification {
   margin-top: 1rem;
   flex-direction: column;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .recipe__modification {
     flex-direction: row;
   }
 }
-.recipe__modification--modifier {
-  background-color: red;
-  background-color: green;
-}
 @media screen and (min-width: 855px) {
   .recipe__modification--modifier {
     margin-right: 0.5rem;
   }
-}
-.recipe__modification--delete {
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .recipe__modification--delete {
@@ -818,8 +721,6 @@ ul {
 .paging__list {
   flex-direction: column;
   margin: 3rem;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .paging__list {
@@ -828,8 +729,6 @@ ul {
 }
 .paging__list--first-page {
   color: #073B3A;
-  background-color: red;
-  background-color: green;
 }
 .paging__list--first-page:hover {
   cursor: pointer;
@@ -843,8 +742,6 @@ ul {
 .paging__list--previous-page {
   margin-top: 0.5rem;
   color: #073B3A;
-  background-color: red;
-  background-color: green;
 }
 .paging__list--previous-page:hover {
   cursor: pointer;
@@ -863,8 +760,6 @@ ul {
   color: #DDB771;
   padding: 0.5rem;
   border-radius: 1rem;
-  background-color: red;
-  background-color: green;
 }
 .paging__list--item:hover {
   cursor: pointer;
@@ -881,8 +776,6 @@ ul {
 .paging__list--next-page {
   margin-top: 0.5rem;
   color: #073B3A;
-  background-color: red;
-  background-color: green;
 }
 .paging__list--next-page:hover {
   cursor: pointer;
@@ -898,8 +791,6 @@ ul {
 .paging__list--last-page {
   margin-top: 0.5rem;
   color: #073B3A;
-  background-color: red;
-  background-color: green;
 }
 .paging__list--last-page:hover {
   cursor: pointer;
@@ -919,8 +810,6 @@ ul {
 .link-to-show-recipe {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .link-to-show-recipe {
@@ -960,17 +849,11 @@ ul {
   margin: 1rem;
   text-align: center;
   flex-direction: column;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .show-recipe__times {
     flex-direction: row;
   }
-}
-.show-recipe__times--preparationTime {
-  background-color: red;
-  background-color: yellow;
 }
 @media screen and (min-width: 768px) {
   .show-recipe__times--preparationTime {
@@ -979,8 +862,6 @@ ul {
 }
 .show-recipe__times--preparationStandingTime {
   margin-top: 1rem;
-  background-color: red;
-  background-color: yellow;
 }
 @media screen and (min-width: 768px) {
   .show-recipe__times--preparationStandingTime {
@@ -990,8 +871,6 @@ ul {
 }
 .show-recipe__times--cookingTime {
   margin-top: 1rem;
-  background-color: red;
-  background-color: yellow;
 }
 @media screen and (min-width: 768px) {
   .show-recipe__times--cookingTime {
@@ -1296,17 +1175,11 @@ ul {
 .user-profil__modifications {
   flex-direction: column;
   margin-top: 8rem;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .user-profil__modifications {
     flex-direction: row;
   }
-}
-.user-profil__modifications--informations {
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .user-profil__modifications--informations {
@@ -1315,8 +1188,6 @@ ul {
 }
 .user-profil__modifications--password {
   margin-top: 1rem;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .user-profil__modifications--password {
@@ -1328,8 +1199,6 @@ ul {
 .user-profil-recipe {
   flex-direction: column;
   width: 50%;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .user-profil-recipe {
@@ -1343,8 +1212,6 @@ ul {
   object-fit: cover;
   border-radius: 1rem;
   margin: 1.5rem;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .user-profil-recipe__image {
@@ -1355,8 +1222,6 @@ ul {
   flex-direction: column;
   text-align: center;
   width: 100%;
-  background-color: red;
-  background-color: green;
 }
 @media screen and (min-width: 855px) {
   .user-profil-recipe__description {
@@ -1445,13 +1310,6 @@ ul {
   justify-content: space-between;
   margin-bottom: 5vw;
 }
-.user-profil-updated {
-  background-color: #08A045;
-  margin-top: 3rem;
-  text-align: center;
-  padding: 3rem;
-}
-
 .first-connexion-form {
   padding: 1rem;
   margin-top: 5rem;
@@ -1513,8 +1371,6 @@ ul {
   width: 10rem;
   text-align: center;
   padding: 0.7vw 0.5vw;
-  background-color: red;
-  background-color: pink;
 }
 @media screen and (min-width: 482px) {
   .btn__linear-gradient {
@@ -1553,4 +1409,11 @@ ul {
 
 .show-flex {
   display: flex;
+}
+
+.app-flash-message {
+  background-color: #08A045;
+  margin-top: 3rem;
+  text-align: center;
+  padding: 3rem;
 }/*# sourceMappingURL=style.css.map */
