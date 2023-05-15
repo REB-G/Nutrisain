@@ -49,7 +49,7 @@ class RegistrationController extends AbstractController
             $idUser = $user->getId();
             
             $email = (new TemplatedEmail())
-                ->from('nutrisain@gmail.com')
+                ->from('nutrisain-administration@nutrisain.studio')
                 ->to($user->getEmail())
                 ->subject('Inscription à Nutrisain')
                 ->htmlTemplate('registration/email_registration.html.twig')
@@ -61,8 +61,8 @@ class RegistrationController extends AbstractController
 
             $mailer->send($email);
 
+            $this->addFlash('message', 'Le patient a bien été ajouté et le mail a bien été envoyé.');
             return $this->redirectToRoute('app_home_page_index');
-            $this->addFlash('success', 'Le patient a bien été ajouté et le mail a bien été envoyé.');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -87,12 +87,12 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()
-            && $request->request->get('edit_password_user')['plainPassword']['first']
-            === $request->request->get('edit_password_user')['plainPassword']['second']
+            && $request->request->get('first_connexion_user')['plainPassword']['first']
+            === $request->request->get('first_connexion_user')['plainPassword']['second']
         ) {
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
-                    $user, $request->request->get('edit_password_user')['plainPassword']['first']
+                    $user, $request->request->get('first_connexion_user')['plainPassword']['first']
                 ));
             $entityManager->persist($user);
             $entityManager->flush();
