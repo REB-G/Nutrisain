@@ -1,7 +1,25 @@
 .error
-    &__title
+    flex-direction: column
+    margin-top: 5rem
+    margin-bottom: 5rem
+    box-shadow: 1px 1px 47px -3px utils.$dark-blue
+    border-radius: 1rem 1rem 1rem 1rem
+    outline: solid 0.3rem
+    outline-color: utils.$light-blue
+    color: utils.$light-blue
 
+    &__title
+        @extend %title-3
+        margin-bottom: 1rem
+        margin: 1rem
+        text-align: center
+        color: utils.$dark-blue
 
     &__info
+        @extend %text-3
+        margin-bottom: 1rem
+        margin: 1rem
+        text-align: center
 
-        
+    &__link
+        margin-top: 1rem
