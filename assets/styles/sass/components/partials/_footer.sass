@@ -9,7 +9,9 @@
     background-color: utils.$dark-blue
 
     &__logo
-        width: 20vw
+        width: 40vw
+        +utils.responsive("tablet")
+            width: 20vw
     
     &__container
         +utils.responsive("litle-tablet")

@@ -15,7 +15,9 @@
             justify-content: space-around
 
         &--logo 
-            width: 20vw
+            width: 40vw
+            +utils.responsive("tablet")
+                width: 20vw
 
 
         &--nav 
@@ -42,7 +44,40 @@
             & i 
                 display: block
                 color: utils.$light-green
-                font-size: 1.5rem
+                font-size: 2rem
+
+    &__admin-container
+        display: flex
+        flex-flow: column
+        justify-content: space-around
+        align-items: center
+
+        &--logo 
+            width: 30vw
+
+        &--nav 
+            display: flex
+            flex-flow: column wrap
+            justify-content: flex-end
+            flex: 1
+            height: 100%
+            margin: auto
+            transition: height, margin .3s eases
+
+        &--btn
+            width: 2.3rem
+            margin-right: 8vw
+            margin-left: auto
+            background: none
+            border: none
+            cursor: pointer
+            +utils.responsive("tablet")
+                display: none
+
+            & i 
+                display: block
+                color: utils.$light-green
+                font-size: 2rem
 
     &__link 
         margin: 0.8rem

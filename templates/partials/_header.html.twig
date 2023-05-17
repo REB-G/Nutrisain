@@ -1,24 +1,22 @@
 <header class="header">
-	<div class="header__container">
+	<div class="header__container" id="js_header_container">
 		<div class="flex">
-			<img class="header__container--logo" src="{{asset('build/images/logo_nutrisain.png')}}" alt="Logo de Nutrisain.">
+			<img class="header__container--logo" id="js_header_logo" src="{{asset('build/images/logo_nutrisain.png')}}" alt="Logo de Nutrisain.">
 			<button class="header__container--btn">
 				<i class="fas fa-bars"></i>
 			</button>
 		</div>
 		<div>
-			<nav class="header__container--nav">
+			<nav class="header__container--nav" id="js_header_container_nav">
 				<a href="{{ path('app_home_page_index')}}" class="btn btn__primary header__link">Accueil</a>
 				<a href="{{ path('app_recipes_index')}}" class="btn btn__primary header__link">Recettes</a>
 				<a href="{{ path('app_contact_index')}}" class="btn btn__primary header__link">Contact</a>
 				{% if is_granted('ROLE_ADMIN') %}
-					<a href="{{ path('app_admin')}}" class="btn btn__primary header__link">Gestion</a>
+					<a href="{{ path('app_admin')}}" class="btn btn__primary header__link" id="js_admin_link">Gestion</a>
 					<a href="{{ path('app_register')}}" class="btn btn__primary header__link">Ajout patient</a>
 				{% endif %}
 				{% if app.user %}
-					{% if not is_granted('ROLE_ADMIN') %}
-						<a href="{{ path('app_users')}}" class="btn btn__primary header__link">Mon compte</a>
-					{% endif %}
+					<a href="{{ path('app_users')}}" class="btn btn__primary header__link">Mon compte</a>
 					<a href="{{ path('app_logout')}}" class="btn btn__primary header__link">Déconnexion</a>
 				{% else %}
 					<a href="{{ path('app_login')}}" class="btn btn__primary header__link">Se connecter</a>

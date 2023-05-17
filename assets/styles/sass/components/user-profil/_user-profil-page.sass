@@ -3,12 +3,18 @@
 .user-profil
     flex-direction: column
     margin-top: 5rem
+    padding: 1rem
+    +utils.responsive("tablet")
+        padding: 0
 
     &__title
         @extend %title-1
 
     &__informations
         margin-top: 1.5rem
+        max-width: 50%
+        +utils.responsive("tablet")
+            max-width: 100%
 
         &--title
             @extend %text-1
@@ -26,6 +32,9 @@
         &--email
             margin-top: 1rem
             @extend %text-2
+
+    &__modifications
+        text-align: center
 
 .user-diets-list
     margin-top: 2rem
