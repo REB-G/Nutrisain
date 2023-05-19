@@ -13,22 +13,22 @@ ul {
   list-style: none;
 }
 
-.first-connexion-form__title, .change-user-informations-form__title, .user-change-password-form__title, .user-profil__title, .contact-page-welcome__title, .register-form__title, .login-form__title, .recipe-form__title, .recipe-page__title, .main__title {
+.legal-notice__main-title, .privacy-policy__main-title, .terms-of-use__main-title, .first-connexion-form__title, .change-user-informations-form__title, .user-change-password-form__title, .user-profil__title, .contact-page-welcome__title, .register-form__title, .login-form__title, .recipe-form__title, .recipe-page__title, .main__title {
   font-family: "old standard tt", serif;
   font-size: 3rem;
 }
 
-.contact-page-form__title, .home-page-form__title, .services__title, .description__title {
+.legal-notice__section--title, .privacy-policy__section--title, .terms-of-use__section--title, .contact-page-form__title, .home-page-form__title, .services__title, .description__title {
   font-family: "old standard tt", serif;
   font-size: 2.3rem;
 }
 
-.error__title, .user-profil-recipe__description--title, .show-recipe__title, .recipe__description--title {
+.legal-notice-paragraph__title, .terms-of-use-paragraph__title, .error__title, .user-profil-recipe__description--title, .show-recipe__title, .recipe__description--title {
   font-family: "old standard tt", serif;
   font-size: 1.7rem;
 }
 
-.footer__contact--title, .footer__legals--title {
+.terms-of-use-paragraph__subtitle, .footer__contact--title, .footer__legals--title {
   font-family: "old standard tt", serif;
   font-size: 1.3rem;
 }
@@ -1525,6 +1525,69 @@ ul {
 .error__link {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.terms-of-use {
+  margin-top: 5rem;
+}
+.terms-of-use__main-title {
+  text-align: center;
+  margin: 2rem;
+}
+.terms-of-use__section {
+  margin: 4rem 0;
+}
+.terms-of-use__section--title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.terms-of-use-paragraph {
+  margin-bottom: 1.8rem;
+}
+.terms-of-use-paragraph__title {
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+.terms-of-use-paragraph__subtitle {
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+.privacy-policy {
+  margin-top: 5rem;
+}
+.privacy-policy__main-title {
+  text-align: center;
+}
+.privacy-policy__section {
+  margin: 4rem 0;
+}
+.privacy-policy__section--title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.legal-notice {
+  margin-top: 5rem;
+}
+.legal-notice__main-title {
+  text-align: center;
+}
+.legal-notice__section {
+  margin: 4rem 0;
+}
+.legal-notice__section--title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.legal-notice-paragraph {
+  margin-bottom: 1.8rem;
+}
+.legal-notice-paragraph__title {
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
 }
 
 .btn {

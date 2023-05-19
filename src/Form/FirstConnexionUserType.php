@@ -74,7 +74,7 @@ class FirstConnexionUserType extends AbstractType
                 ],
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Veuillez accepter nos conditions générales d\'utilisation',
+                        'message' => 'Veuillez accepter nos conditions générales d\'utilisation, nos mentions légales et notre politique de confidentialité',
                     ]),
                 ],
             ])
