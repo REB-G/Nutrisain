@@ -23,7 +23,7 @@ ul {
   font-size: 2.3rem;
 }
 
-.legal-notice-paragraph__title, .terms-of-use-paragraph__title, .error__title, .user-profil-recipe__description--title, .show-recipe__title, .recipe__description--title {
+.legal-notice-paragraph__title, .terms-of-use-paragraph__title, .error__title, .user-profil-recipe__description--title, .no-recipe-found__title, .show-recipe__title, .recipe__description--title {
   font-family: "old standard tt", serif;
   font-size: 1.7rem;
 }
@@ -43,7 +43,7 @@ ul {
   font-size: 1.7rem;
 }
 
-.underline, .btn__linear-gradient, .error__info, .first-connexion-form__field--label, .first-connexion-form__field--input, .first-connexion-form__field-checkbox--label, .change-user-informations-form__information, .change-user-informations-form__field--label, .change-user-informations-form__field--input, .user-change-password-form__field--label, .user-change-password-form__field--input, .user-profil-recipe__description--details, .register-form__field--label, .register-form__field--input, .login-form__field--label, .login-form__field--input, .recipe-form__field--label, .recipe-form__field--input, .show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__stagesOfRecipe, .paging__list, .opinion__show-comment, .opinion__details--username, .opinion__details--comment, .opinion__add-new-comment, .opinion__form--text-input, .opinion__form--submit-input, .recipe__description--details, .filters__label, .category-filters__title, .diet-filters__title, .header__link {
+.underline, .btn__linear-gradient, .error__info, .first-connexion-form__field--label, .first-connexion-form__field--input, .first-connexion-form__field-checkbox--label, .change-user-informations-form__information, .change-user-informations-form__field--label, .change-user-informations-form__field--input, .user-change-password-form__field--label, .user-change-password-form__field--input, .user-profil-recipe__description--details, .register-form__field--label, .register-form__field--input, .login-form__field--label, .login-form__field--input, .no-recipe-found__info, .recipe-form__field--label, .recipe-form__field--input, .show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__stagesOfRecipe, .paging__list, .opinion__show-comment, .opinion__details--username, .opinion__details--comment, .opinion__add-new-comment, .opinion__form--text-input, .opinion__form--submit-input, .recipe__description--details, .filters__label, .category-filters__title, .diet-filters__title, .header__link {
   font-family: "cardo", serif;
   font-size: 1.3rem;
 }
@@ -1022,6 +1022,18 @@ ul {
   #recipes_diet > label {
     margin-bottom: 2vw;
   }
+}
+
+.no-recipe-found {
+  text-align: center;
+  margin-top: 5rem;
+}
+.no-recipe-found__title {
+  margin-bottom: 2rem;
+  color: #073B3A;
+}
+.no-recipe-found__info {
+  color: #6BBF59;
 }
 
 .login-form {
