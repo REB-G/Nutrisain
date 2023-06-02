@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationFormType extends AbstractType
@@ -30,6 +31,14 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Email',
                     'class' => 'register-form__field--input',
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner un email',
+                    ]),
+                    new Email([
+                        'message' => 'Veuillez renseigner un email valide',
+                    ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
@@ -57,7 +66,8 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Regex([
                         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
-                        'message' => 'Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial'
+                        'message' => 'Votre mot de passe doit contenir au moins 8 caractères, une majuscule,
+                        une minuscule, un chiffre et un caractère spécial'
                     ]),
                 ],
             ])
@@ -73,6 +83,20 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Nom',
                     'class' => 'register-form__field--input',
                 ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner un nom',
+                    ]),
+                    new Length([
+                        'min' => 2,
+                        'minMessage' => 'Votre nom doit contenir au moins 2 caractères',
+                        'max' => 255,
+                    ]),
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z]+$/',
+                        'message' => 'Votre nom ne doit contenir que des lettres'
+                    ]),
+                ],
             ])
             ->add('firstname', TextType::class, [
                 'row_attr' => [
@@ -85,6 +109,21 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Prénom',
                     'class' => 'register-form__field--input',
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner un prénom',
+                    ]),
+                    new Length([
+                        'min' => 2,
+                        'minMessage' => 'Votre prénom doit contenir au moins 2 caractères',
+                        'max' => 50,
+                        'maxMessage' => 'Votre prénom ne doit pas dépasser 50 caractères',
+                    ]),
+                    new Regex([
+                        'pattern' => '/^[a-zA-ZÀ-ÿ -]+$/',
+                        'message' => 'Votre prénom ne doit contenir que des lettres'
+                    ]),
                 ],
             ])
             ->add('allergy', EntityType::class, [

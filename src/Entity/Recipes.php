@@ -40,18 +40,33 @@ class Recipes
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez renseigner le temps de préparation de la recette.')]
+    #[Assert\Length(
+        min: 1, max: 3,
+        minMessage: 'Le temps de préparation de la recette doit être d\'un caractères minimum.',
+        maxMessage: "Le temps de préparation de la recette ne doit pas dépasser 3 caractères"
+    )]
     #[Assert\PositiveOrZero(message: 'Le temps de préparation ne peut pas être négatif.')]
     #[Assert\Regex(pattern: '/^[0-9]+$/', message: 'Le temps de préparation ne doit contenir que des chiffres.')]
     private ?int $preparationTime = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez renseigner le temps de repos de la recette.')]
+    #[Assert\Length(
+        min: 1, max: 4,
+        minMessage: 'Le temps de repos de la recette doit être d\'un caractères minimum.',
+        maxMessage: "Le temps de repos de la recette ne doit pas dépasser 4 caractères"
+    )]
     #[Assert\PositiveOrZero(message: 'Le temps de repos ne peut pas être négatif.')]
     #[Assert\Regex(pattern: '/^[0-9]+$/', message: 'Le temps de repos ne doit contenir que des chiffres.')]
     private ?int $preparationStandingTime = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez renseigner le temps de cuisson de la recette.')]
+    #[Assert\Length(
+        min: 1, max: 3,
+        minMessage: 'Le temps de cuisson de la recette doit être d\'un caractères minimum.',
+        maxMessage: "Le temps de cuisson de la recette ne doit pas dépasser 3 caractères"
+    )]
     #[Assert\PositiveOrZero(message: 'Le temps de cuisson ne peut pas être négatif.')]
     #[Assert\Regex(pattern: '/^[0-9]+$/', message: 'Le temps de cuisson ne doit contenir que des chiffres.')]
     private ?int $cookingTime = null;
@@ -68,7 +83,7 @@ class Recipes
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez renseigner les étapes de la recette.')]
     #[Assert\Length(
-        min: 2, max: 1255,
+        min: 3, max: 1255,
         minMessage: 'Les étapes de la recette doivent contenir 3 caractères minimum.',
         maxMessage: "Les étapes de la recette ne doivent pas dépasser 1255 caractères"
     )]

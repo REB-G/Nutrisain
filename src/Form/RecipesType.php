@@ -9,13 +9,18 @@ use App\Entity\Categories;
 use App\Entity\Difficulties;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RecipesType extends AbstractType
 {
@@ -32,7 +37,18 @@ class RecipesType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'recipe-form__field--input',
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner le titre de la recette.',
+                    ]),
+                    new Length([
+                        'min' => 2,
+                        'minMessage' => 'Le titre de la recette doit être de 2 caractères minimum.',
+                        'max' => 255,
+                        'maxMessage' => 'Le titre de la recette ne doit pas dépasser 255 caractères',
+                    ]),
+                ],
             ])
             ->add('description', TextareaType::class, [
                 'row_attr' => [
@@ -44,7 +60,18 @@ class RecipesType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'recipe-form__field--input',
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner la description de la recette.',
+                    ]),
+                    new Length([
+                        'min' => 10,
+                        'minMessage' => 'La description de la recette doit être de 10 caractères minimum.',
+                        'max' => 1255,
+                        'maxMessage' => 'La description de la recette ne doit pas dépasser 1255 caractères',
+                    ]),
+                ],
             ])
             ->add('preparationTime', IntegerType::class, [
                 'row_attr' => [
@@ -56,7 +83,25 @@ class RecipesType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'recipe-form__field--input',
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner le temps de préparation de la recette.',
+                    ]),
+                    new Length([
+                        'min' => 1,
+                        'minMessage' => 'Le temps de préparation de la recette doit être de 1 caractère minimum.',
+                        'max' => 3,
+                        'maxMessage' => 'Le temps de préparation de la recette ne doit pas dépasser 3 caractères',
+                    ]),
+                    new Positive([
+                        'message' => 'Le temps de préparation de la recette doit être un nombre positif.',
+                    ]),
+                    new Regex([
+                        'pattern' => '/^[0-9]+$/',
+                        'message' => 'Le temps de préparation de la recette ne doit contenir que des chiffres.',
+                    ]),
+                ],
             ])
             ->add('preparationStandingTime', IntegerType::class, [
                 'row_attr' => [
@@ -68,7 +113,25 @@ class RecipesType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'recipe-form__field--input',
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner le temps de repos de la recette.',
+                    ]),
+                    new Length([
+                        'min' => 1,
+                        'minMessage' => 'Le temps de repos de la recette doit être de 1 caractère minimum.',
+                        'max' => 4,
+                        'maxMessage' => 'Le temps de repos de la recette ne doit pas dépasser 4 caractères',
+                    ]),
+                    new Positive([
+                        'message' => 'Le temps de repos de la recette doit être un nombre positif.',
+                    ]),
+                    new Regex([
+                        'pattern' => '/^[0-9]+$/',
+                        'message' => 'Le temps de repos de la recette ne doit contenir que des chiffres.',
+                    ]),
+                ],
             ])
             ->add('cookingTime', IntegerType::class, [
                 'row_attr' => [
@@ -80,7 +143,25 @@ class RecipesType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'recipe-form__field--input',
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner le temps de cuisson de la recette.',
+                    ]),
+                    new Length([
+                        'min' => 1,
+                        'minMessage' => 'Le temps de cuisson de la recette doit être de 1 caractère minimum.',
+                        'max' => 3,
+                        'maxMessage' => 'Le temps de cuisson de la recette ne doit pas dépasser 3 caractères',
+                    ]),
+                    new Positive([
+                        'message' => 'Le temps de cuisson de la recette doit être un nombre positif.',
+                    ]),
+                    new Regex([
+                        'pattern' => '/^[0-9]+$/',
+                        'message' => 'Le temps de cuisson de la recette ne doit contenir que des chiffres.',
+                    ]),
+                ],
             ])
             ->add('ingredients', TextareaType::class, [
                 'row_attr' => [
@@ -92,7 +173,18 @@ class RecipesType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'recipe-form__field--input',
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner les ingrédients de la recette.',
+                    ]),
+                    new Length([
+                        'min' => 3,
+                        'minMessage' => 'Les ingrédients de la recette doivent être de 3 caractères minimum.',
+                        'max' => 1255,
+                        'maxMessage' => 'Les ingrédients de la recette ne doivent pas dépasser 1255 caractères',
+                    ]),
+                ],
             ])
             ->add('stagesOfRecipe', TextareaType::class, [
                 'row_attr' => [
@@ -104,7 +196,18 @@ class RecipesType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'recipe-form__field--input',
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner les étapes de la recette.',
+                    ]),
+                    new Length([
+                        'min' => 3,
+                        'minMessage' => 'Les étapes de la recette doivent être de 3 caractères minimum.',
+                        'max' => 1255,
+                        'maxMessage' => 'Les étapes de la recette ne doivent pas dépasser 1255 caractères',
+                    ]),
+                ],
             ])
             ->add('isPublic', CheckboxType::class, [
                 'row_attr' => [
@@ -119,7 +222,7 @@ class RecipesType extends AbstractType
                 ],
                 'required' => false,
             ])
-            ->add('imageFile', FileType::class, [
+            ->add('imageFile', VichImageType::class, [
                 'row_attr' => [
                     'class' => 'recipe-form__field'
                 ],
@@ -131,7 +234,6 @@ class RecipesType extends AbstractType
                     'class' => 'recipe-form__field--input',
                 ],
                 'required' => false,
-                'mapped' => false,
             ])
             ->add('imageName', TextType::class, [
                 'row_attr' => [

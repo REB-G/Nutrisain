@@ -19,11 +19,11 @@ class Contact
     #[ORM\Column(length: 15)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un numéro de téléphone.')]
     #[Assert\Length(
-        min: 10, max: 15,
+        min: 10, max: 10,
         minMessage: 'Le numéro de téléphone doit être de 10 caractères minimum.',
-        maxMessage: "Le numéro de téléphone ne doit pas dépasser 15 caractères"
+        maxMessage: "Le numéro de téléphone ne doit pas dépasser 10 caractères"
     )]
-    #[Assert\Regex(pattern: '/^[0-9 +]+$/', message: 'Le numéro de téléphone ne doit contenir que des chiffres, des espaces et le caractère +.')]
+    #[Assert\Regex(pattern: '/^0[1-9]([-. ]?[0-9]{2}){4}$/', message: 'Le numéro de téléphone ne doit contenir que des chiffres, des espaces et le caractère +.')]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(length: 255)]
@@ -45,7 +45,7 @@ class Contact
     #[Assert\Length(
         min: 2, max: 255,
         minMessage: 'Le titre de la page doit être de 2 caractères minimum.',
-        maxMessage: "Le nom ne doit pas dépasser 255 caractères"
+        maxMessage: "Le titre de le page ne doit pas dépasser 255 caractères"
     )]
     private ?string $pageTitle = null;
 

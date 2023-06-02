@@ -49,16 +49,16 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         minMessage: 'Le nom doit contenir 2 caractères minimum.',
         maxMessage: "Le nom ne doit pas dépasser 50 caractères"
     )]
-    #[Assert\Regex(pattern: '/^[a-zA-ZÀ-ÿ -]+$/', message: 'Le nom ne doit contenir que des lettres.')]
+    #[Assert\Regex(pattern: '/^[a-zA-Z]+$/', message: 'Le nom ne doit contenir que des lettres.')]
     private ?string $name = null;
 
     #[ORM\Column(type: 'string', length: 50)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un prénom.')]
-    #[Assert\Length(min: 2, max: 255,
+    #[Assert\Length(min: 2, max: 50,
         minMessage:'Le prénom doit contenir minimum 2 lettres.',
         maxMessage: "Le prénom ne doit pas dépasser 50 caractères"
     )]
-    #[Assert\Regex(pattern: "/^[a-zA-ZÀ-ÿ -]+$/", message: "Le prénom ne doit contenir que des lettres")]
+    #[Assert\Regex(pattern: '/^[a-zA-ZÀ-ÿ -]+$/', message: "Le prénom ne doit contenir que des lettres")]
     private ?string $firstname = null;
 
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
