@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
 class RecipesCrudController extends AbstractCrudController
 {
@@ -46,6 +47,9 @@ class RecipesCrudController extends AbstractCrudController
             BooleanField::new('isPublic', 'Recette publique'),
             TextField::new('imageFile')
                 ->setFormType(VichImageType::class),
+            ImageField::new('imageName', 'Image de la recette')
+                ->setBasePath('/uploads/recipes')
+                ->onlyOnIndex(),
             DateTimeField::new('createdAt', 'Créé le')
                 ->setFormTypeOption('disabled', true),
             DateTimeField::new('updatedAt', 'Modifié le'),
