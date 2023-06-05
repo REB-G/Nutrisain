@@ -899,7 +899,7 @@ ul {
     flex-direction: row;
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 855px) {
   .show-recipe__times--preparationTime {
     margin-right: 1rem;
   }
@@ -907,7 +907,7 @@ ul {
 .show-recipe__times--preparationStandingTime {
   margin-top: 1rem;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 855px) {
   .show-recipe__times--preparationStandingTime {
     margin-right: 1rem;
     margin-top: 0;
@@ -916,7 +916,7 @@ ul {
 .show-recipe__times--cookingTime {
   margin-top: 1rem;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 855px) {
   .show-recipe__times--cookingTime {
     margin-left: 1rem;
     margin-top: 0;
