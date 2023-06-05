@@ -11,10 +11,8 @@ class OpinionsUnitTest extends TestCase
     {
         $opinion = new Opinions();
 
-        $opinion->setRating(5);
         $opinion->setComment('comment');
 
-        $this->assertTrue($opinion->getRating() === 5);
         $this->assertTrue($opinion->getComment() === 'comment');
     }
 
@@ -22,10 +20,8 @@ class OpinionsUnitTest extends TestCase
     {
         $opinion = new Opinions();
 
-        $opinion->setRating(5);
         $opinion->setComment('comment');
 
-        $this->assertFalse($opinion->getRating() === 'false');
         $this->assertFalse($opinion->getComment() === 'false');
     }
 
@@ -33,7 +29,6 @@ class OpinionsUnitTest extends TestCase
     {
         $opinion = new Opinions();
 
-        $this->assertEmpty($opinion->getRating());
         $this->assertEmpty($opinion->getComment());
     }
 }
