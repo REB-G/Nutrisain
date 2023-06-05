@@ -15,16 +15,16 @@ class TwigListFilterExtension extends AbstractExtension
 
     public function listFilter($text)
     {
-        $lines = explode("\n", $text);
+        $lines = explode(".", $text);
         $listItems = [];
-
+    
         foreach ($lines as $line) {
             $line = trim($line);
             if (!empty($line)) {
-                $listItems[] = '<li>' . $line . '</li>';
+                $listItems[] = '<li>' . $line . '.</li>';
             }
         }
-
+    
         return '<ul>' . implode('', $listItems) . '</ul>';
     }
 }
