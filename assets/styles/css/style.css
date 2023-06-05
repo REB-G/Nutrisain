@@ -64,11 +64,16 @@ ul {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  max-width: 50%;
+  max-width: 80%;
+}
+@media screen and (min-width: 855px) {
+  .card-flux {
+    max-width: 50%;
+  }
 }
 @media screen and (min-width: 1100px) {
   .card-flux {
-    max-width: 80%;
+    max-width: 35%;
   }
 }
 
