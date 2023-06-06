@@ -2,10 +2,15 @@
 
 .user-profil-recipe
     flex-direction: column
-    width: 50%
+    width: 80%
     +utils.responsive(tablet)
         flex-direction: row
         width: 70%
+
+    &__none
+        @extend %text-3
+        color: utils.$light-green
+        margin-top: 1rem
 
     &__image
         width: 90%

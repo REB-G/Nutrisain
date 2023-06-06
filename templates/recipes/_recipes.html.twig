@@ -73,17 +73,19 @@
 									<p class="recipe__description--details">{{recipe.description}}</p>
 								</div>
 							</div>
-							<div class='opinion opinion-no-user flex-center'>
-								<p class='js_show_comments_recipe opinion__show-comment underline'>Voir les commentaires</p>
-								<div class='opinion__container js_comments_recipe flex-center hide'>
-									{% for opinion in recipe.opinion %}
-										<div class='opinion__details'>
-											<p class='opinion__details--username'>{{ opinion.userFirstname }} {{ opinion.userName }} : </p>
-											<p class='opinion__details--comment'>{{ opinion.comment }}</p>
-										</div>
-									{% endfor %}
+							{% if recipe.opinion is not empty %}
+								<div class='opinion opinion-no-user flex-center'>
+									<p class='js_show_comments_recipe opinion__show-comment underline'>Voir les commentaires</p>
+									<div class='opinion__container js_comments_recipe flex-center hide'>
+										{% for opinion in recipe.opinion %}
+											<div class='opinion__details'>
+												<p class='opinion__details--username'>{{ opinion.userFirstname }} {{ opinion.userName }} : </p>
+												<p class='opinion__details--comment'>{{ opinion.comment }}</p>
+											</div>
+										{% endfor %}
+									</div>
 								</div>
-							</div>
+							{% endif %}
 							<a href="{{ path('app_recipes_show', {'id': recipe.id})}}" class='link-to-show-recipe underline'>Voir la recette</a>
 						</li>
 					{% endfor %}

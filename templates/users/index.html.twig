@@ -34,17 +34,22 @@
         <section class='user-profil__favorite-recipes flex-center'>
             <button id="js_user_show_favoriteRecipes_button" class='btn btn__linear-gradient'>Mes recettes préférées</button>
             <ul class='js_user_favoriteRecipes hide user-profil__favorite-recipes--list flex-center'>
-                {% for recipe in app.user.favoriteRecipes %}
-                    <li class='user-profil-recipe user-profil-card-recipe flex-center'>
-                        <img class="user-profil-recipe__image" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="{{recipe.title}}">
-                        <div class="user-profil-recipe__description flex-center">
-                            <a href="{{ path('app_recipes_show', {'id': recipe.id})}}" class="user-profil-recipe__description--title">{{recipe.title}}</a>
-                            <p class="user-profil-recipe__description--details">{{recipe.description}}</p>
-                        </div>
-                    </li>
-                {% endfor %}
+                {% if app.user.favoriteRecipes is empty %}
+                    <p class='user-profil-recipe__none'>Vous n'avez aucune recette en favoris.</p>
+                {% else %}
+                    {% for recipe in app.user.favoriteRecipes %}
+                        <li class='user-profil-recipe user-profil-card-recipe flex-center'>
+                            <img class="user-profil-recipe__image" src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="{{recipe.title}}">
+                            <div class="user-profil-recipe__description flex-center">
+                                <a href="{{ path('app_recipes_show', {'id': recipe.id})}}" class="user-profil-recipe__description--title">{{recipe.title}}</a>
+                                <p class="user-profil-recipe__description--details">{{recipe.description}}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% endif %}
             </ul>
         </section>
+
 
         <section class='user-profil__recipes-for-connected-user flex-center'>
             <button id='js_show_recipes_for_user_button' class='btn btn__linear-gradient'>Mes recettes</button>
