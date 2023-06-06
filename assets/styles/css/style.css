@@ -686,7 +686,7 @@ ul {
 .opinion__details {
   flex-direction: column;
   text-align: center;
-  width: 20rem;
+  width: 100%;
   margin: 1.5rem;
   border-block: solid;
   border-block-color: #DDB771;
@@ -718,7 +718,7 @@ ul {
   text-align: center;
 }
 .opinion__form--text-input {
-  width: 20rem;
+  width: 100%;
 }
 .opinion__form--submit-input {
   margin-top: 0.7rem;
@@ -858,11 +858,6 @@ ul {
 .link-to-show-recipe {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-@media screen and (min-width: 855px) {
-  .link-to-show-recipe {
-    margin-top: 0;
-  }
 }
 
 .show-recipe {
