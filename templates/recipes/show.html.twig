@@ -12,6 +12,10 @@
             <li class='show-recipe__times--preparationStandingTime'>Temps de repos : {{ recipe.preparationStandingTime }}</li>
             <li class='show-recipe__times--cookingTime'>Temps de cuisson : {{ recipe.cookingTime }}</li>
         </ul>
+        <div class='show-recipe__ingredients flex-center'>
+            <p class='show-recipe__ingredients--presentation'>Ingrédients de la recette : </p>
+            <div class='show-recipe__ingredients--details'>{{ recipe.ingredients}}</div>
+        </div>
         <div class='show-recipe__stagesOfRecipe'>
             <p class='show-recipe__stagesOfRecipe--presentation'>Etapes de la recette : </p>
             <div class='show-recipe__stagesOfRecipe--details'>{{ recipe.stagesOfRecipe| list| raw }}</div>

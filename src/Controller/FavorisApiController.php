@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Users;
-use App\Entity\Recipes;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\UsersRepository;
+use App\Repository\RecipesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,10 +15,9 @@ class FavorisApiController extends AbstractController
     #[Route('/favorisApi', name: 'app_favoris_api', methods: ['GET', 'POST'])]
     public function addOrRemoveFavoris(
         Request $request,
-        ManagerRegistry $doctrine,
-        EntityManagerInterface $entityManager
+        UsersRepository $usersRepository,
+        RecipesRepository $recipesRepository,
     ): JsonResponse {
-        $entityManager = $doctrine->getManager();
 
         $requestData = json_decode($request->getContent(), true);
 
@@ -28,16 +25,16 @@ class FavorisApiController extends AbstractController
         $recipeId = $requestData['recipe_id'];
         $action = $requestData['action'];
 
-        $recipe = $entityManager->getRepository(Recipes::class)->find($recipeId);
-        $user = $entityManager->getRepository(Users::class)->find($userId);
+        $recipe = $recipesRepository->find($recipeId);
+        $user = $usersRepository->find($userId);
 
         if ($action === 'add') {
             $user->addFavoriteRecipe($recipe);
-            $entityManager->flush();
+            $usersRepository->save($user, true);
             return new JsonResponse(['content' => 'ok']);
         } elseif ($action === 'remove') {
             $user->removeFavoriteRecipe($recipe);
-            $entityManager->flush();
+            $usersRepository->save($user, true);
             return new JsonResponse(['content' => 'ok']);
         } else {
             return new JsonResponse(['message' => 'Action invalide']);

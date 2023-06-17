@@ -3,10 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Opinions;
-use App\Entity\Users;
-use App\Entity\Recipes;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\UsersRepository;
+use App\Repository\RecipesRepository;
+use App\Repository\OpinionsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,11 +16,10 @@ class CommentsAPIController extends AbstractController
     #[Route('/commentsApi', name: 'app_comments_api', methods: ['GET', 'POST'])]
     public function addComment(
         Request $request,
-        ManagerRegistry $doctrine,
-        EntityManagerInterface $entityManager
+        OpinionsRepository $opinionsRepository,
+        RecipesRepository $recipesRepository,
+        UsersRepository $usersRepository,
         ): JsonResponse {
-
-        $entityManager = $doctrine->getManager();
 
         $requestData = $request->request->all();
         $comment = $requestData['comment'];
@@ -35,14 +33,13 @@ class CommentsAPIController extends AbstractController
         $opinion->setUserName($userName);
         $opinion->setUserFirstname($userFirstname);
 
-        $recipe = $entityManager->getRepository(Recipes::class)->find($recipeId);
-        $user = $entityManager->getRepository(Users::class)->find($userId);
+        $recipe = $recipesRepository->find($recipeId);
+        $user = $usersRepository->find($userId);
 
         $opinion->setUser($user);
         $opinion->setRecipe($recipe);
 
-        $entityManager->persist($opinion);
-        $entityManager->flush();
+        $opinionsRepository->save($opinion, true);
 
         return new JsonResponse([
             'status' => 'ok',

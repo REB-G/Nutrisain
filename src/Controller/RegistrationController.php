@@ -3,11 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Users;
-use App\Form\EditUserProfilType;
 use App\Form\FirstConnexionUserType;
-use Symfony\Component\Mime\Email;
 use App\Form\RegistrationFormType;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UsersRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -23,7 +21,7 @@ class RegistrationController extends AbstractController
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
-        EntityManagerInterface $entityManager,
+        UsersRepository $usersRepository,
         MailerInterface $mailer
         ): Response
     {
@@ -43,8 +41,7 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $usersRepository->save($user, true);
 
             $idUser = $user->getId();
             
@@ -74,11 +71,11 @@ class RegistrationController extends AbstractController
     public function firstConnexion(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
-        EntityManagerInterface $entityManager,
+        UsersRepository $usersRepository,
         string $id
         ): Response
     {
-        $user = $entityManager->getRepository(Users::class)->find($id);
+        $user = $usersRepository->find($id);
 
         $form = $this->createForm(FirstConnexionUserType::class, $user);
         $form->handleRequest($request);
@@ -91,8 +88,7 @@ class RegistrationController extends AbstractController
                 $userPasswordHasher->hashPassword(
                     $user, $request->request->get('first_connexion_user')['plainPassword']['first']
                 ));
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $usersRepository->save($user, true);
 
             $this->addFlash('message', 'Mot de passe mis à jour');
 

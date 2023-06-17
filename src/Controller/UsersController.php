@@ -2,12 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Users;
 use App\Form\EditUserProfilType;
 use App\Form\EditPasswordUserType;
 use App\Repository\RecipesRepository;
 use App\Repository\UsersRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,11 +29,10 @@ class UsersController extends AbstractController
     public function editProfile(
         Request $request,
         UsersRepository $usersRepository,
-        EntityManagerInterface $entityManager,
         string $id
     ): Response
     {
-        $user = $entityManager->getRepository(Users::class)->find($id);
+        $user = $usersRepository->find($id);
 
         if ($user->getId() !== $id) {
             throw $this->createAccessDeniedException();
@@ -62,11 +59,11 @@ class UsersController extends AbstractController
     public function editPassword(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
-        EntityManagerInterface $entityManager,
+        UsersRepository $usersRepository,
         string $id
     ): Response
     {
-        $user = $entityManager->getRepository(Users::class)->find($id);
+        $user = $usersRepository->find($id);
 
         if ($user->getId() !== $id) {
             throw $this->createAccessDeniedException();
@@ -84,8 +81,7 @@ class UsersController extends AbstractController
                 $userPasswordHasher->hashPassword(
                     $user, $request->request->get('edit_password_user')['plainPassword']['first']
                 ));
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $usersRepository->save($user, true);
 
             $this->addFlash('message', 'Mot de passe mis à jour');
 
