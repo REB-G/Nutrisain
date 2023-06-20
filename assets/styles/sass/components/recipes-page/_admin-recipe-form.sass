@@ -40,7 +40,12 @@
 
         &--ispublic-checkbox
             display: flex
-            flex-direction: row
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            +utils.responsive("big-phone")
+                flex-direction: row
+                justify-content: space-between
 
         &--label
             @extend %text-3
@@ -84,3 +89,19 @@
             margin-bottom: 3vw
         +utils.responsive("tablet")
             margin-bottom: 2vw
+
+#recipes_isPublic
+    margin-top: 0.5rem
+    +utils.responsive("big-phone")
+        margin-top: 0
+
+#recipes_imageFile_file
+    margin: 1rem
+    width: 100%
+
+#recipes_imageFile_delete
+    margin-left: 0.5rem
+
+.vich-image a img
+    width: 100%
+    margin: 0.5rem 0 0.5rem 0

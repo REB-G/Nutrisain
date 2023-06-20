@@ -13,12 +13,12 @@ ul {
   list-style: none;
 }
 
-.legal-notice__main-title, .privacy-policy__main-title, .terms-of-use__main-title, .first-connexion-form__title, .change-user-informations-form__title, .user-change-password-form__title, .user-profil__title, .contact-page-welcome__title, .register-form__title, .login-form__title, .recipe-form__title, .recipe-page__title, .main__title {
+.legal-notice__main-title, .privacy-policy__main-title, .terms-of-use__main-title, .first-connexion-form__title, .change-user-informations-form__title, .user-change-password-form__title, .user-profil__title, .contact-page-form__title, .contact-page-welcome__title, .register-form__title, .login-form__title, .recipe-form__title, .recipe-page__title, .home-page-form__title, .main__title {
   font-family: "old standard tt", serif;
   font-size: 3rem;
 }
 
-.legal-notice__section--title, .privacy-policy__section--title, .terms-of-use__section--title, .contact-page-form__title, .home-page-form__title, .services__title, .description__title {
+.legal-notice__section--title, .privacy-policy__section--title, .terms-of-use__section--title, .services__title, .description__title {
   font-family: "old standard tt", serif;
   font-size: 2.3rem;
 }
@@ -38,12 +38,12 @@ ul {
   font-size: 2rem;
 }
 
-.app-flash-message, .user-profil__informations--name, .user-profil__informations--firstname, .user-profil__informations--email, .user-diets-list, .user-diets-list__name, .user-allergies-list, .user-allergies-list__name, .contact-page-form__field--label, .contact-page-form__field--input, .contact-page-informations__text, .active, .filters__title, .home-page-form__field--label, .home-page-form__field--input, .home-page-links, .services__text-presentation, .description__text-presentation {
+.app-flash-message, .user-profil__informations--name, .user-profil__informations--firstname, .user-profil__informations--email, .user-diets-list, .user-diets-list__name, .user-allergies-list, .user-allergies-list__name, .contact-page-informations__text, .active, .filters__title, .home-page-links, .services__text-presentation, .description__text-presentation {
   font-family: "cardo", serif;
   font-size: 1.7rem;
 }
 
-.underline, .btn__linear-gradient, .error__info, .first-connexion-form__field--label, .first-connexion-form__field--input, .first-connexion-form__field-checkbox--label, .change-user-informations-form__information, .change-user-informations-form__field--label, .change-user-informations-form__field--input, .user-change-password-form__field--label, .user-change-password-form__field--input, .user-profil-recipe__none, .user-profil-recipe__description--details, .register-form__field--label, .register-form__field--input, .login-form__field--label, .login-form__field--input, .no-recipe-found__info, .recipe-form__field--label, .recipe-form__field--input, .show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__ingredients, .show-recipe__stagesOfRecipe, .paging__list, .opinion__show-comment, .opinion__details--username, .opinion__details--comment, .opinion__add-new-comment, .opinion__form--text-input, .opinion__form--submit-input, .recipe__description--details, .filters__label, .category-filters__title, .diet-filters__title, .header__link {
+.underline, .btn__linear-gradient, .error__info, .first-connexion-form__field--label, .first-connexion-form__field--input, .first-connexion-form__field-checkbox--label, .change-user-informations-form__information, .change-user-informations-form__field--label, .change-user-informations-form__field--input, .user-change-password-form__field--label, .user-change-password-form__field--input, .user-profil-recipe__none, .user-profil-recipe__description--details, .contact-page-form__field--label, .contact-page-form__field--input, .register-form__field--label, .register-form__field--input, .login-form__field--label, .login-form__field--input, .no-recipe-found__info, .recipe-form__field--label, .recipe-form__field--input, .show-recipe__description, .show-recipe__times--preparationTime, .show-recipe__times--preparationStandingTime, .show-recipe__times--cookingTime, .show-recipe__ingredients, .show-recipe__stagesOfRecipe, .paging__list, .opinion__show-comment, .opinion__details--username, .opinion__details--comment, .opinion__add-new-comment, .opinion__form--text-input, .opinion__form--submit-input, .recipe__description--details, .filters__label, .category-filters__title, .diet-filters__title, .home-page-form__field--label, .home-page-form__field--input, .header__link {
   font-family: "cardo", serif;
   font-size: 1.3rem;
 }
@@ -371,6 +371,7 @@ ul {
   text-decoration: underline;
   text-underline-offset: 0.2rem;
   text-decoration-color: #0B6E4F;
+  text-align: center;
 }
 .home-page-links__modifier:hover {
   color: #0B6E4F;
@@ -378,19 +379,18 @@ ul {
 }
 
 .home-page-form {
+  padding: 1rem;
   margin-top: 5rem;
   margin-bottom: 5rem;
-  padding: 3rem;
   box-shadow: 1px 1px 47px -3px #073B3A;
   border-radius: 1rem 1rem 1rem 1rem;
   outline: solid 0.3rem;
   outline-color: #0B6E4F;
 }
 .home-page-form__title {
-  margin-bottom: 1rem;
-  margin: 1rem;
   text-align: center;
-  color: #073B3A;
+  margin-top: 5vw;
+  color: #0B6E4F;
 }
 .home-page-form__flux {
   display: flex;
@@ -415,17 +415,11 @@ ul {
   margin-bottom: 5vw;
   max-width: 100%;
 }
-.home-page-form__field--label {
-  margin-top: 1rem;
-  padding: 0.3rem;
-  color: #0B6E4F;
-}
 .home-page-form__field--input {
-  padding: 0.3rem;
   max-width: 100%;
 }
 .home-page-form__modification {
-  margin-top: 3vw;
+  margin-top: 5vw;
 }
 
 #home_page {
@@ -988,7 +982,15 @@ ul {
 }
 .recipe-form__field--ispublic-checkbox {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 482px) {
+  .recipe-form__field--ispublic-checkbox {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 .recipe-form__field--input {
   max-width: 100%;
@@ -1041,6 +1043,29 @@ ul {
   #recipes_diet > label {
     margin-bottom: 2vw;
   }
+}
+
+#recipes_isPublic {
+  margin-top: 0.5rem;
+}
+@media screen and (min-width: 482px) {
+  #recipes_isPublic {
+    margin-top: 0;
+  }
+}
+
+#recipes_imageFile_file {
+  margin: 1rem;
+  width: 100%;
+}
+
+#recipes_imageFile_delete {
+  margin-left: 0.5rem;
+}
+
+.vich-image a img {
+  width: 100%;
+  margin: 0.5rem 0 0.5rem 0;
 }
 
 .no-recipe-found {
@@ -1204,19 +1229,18 @@ ul {
 }
 
 .contact-page-form {
+  padding: 1rem;
   margin-top: 5rem;
   margin-bottom: 5rem;
-  padding: 3rem;
   box-shadow: 1px 1px 47px -3px #073B3A;
   border-radius: 1rem 1rem 1rem 1rem;
   outline: solid 0.3rem;
   outline-color: #0B6E4F;
 }
 .contact-page-form__title {
-  margin-bottom: 1rem;
-  margin: 1rem;
   text-align: center;
-  color: #073B3A;
+  margin-top: 5vw;
+  color: #0B6E4F;
 }
 .contact-page-form__flux {
   display: flex;
@@ -1241,17 +1265,11 @@ ul {
   margin-bottom: 5vw;
   max-width: 100%;
 }
-.contact-page-form__field--label {
-  margin-top: 1rem;
-  padding: 0.3rem;
-  color: #0B6E4F;
-}
 .contact-page-form__field--input {
-  padding: 0.3rem;
   max-width: 100%;
 }
 .contact-page-form__modification {
-  margin-top: 3vw;
+  margin-top: 5vw;
 }
 
 #contact {
@@ -1270,6 +1288,9 @@ ul {
   .user-profil {
     padding: 0;
   }
+}
+.user-profil__title {
+  text-align: center;
 }
 .user-profil__informations {
   margin-top: 1.5rem;

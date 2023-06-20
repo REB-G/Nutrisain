@@ -18,7 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Validator\Constraints\PositiveOrZero;
 use Symfony\Component\Validator\Constraints\Regex;
 
 class RecipesType extends AbstractType
@@ -93,7 +93,7 @@ class RecipesType extends AbstractType
                         'max' => 3,
                         'maxMessage' => 'Le temps de préparation de la recette ne doit pas dépasser 3 caractères',
                     ]),
-                    new Positive([
+                    new PositiveOrZero([
                         'message' => 'Le temps de préparation de la recette doit être un nombre positif.',
                     ]),
                     new Regex([
@@ -123,7 +123,7 @@ class RecipesType extends AbstractType
                         'max' => 4,
                         'maxMessage' => 'Le temps de repos de la recette ne doit pas dépasser 4 caractères',
                     ]),
-                    new Positive([
+                    new PositiveOrZero([
                         'message' => 'Le temps de repos de la recette doit être un nombre positif.',
                     ]),
                     new Regex([
@@ -153,7 +153,7 @@ class RecipesType extends AbstractType
                         'max' => 3,
                         'maxMessage' => 'Le temps de cuisson de la recette ne doit pas dépasser 3 caractères',
                     ]),
-                    new Positive([
+                    new PositiveOrZero([
                         'message' => 'Le temps de cuisson de la recette doit être un nombre positif.',
                     ]),
                     new Regex([

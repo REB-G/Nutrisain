@@ -75,7 +75,7 @@ class Recipes
     #[Assert\NotBlank(message: 'Veuillez renseigner les ingrédients de la recette.')]
     #[Assert\Length(
         min: 3, max: 1255,
-        minMessage: 'La liste des ingrédients de la recette doit être de 2 caractères minimum.',
+        minMessage: 'La liste des ingrédients de la recette doit être de 3 caractères minimum.',
         maxMessage: "La liste des ingrédients de la recette ne doit pas dépasser 1255 caractères"
     )]
     private ?string $ingredients = null;
