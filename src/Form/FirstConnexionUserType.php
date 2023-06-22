@@ -70,7 +70,7 @@ class FirstConnexionUserType extends AbstractType
                 'row_attr' => [
                     'class' => 'first-connexion-form__field-checkbox'
                 ],
-                'label' => 'Veuillez accepter nos conditions générales d\'utilisation',
+                'label' => 'Veuillez accepter nos conditions générales d\'utilisation, nos mentions légales et notre politique de confidentialité.*',
                 'label_attr' => [
                     'class' => 'first-connexion-form__field-checkbox--label'
                 ],

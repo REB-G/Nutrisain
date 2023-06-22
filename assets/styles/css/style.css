@@ -48,7 +48,7 @@ ul {
   font-size: 1.3rem;
 }
 
-.footer__contact--links, .footer__legals--links, .footer__copyright {
+.first-connexion-form__links, .footer__contact--links, .footer__legals--links, .footer__copyright {
   font-family: "cardo", serif;
   font-size: 0.75rem;
 }
@@ -1537,15 +1537,52 @@ ul {
   justify-content: space-between;
   margin-bottom: 5vw;
   max-width: 100%;
+  margin: 1rem;
+}
+@media screen and (min-width: 855px) {
+  .first-connexion-form__field {
+    margin: 2rem;
+  }
+}
+.first-connexion-form__field--label {
+  text-align: center;
 }
 .first-connexion-form__field--input {
   max-width: 100%;
 }
 .first-connexion-form__field-checkbox {
-  margin-bottom: 5vw;
+  margin-bottom: 8vw;
+  margin: 1rem;
+}
+@media screen and (min-width: 855px) {
+  .first-connexion-form__field-checkbox {
+    margin-bottom: 5vw;
+    margin: 2rem;
+  }
+}
+.first-connexion-form__field-checkbox--label {
+  text-align: center;
 }
 .first-connexion-form__field-checkbox--input {
   margin-top: 1rem;
+}
+.first-connexion-form__links {
+  text-align: center;
+  margin-top: 10vw;
+}
+@media screen and (min-width: 855px) {
+  .first-connexion-form__links {
+    margin-top: 5vw;
+  }
+}
+.first-connexion-form__links a {
+  color: #0B6E4F;
+}
+.first-connexion-form__links a:hover {
+  color: #073B3A;
+  text-underline-offset: 0.3rem;
+  text-decoration: underline;
+  text-decoration-color: #0B6E4F;
 }
 
 .error {

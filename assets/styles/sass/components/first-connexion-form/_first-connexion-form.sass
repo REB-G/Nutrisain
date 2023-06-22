@@ -33,19 +33,43 @@
         justify-content: space-between
         margin-bottom:5vw
         max-width: 100%
+        margin: 1rem
+        +utils.responsive("tablet")
+            margin: 2rem
 
         &--label
             @extend %text-3
+            text-align: center
 
         &--input
             @extend %text-3
             max-width: 100%
 
     &__field-checkbox
-        margin-bottom: 5vw
+        margin-bottom: 8vw
+        margin: 1rem
+        +utils.responsive("tablet")
+            margin-bottom: 5vw
+            margin: 2rem
 
         &--label
             @extend %text-3
+            text-align: center
 
         &--input
             margin-top: 1rem
+
+    &__links
+        @extend %text-4
+        text-align: center
+        margin-top: 10vw
+        +utils.responsive("tablet")
+            margin-top: 5vw
+        
+        & a
+            color: utils.$light-blue
+            &:hover
+                color: utils.$dark-blue
+                text-underline-offset: 0.3rem
+                text-decoration: underline
+                text-decoration-color: utils.$light-blue
