@@ -45,7 +45,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 50)]
     #[Assert\NotBlank(message: 'Veuillez renseigner un nom.')]
     #[Assert\Length(
-        min: 2, max: 255,
+        min: 2, max: 50,
         minMessage: 'Le nom doit contenir 2 caractères minimum.',
         maxMessage: "Le nom ne doit pas dépasser 50 caractères"
     )]
