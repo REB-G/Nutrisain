@@ -88,6 +88,8 @@ class RegistrationController extends AbstractController
                 $userPasswordHasher->hashPassword(
                     $user, $request->request->get('first_connexion_user')['plainPassword']['first']
                 ));
+            $user->setAreLegalsAccepted(true);
+            $user->setLegalsAcceptedAt(new \DateTimeImmutable());
             $usersRepository->save($user, true);
 
             $this->addFlash('message', 'Mot de passe mis à jour');

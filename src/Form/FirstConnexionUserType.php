@@ -65,8 +65,8 @@ class FirstConnexionUserType extends AbstractType
                 'invalid_message' => 'Les mots de passes doivent correspondre.',
                 'mapped' => false,
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
+            ->add('areLegalsAccepted', CheckboxType::class, [
+                'required' => true,
                 'row_attr' => [
                     'class' => 'first-connexion-form__field-checkbox'
                 ],

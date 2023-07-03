@@ -79,6 +79,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Recipes::class, mappedBy: 'favoris')]
     private Collection $favoriteRecipes;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $areLegalsAccepted = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $legalsAcceptedAt = null;
+
     public function __construct()
     {
         $this->opinion = new ArrayCollection();
@@ -87,6 +93,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->favoriteRecipes = new ArrayCollection();
+        $this->legalsAcceptedAt = new \DateTimeImmutable();
     }
 
     #[ORM\PreUpdate]
@@ -299,6 +306,30 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->favoriteRecipes->removeElement($favoriteRecipe)) {
             $favoriteRecipe->removeFavori($this);
         }
+
+        return $this;
+    }
+
+    public function isAreLegalsAccepted(): ?bool
+    {
+        return $this->areLegalsAccepted;
+    }
+
+    public function setAreLegalsAccepted(?bool $areLegalsAccepted): self
+    {
+        $this->areLegalsAccepted = $areLegalsAccepted;
+
+        return $this;
+    }
+
+    public function getLegalsAcceptedAt(): ?\DateTimeImmutable
+    {
+        return $this->legalsAcceptedAt;
+    }
+
+    public function setLegalsAcceptedAt(?\DateTimeImmutable $legalsAcceptedAt): self
+    {
+        $this->legalsAcceptedAt = $legalsAcceptedAt;
 
         return $this;
     }
