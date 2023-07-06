@@ -62,7 +62,7 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 8,
                         'minMessage' => 'Votre mot de passe doit contenir au moins 8 caractères',
-                        'max' => 4096,
+                        'max' => 255,
                     ]),
                     new Regex([
                         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).+$/',
@@ -90,7 +90,8 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 2,
                         'minMessage' => 'Votre nom doit contenir au moins 2 caractères',
-                        'max' => 255,
+                        'max' => 50,
+                        'maxMessage' => 'Votre nom ne doit pas dépasser 50 caractères',
                     ]),
                     new Regex([
                         'pattern' => '/^[a-zA-Z]+$/',
@@ -131,6 +132,7 @@ class RegistrationFormType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+                'required'=> true,
                 'label' => 'Allergies',
                 'label_attr' => [
                     'class' => 'register-form__field--label'
@@ -141,6 +143,7 @@ class RegistrationFormType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+                'required'=> true,
                 'label' => 'Régimes',
                 'label_attr' => [
                     'class' => 'register-form__field--label'

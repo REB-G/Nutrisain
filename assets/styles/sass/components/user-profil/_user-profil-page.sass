@@ -13,14 +13,12 @@
 
     &__informations
         margin-top: 1.5rem
-        max-width: 50%
-        +utils.responsive("tablet")
-            max-width: 100%
 
         &--title
             @extend %text-1
             margin-top: 2rem
-            margin-left: -50%
+            +utils.responsive("tablet")
+                margin-left: -50%
 
         &--name
             margin-top: 1rem

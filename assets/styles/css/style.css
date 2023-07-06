@@ -1269,6 +1269,11 @@ ul {
 .contact-page-form__modification {
   margin-top: 5vw;
 }
+@media screen and (min-width: 855px) {
+  .contact-page-form__modification {
+    margin-top: 1vw;
+  }
+}
 
 .user-profil {
   flex-direction: column;
@@ -1285,16 +1290,14 @@ ul {
 }
 .user-profil__informations {
   margin-top: 1.5rem;
-  max-width: 50%;
-}
-@media screen and (min-width: 855px) {
-  .user-profil__informations {
-    max-width: 100%;
-  }
 }
 .user-profil__informations--title {
   margin-top: 2rem;
-  margin-left: -50%;
+}
+@media screen and (min-width: 855px) {
+  .user-profil__informations--title {
+    margin-left: -50%;
+  }
 }
 .user-profil__informations--name {
   margin-top: 1rem;

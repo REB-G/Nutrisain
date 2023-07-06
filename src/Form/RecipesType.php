@@ -277,6 +277,7 @@ class RecipesType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+                'required'=> true,
                 'label' => 'Allergies',
                 'label_attr' => [
                     'class' => 'recipe-form__field--label'
@@ -287,6 +288,7 @@ class RecipesType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+                'required'=> true,
                 'label' => 'Régimes',
                 'label_attr' => [
                     'class' => 'recipe-form__field--label'
