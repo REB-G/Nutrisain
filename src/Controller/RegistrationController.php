@@ -46,7 +46,7 @@ class RegistrationController extends AbstractController
             $idUser = $user->getId();
             
             $email = (new TemplatedEmail())
-                ->from('nutrisain-administration@nutrisain.studio')
+                ->from('nutrisain-administration@nutrisain.tech')
                 ->to($user->getEmail())
                 ->subject('Inscription à Nutrisain')
                 ->htmlTemplate('registration/email_registration.html.twig')
